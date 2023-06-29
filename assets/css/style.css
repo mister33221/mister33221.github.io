@@ -1316,6 +1316,16 @@ a:hover {
     overflow: hidden;
 }
 
+.card-blog .card-category-article-box {
+    position: absolute;
+    text-align: left;
+    top: -16px;
+    left: 15px;
+    right: 15px;
+    line-height: 25px;
+    overflow: hidden;
+}
+
 .card-blog .card-category {
     display: inline-block;
     color: #fff;
