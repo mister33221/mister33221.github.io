@@ -1,0 +1,138 @@
+
+[
+  {
+    "href": "https://hackmd.io/lF873v9dT0SSFMFrSVS3AA?view",
+    "title": "Java 8 - 17 jeps 重點整理",
+    "description": "不負責任的整理了一下 Java 8 - 17 的 jeps，有興趣的可以看看，有錯誤的地方歡迎指正，謝謝。",
+    "author": "Kai　2023.5.10",
+    "tag": "Java"
+  },
+  {
+    "href": "https://hackmd.io/Gjx197bYR9ajBKfICG1OVw?view",
+    "title": "cypress 前端測試 with angular 簡單介紹及教學",
+    "description": "Cypress是一個開源的端對端測試框架，它可以幫助開發人員在網頁應用程序上進行自動化測試。Cypress與其他測試框架不同之處在於它直接在瀏覽器中運行",
+    "author": "Kai　2023.4.30",
+    "tag": "Angular, Cypress"
+  },
+  {
+    "href": "https://hackmd.io/5hPk51G5RO-FQwr3sADncQ?view",
+    "title": "FormGroup的同步驗證與非同步驗證範例",
+    "description": "就......就是一個簡單的範例而已啦，不要太期待",
+    "author": "Kai　2023.5.1",
+    "tag": "Angular"
+  },
+  {
+    "href": "https://hackmd.io/yQCyMH4QREOjTKwuS2Otwg?view",
+    "title": "為自己學Gradle",
+    "description": "Gradle是一款開源的自動化建構、測試和部署軟體專案的建構工具。它基於 Groovy (或Kotlin)語言和簡潔的領域特定語言 (DSL)，具有靈活且強大的功能。",
+    "author": "Kai　2023.5.1",
+    "tag": "Gradle"
+  },
+
+{
+    "href": "https://hackmd.io/Q2pVevNuRNe4ycTSPeONXA?view",
+    "title": "尚硅谷kafka筆記",
+    "description": "kafka是一個分散式的基於發布訂閱模式的消息列隊，主要應用於大數據處裡，也特別適合微服務架構下的應用場景，用於取代傳統的消息中間件。",
+    "author": "Kai　2023.2.28",
+    "tag": "Java, Kafka"
+  },
+  {
+    "href": "https://hackmd.io/YzL0zKfyS36kgfVhpBGWXQ?view",
+    "title": "spring boot k8s 101",
+    "description": "利用docker desktop for windows 來建立一個k8s的環境，並且利用spring boot來建立一個簡單的web server，並且將其部署到k8s上。",
+    "author": "Kai　2022.9.30",
+    "tag": "Java, Spring, Docker, k8s"
+  },
+  {
+    "href": "https://hackmd.io/9abXfYDpRgyscKi6iAvTsw?view",
+    "title": "k8s 簡介",
+    "description": "簡介k8s的基本概念，並且介紹k8s的架構。",
+    "author": "Kai　2022.9.30",
+    "tag": "k8s"
+  },
+  {
+    "href": "https://hackmd.io/qAKvTWosT9-eEw5wlY66Lw?view",
+    "title": "Spring Boot配置與XML配置",
+    "description": "Spring Boot 配置類與XML配置簡介。",
+    "author": "Kai　2022.8.31",
+    "tag": "Spring"
+  },
+  {
+    "href": "https://hackmd.io/qQiSUjy8R4y2hE5zMBTzlw?view",
+    "title": "java 8 Lambda簡介",
+    "description": "java 8 Lambda簡介結構與使用方法。",
+    "author": "Kai　2022.7.31",
+    "tag": "Java, Lambda"
+  },
+  {
+    "href": "https://hackmd.io/s7vfJ3xkTZCegAC6npnKWQ?view",
+    "title": "Angular 安裝",
+    "description": "Angular 安裝步驟及建立一個新的Angular專案。",
+    "author": "Kai　2022.7.31",
+    "tag": "Angular"
+  },
+  {
+    "href": "https://hackmd.io/4_7YdydnSzGQEOrg_QBcWA?view",
+    "title": "Angular Schematics 101",
+    "description": "學習使用Angular Schematics。",
+    "author": "Kai　2022.7.31",
+    "tag": "Angular"
+  },
+  {
+    "href": "https://hackmd.io/JrZjsP3GQQOGvtp4TVDn8w?view",
+    "title": "Spring boot Redis Docker Example",
+    "description": "Spring boot 搭配 Docker 部署 Redis。",
+    "author": "Kai　2022.7.31",
+    "tag": "Spring, Docker"
+  },
+
+{
+    "href": "https://hackmd.io/YitwxGAvT0atTU1VqRA-Gg?view",
+    "title": "java 8 optional",
+    "description": "java 8 optional簡介及使用範例。",
+    "author": "Kai　2022.7.31",
+    "tag": "Java, Optional"
+  },
+  {
+    "href": "https://hackmd.io/kLcpMpjBSiGkHmU0mVa16A?view",
+    "title": "docker 101(PostgreSQL)",
+    "description": "簡介Docker及使用Docker部署PostgreSQL。",
+    "author": "Kai　2022.7.31",
+    "tag": "Docker"
+  },
+  {
+    "href": "https://hackmd.io/8_ABzjRmRMqSQ6piOZGctQ?view",
+    "title": "安裝Apache(與tomcat的差別)",
+    "description": "簡介Apache與Tomcat的差別，並安裝Apache。",
+    "author": "Kai　2022.7.31",
+    "tag": "Apache, Tomcat"
+  },
+  {
+    "href": "https://hackmd.io/wUbrRyHJTnmC6chbmijOtw?view",
+    "title": "Spring boot 連線池",
+    "description": "簡介Spring boot中連線池的優先順序。",
+    "author": "Kai　2022.7.31",
+    "tag": "Spring"
+  },
+  {
+    "href": "https://hackmd.io/5i-ITdsbQaCJZdPzJa79Zw?view",
+    "title": "Spring Data Jpa常用關鍵字",
+    "description": "Spring Data Jpa常用關鍵字範例。",
+    "author": "Kai　2022.7.31",
+    "tag": "Spring, Jpa"
+  },
+  {
+    "href": "https://hackmd.io/fYSAeQFnQPe1c0ZyC3MC5g?view",
+    "title": "RabbitMQ 消息列隊練習",
+    "description": "RabbitMQ 消息列隊簡介與結合spring boot使用練習。",
+    "author": "Kai　2022.7.31",
+    "tag": "RabbitMQ, Spring"
+  },
+  {
+    "href": "https://hackmd.io/tEBYj6uZRj-a8TvSXI4yHw?view",
+    "title": "Spring boot line bot",
+    "description": "練習使用Spring boot建立line bot，並結合mongodb。",
+    "author": "Kai　2022.7.31",
+    "tag": "Spring, Line bot"
+  }
+]
