@@ -841,22 +841,7 @@
 </html>
 
 <script>
-  const select = document.getElementById("category-select");
-  const cards = document.querySelectorAll(".card-blog");
-
-  select.addEventListener("change", () => {
-    const selectedValue = select.value;
-    cards.forEach((card) => {
-      if (
-        selectedValue === "" ||
-        card.querySelector(".post-date").textContent.includes(selectedValue)
-      ) {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
-    });
-  });
+  
 
   const blogData = [
   {
@@ -1303,43 +1288,19 @@
   }
 ];
 
-const blogContainer = document.getElementById("blog-container");
-blogData.forEach((blog) => {
-  const blogHTML = `
-    <div class="col-md-12">
-      <a href="${blog.href}" target="_blank">
-        <div class="card card-blog">
-          <div class="card-body">
-            <div class="card-category-article-box">
-              <div class="card-category">
-                <h6 class="category">${blog.category}</h6>
-              </div>
-            </div>
-            <p class="card-description mt-3">${blog.description}</p>
-          </div>
-          <div class="card-footer">
-            <div class="post-author">
-              <span class="author">${blog.author}</span>
-            </div>
-            <div class="post-date">
-              <span class="bi bi-tag"></span> ${blog.tags}
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-  `;
-  blogContainer.innerHTML += blogHTML;
-});
-
-const itemsPerPage = 10;
+const itemsPerPage = 5;
 let currentPage = 1;
+let currentCategory = "";
 
-function renderBlogPage(page) {
+const renderBlogPage = (page, category) => {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  const paginatedData = blogData.slice(startIndex, endIndex);
+  const filteredData = category
+    ? blogData.filter((blog) => blog.tags.includes(category))
+    : blogData;
+
+  const paginatedData = filteredData.slice(startIndex, endIndex);
 
   const blogContainer = document.getElementById("blog-container");
   blogContainer.innerHTML = ""; // 清空內容
@@ -1373,16 +1334,26 @@ function renderBlogPage(page) {
   });
 
   document.getElementById("pagination").innerHTML = `
-    ${currentPage > 1 ? `<button onclick="changePage(${currentPage - 1})">上一頁</button>` : ""}
-    ${currentPage < Math.ceil(blogData.length / itemsPerPage) ? `<button onclick="changePage(${currentPage + 1})">下一頁</button>` : ""}
+    <div class="pagination-controls">
+      ${currentPage > 1 ? `<button class="btn btn-primary" onclick="changePage(${currentPage - 1})">上一頁</button>` : ""}
+      <span>頁數: ${currentPage} / ${Math.ceil(filteredData.length / itemsPerPage)}</span>
+      ${currentPage < Math.ceil(filteredData.length / itemsPerPage) ? `<button class="btn btn-primary" onclick="changePage(${currentPage + 1})">下一頁</button>` : ""}
+    </div>
   `;
-}
+};
 
-function changePage(page) {
+const changePage = (page) => {
   currentPage = page;
-  renderBlogPage(currentPage);
-}
+  renderBlogPage(currentPage, currentCategory);
+};
+
+const select = document.getElementById("category-select");
+select.addEventListener("change", () => {
+  currentCategory = select.value;
+  currentPage = 1; // 重置頁數
+  renderBlogPage(currentPage, currentCategory);
+});
 
 // 初始化
-renderBlogPage(currentPage);
+renderBlogPage(currentPage, currentCategory);
 </script>
