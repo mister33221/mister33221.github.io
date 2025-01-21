@@ -1275,14 +1275,24 @@
 const itemsPerPage = 5;
 let currentPage = 1;
 let currentCategory = "";
+let currentSearchTerm = "";
 
-const renderBlogPage = (page, category) => {
+const renderBlogPage = (page, category, searchTerm) => {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  const filteredData = category
+  let filteredData = category
     ? blogData.filter((blog) => blog.tags.includes(category))
     : blogData;
+
+  if (searchTerm) {
+    filteredData = filteredData.filter((blog) =>
+      blog.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      blog.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      blog.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      blog.tags.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
 
   const paginatedData = filteredData.slice(startIndex, endIndex);
 
@@ -1290,7 +1300,6 @@ const renderBlogPage = (page, category) => {
   blogContainer.innerHTML = ""; // 清空內容
 
   paginatedData.forEach((blog) => {
-    // 動態計算 category 高度
     const tempDiv = document.createElement("div");
     tempDiv.style.position = "absolute";
     tempDiv.style.visibility = "hidden";
@@ -1341,9 +1350,8 @@ const renderBlogPage = (page, category) => {
 
 const changePage = (page) => {
   currentPage = page;
-  renderBlogPage(currentPage, currentCategory);
+  renderBlogPage(currentPage, currentCategory, currentSearchTerm);
 
-  // 滾動到第一篇文章
   const blogSection = document.getElementById("blog");
   if (blogSection) {
     blogSection.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1367,12 +1375,28 @@ categories.forEach((category) => {
   button.onclick = () => {
     currentCategory = category === "全部" ? "" : category;
     currentPage = 1;
-    renderBlogPage(currentPage, currentCategory);
+    renderBlogPage(currentPage, currentCategory, currentSearchTerm);
   };
   categoryContainer.appendChild(button);
 });
 
+// 搜尋功能
+const searchContainer = document.createElement("div");
+searchContainer.classList.add("text-center", "my-3");
+searchContainer.innerHTML = `
+  <input type="text" id="search-input" class="form-control" placeholder="搜尋文章..." style="max-width: 300px; margin: 0 auto;">
+`;
+
+document.querySelector("#blog .title-box").appendChild(searchContainer);
+
+const searchInput = document.getElementById("search-input");
+searchInput.addEventListener("input", (e) => {
+  currentSearchTerm = e.target.value;
+  currentPage = 1;
+  renderBlogPage(currentPage, currentCategory, currentSearchTerm);
+});
+
 // 初始化
-renderBlogPage(currentPage, currentCategory);
+renderBlogPage(currentPage, currentCategory, currentSearchTerm);
 
 </script>
