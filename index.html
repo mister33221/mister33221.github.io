@@ -1319,9 +1319,9 @@ const renderBlogPage = (page, category) => {
 
   document.getElementById("pagination").innerHTML = `
     <div class="pagination-controls text-center">
-      ${currentPage > 1 ? `<button class="btn btn-primary mx-2" onclick="changePage(${currentPage - 1})">上一頁</button>` : ""}
-      <span>頁數: ${currentPage} / ${Math.ceil(filteredData.length / itemsPerPage)}</span>
-      ${currentPage < Math.ceil(filteredData.length / itemsPerPage) ? `<button class="btn btn-primary mx-2" onclick="changePage(${currentPage + 1})">下一頁</button>` : ""}
+      ${currentPage > 1 ? `<button class="btn btn-secondary mx-2" style="background-color: #6c757d; color: white;" onclick="changePage(${currentPage - 1})">上一頁</button>` : ""}
+      <span style="font-weight: bold;">頁數: ${currentPage} / ${Math.ceil(filteredData.length / itemsPerPage)}</span>
+      ${currentPage < Math.ceil(filteredData.length / itemsPerPage) ? `<button class="btn btn-secondary mx-2" style="background-color: #6c757d; color: white;" onclick="changePage(${currentPage + 1})">下一頁</button>` : ""}
     </div>
   `;
 };
@@ -1332,7 +1332,7 @@ const changePage = (page) => {
 };
 
 const categories = [
-  "Java", "Spring", "Docker", "Repository", "k8s", "Angular", "Apache", "Kafka", "Gradle", "Git", "CICD", "Design Pattern", "db", "Clean Code", "Uncategorized"
+  "全部", "Java", "Spring", "Docker", "Repository", "k8s", "Angular", "Apache", "Kafka", "Gradle", "Git", "CICD", "Design Pattern", "db", "Clean Code", "Uncategorized"
 ];
 
 const categoryContainer = document.createElement("div");
@@ -1346,7 +1346,7 @@ categories.forEach((category) => {
   button.textContent = category;
   button.classList.add("btn", "btn-outline-secondary", "m-1");
   button.onclick = () => {
-    currentCategory = category;
+    currentCategory = category === "全部" ? "" : category;
     currentPage = 1;
     renderBlogPage(currentPage, currentCategory);
   };
