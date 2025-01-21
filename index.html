@@ -620,29 +620,13 @@
                 <p class="subtitle-a">技術分享、踩雷紀錄、生活心得</p>
                 <div class="line-mf"></div>
                 文章分類
-                <select id="category-select">
-                  <option value="">全部</option>
-                  <option value="Java">Java</option>
-                  <option value="Spring">Spring</option>
-                  <option value="Docker">Docker</option>
-                  <option value="Repository">Repository</option>
-                  <option value="k8s">k8s</option>
-                  <option value="Angular">Angular</option>
-                  <option value="Apache">Apache</option>
-                  <option value="Tomcat">Tomcat</option>
-                  <option value="Apache">Nginx</option>
-                  <option value="Kafka">Kafka</option>
-                  <option value="Gradle">Gradle</option>
-                  <option value="Git">Git</option>
-                  <option value="CICD">CICD</option>
-                  <option value="Design Pattern">Design Pattern</option>
-                  <option value="db">db</option>
-                  <option value="Clean Code">Clean Code</option>
-                  <option value="Uncategorized">Uncategorized</option>
-                </select>
+                <div id="category-container" class="row">
+                  <!-- 以 JS 動態產生 -->
+                </div>
               </div>
             </div>
           </div>
+         
           <div class="row">
             <div id="blog-container">
               <!-- 以 JS 動態產生 -->
@@ -1334,10 +1318,10 @@ const renderBlogPage = (page, category) => {
   });
 
   document.getElementById("pagination").innerHTML = `
-    <div class="pagination-controls">
-      ${currentPage > 1 ? `<button class="btn btn-primary" onclick="changePage(${currentPage - 1})">上一頁</button>` : ""}
+    <div class="pagination-controls text-center">
+      ${currentPage > 1 ? `<button class="btn btn-primary mx-2" onclick="changePage(${currentPage - 1})">上一頁</button>` : ""}
       <span>頁數: ${currentPage} / ${Math.ceil(filteredData.length / itemsPerPage)}</span>
-      ${currentPage < Math.ceil(filteredData.length / itemsPerPage) ? `<button class="btn btn-primary" onclick="changePage(${currentPage + 1})">下一頁</button>` : ""}
+      ${currentPage < Math.ceil(filteredData.length / itemsPerPage) ? `<button class="btn btn-primary mx-2" onclick="changePage(${currentPage + 1})">下一頁</button>` : ""}
     </div>
   `;
 };
@@ -1347,13 +1331,29 @@ const changePage = (page) => {
   renderBlogPage(currentPage, currentCategory);
 };
 
-const select = document.getElementById("category-select");
-select.addEventListener("change", () => {
-  currentCategory = select.value;
-  currentPage = 1; // 重置頁數
-  renderBlogPage(currentPage, currentCategory);
+const categories = [
+  "Java", "Spring", "Docker", "Repository", "k8s", "Angular", "Apache", "Kafka", "Gradle", "Git", "CICD", "Design Pattern", "db", "Clean Code", "Uncategorized"
+];
+
+const categoryContainer = document.createElement("div");
+categoryContainer.id = "category-container";
+categoryContainer.classList.add("text-center", "my-3");
+
+document.querySelector("#blog .title-box").appendChild(categoryContainer);
+
+categories.forEach((category) => {
+  const button = document.createElement("button");
+  button.textContent = category;
+  button.classList.add("btn", "btn-outline-secondary", "m-1");
+  button.onclick = () => {
+    currentCategory = category;
+    currentPage = 1;
+    renderBlogPage(currentPage, currentCategory);
+  };
+  categoryContainer.appendChild(button);
 });
 
 // 初始化
 renderBlogPage(currentPage, currentCategory);
+
 </script>
