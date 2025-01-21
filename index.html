@@ -1295,12 +1295,12 @@ const renderBlogPage = (page, category) => {
         <a href="${blog.href}" target="_blank">
           <div class="card card-blog">
             <div class="card-body">
-              <div class="card-category-article-box">
+              <div class="card-category-article-box" style="margin-bottom: ${blog.category.length > 30 ? '20px' : '10px'};">
                 <div class="card-category">
-                  <h6 class="category">${blog.category}</h6>
+                  <h6 class="category" style="overflow-wrap: break-word;">${blog.category}</h6>
                 </div>
               </div>
-              <p class="card-description mt-3">${blog.description}</p>
+              <p class="card-description mt-3 text-wrap">${blog.description}</p>
             </div>
             <div class="card-footer">
               <div class="post-author">
@@ -1329,6 +1329,12 @@ const renderBlogPage = (page, category) => {
 const changePage = (page) => {
   currentPage = page;
   renderBlogPage(currentPage, currentCategory);
+
+  // 滾動到第一篇文章
+  const blogSection = document.getElementById("blog");
+  if (blogSection) {
+    blogSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 };
 
 const categories = [
