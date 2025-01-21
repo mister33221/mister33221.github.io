@@ -644,6 +644,9 @@
             </div>
           </div>
           <div class="row">
+            <div id="blog-container">
+
+            </div>
             <div class="col-md-12">
               <a
                 href="https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/rk4sl16wye"
@@ -2784,4 +2787,52 @@
       }
     });
   });
+
+  const blogData = [
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/rk4sl16wye",
+    category: "[Nginx] Nginx HTTPS 設定",
+    description: "使用 Nginx 來設定 HTTPS，並藉由反向代理來導向我們的 Domain Name。",
+    author: "Kai　20250121",
+    tags: "Nginx",
+  },
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/r18obH_Lye",
+    category: "[Spring] Spring Cache 學習指南",
+    description:
+      "Cache 那麼重要，都還沒有好好地寫一篇文章，剛好最近有個專案會有大量用戶，且有壓測需求，那就來把 Cache 的文章寫一下吧。",
+    author: "Kai　20250109",
+    tags: "Spring, Java",
+  },
+  // 加入更多資料...
+];
+
+const blogContainer = document.getElementById("blog-container");
+blogData.forEach((blog) => {
+  const blogHTML = `
+    <div class="col-md-12">
+      <a href="${blog.href}" target="_blank">
+        <div class="card card-blog">
+          <div class="card-body">
+            <div class="card-category-article-box">
+              <div class="card-category">
+                <h6 class="category">${blog.category}</h6>
+              </div>
+            </div>
+            <p class="card-description mt-3">${blog.description}</p>
+          </div>
+          <div class="card-footer">
+            <div class="post-author">
+              <span class="author">${blog.author}</span>
+            </div>
+            <div class="post-date">
+              <span class="bi bi-tag"></span> ${blog.tags}
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  `;
+  blogContainer.innerHTML += blogHTML;
+});
 </script>
