@@ -134,9 +134,10 @@
       </div>
       
       <!-- 文章分類按鈕 -->
-      <div class="text-center mb-4 mt-2">
-        <div id="category-container"></div>
-      </div>
+<!-- 文章分類按鈕 -->
+<div class="text-center mb-4 mt-2" id="category-container-wrapper">
+  <div id="category-container"></div>
+</div>
   
       <!-- 文章區塊 -->
       <div class="row" id="blog-container"></div>
@@ -1409,30 +1410,9 @@ const categories = [
   "全部", "Java", "Spring", "Docker", "Repository", "k8s", "Angular", "Apache", "Kafka", "Gradle", "Git", "CICD", "Design Pattern", "db", "Clean Code", "Uncategorized"
 ];
 
-// const categoryContainer = document.createElement("div");
-// categoryContainer.id = "category-container";
-// categoryContainer.classList.add("text-center", "my-3");
-
-// document.querySelector("#blog .title-box").appendChild(categoryContainer);
-
-// categories.forEach((category) => {
-//   const button = document.createElement("button");
-//   button.textContent = category;
-//   button.classList.add("btn", "btn-outline-secondary", "m-1");
-//   button.onclick = () => {
-//     currentCategory = category === "全部" ? "" : category;
-//     currentPage = 1;
-//     renderBlogPage(currentPage, currentCategory, currentSearchTerm);
-//   };
-//   categoryContainer.appendChild(button);
-// });
-
 // 搜尋功能
 const searchContainer = document.createElement("div");
 searchContainer.classList.add("text-center", "my-3");
-// searchContainer.innerHTML = `
-//   <input type="text" id="search-input" class="form-control" placeholder="搜尋文章..." style="max-width: 300px; margin: 0 auto;">
-// `;
 
 // document.querySelector("#blog .title-box").appendChild(searchContainer);
 
@@ -1457,6 +1437,41 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       categoryContainer.appendChild(button);
     });
+
+    // 添加左右箭頭
+    const leftArrow = document.createElement("button");
+    leftArrow.classList.add("scroll-arrow", "left");
+    leftArrow.innerHTML = "&larr;";
+    leftArrow.onclick = () => {
+      categoryContainer.scrollBy({ left: -100, behavior: "smooth" });
+    };
+    document.getElementById("category-container-wrapper").appendChild(leftArrow);
+
+    const rightArrow = document.createElement("button");
+    rightArrow.classList.add("scroll-arrow", "right");
+    rightArrow.innerHTML = "&rarr;";
+    rightArrow.onclick = () => {
+      categoryContainer.scrollBy({ left: 100, behavior: "smooth" });
+    };
+    document.getElementById("category-container-wrapper").appendChild(rightArrow);
+
+    // 更新箭頭顯示狀態
+    const updateArrows = () => {
+      if (categoryContainer.scrollLeft > 0) {
+        leftArrow.style.display = "block";
+      } else {
+        leftArrow.style.display = "none";
+      }
+      if (categoryContainer.scrollLeft + categoryContainer.clientWidth < categoryContainer.scrollWidth) {
+        rightArrow.style.display = "block";
+      } else {
+        rightArrow.style.display = "none";
+      }
+    };
+
+    categoryContainer.addEventListener("scroll", updateArrows);
+    window.addEventListener("resize", updateArrows);
+    updateArrows();
     
     // 搜尋功能
     const searchInput = document.getElementById("search-input");
@@ -1467,8 +1482,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-// 初始化
-renderBlogPage(currentPage, currentCategory, currentSearchTerm);
+  // 初始化
+  renderBlogPage(currentPage, currentCategory, currentSearchTerm);
 
 </script>
 <style>
@@ -1521,5 +1536,42 @@ renderBlogPage(currentPage, currentCategory, currentSearchTerm);
   #search-input:focus {
     border-color: #007bff;
     outline: none;
+  }
+
+  /* 手機版橫向滾動樣式 */
+  @media (max-width: 768px) {
+    #category-container-wrapper {
+      position: relative;
+    }
+    #category-container {
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none; /* Firefox */
+    }
+    #category-container::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    .category-button {
+      flex: 0 0 auto;
+    }
+    .scroll-arrow {
+      display: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .scroll-arrow.left {
+      left: 0;
+    }
+    .scroll-arrow.right {
+      right: 0;
+    }
   }
 </style>
