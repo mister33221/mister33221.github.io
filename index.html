@@ -114,6 +114,39 @@
     </div>
     <!-- End Hero Section -->
 
+  </section> -->
+  <!-- ======= Blog Section ======= -->
+  <section id="blog" class="services-mf pt-3 route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">部落格</h3>
+            <p class="subtitle-a">技術分享、踩雷紀錄、生活心得</p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 搜尋框 -->
+      <div class="text-center">
+        <input type="text" id="search-input" class="form-control" placeholder="搜尋文章..." style="max-width: 300px; margin: 0 auto;" />
+      </div>
+      
+      <!-- 文章分類按鈕 -->
+      <div class="text-center mb-4 mt-2">
+        <div id="category-container"></div>
+      </div>
+  
+      <!-- 文章區塊 -->
+      <div class="row" id="blog-container"></div>
+  
+      <!-- 分頁控制 -->
+      <div id="pagination" class="text-center mt-3"></div>
+    </div>
+  </section>
+  <!-- End Blog Section -->
+
     <main id="main">
       <!-- ======= About Section ======= -->
       <section id="about" class="about-mf sect-pt4 route">
@@ -609,33 +642,7 @@
       <!-- End Testimonials Section -->
       <!-- <section id="skills2" class="services-mf pt-5 route">
            
-        </section> -->
-      <!-- ======= Blog Section ======= -->
-      <section id="blog" class="services-mf pt-5 route">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="title-box text-center">
-                <h3 class="title-a">部落格</h3>
-                <p class="subtitle-a">技術分享、踩雷紀錄、生活心得</p>
-                <div class="line-mf"></div>
-                文章分類
-                <div id="category-container" class="row">
-                  <!-- 以 JS 動態產生 -->
-                </div>
-              </div>
-            </div>
-          </div>
-         
-          <div class="row">
-            <div id="blog-container">
-              <!-- 以 JS 動態產生 -->
-            </div>
-            <div id="pagination" class="text-center mt-3"></div>
-          </div>
-        </div>
-      </section>
-      <!-- End Blog Section -->
+
 
       <!-- ======= habit Section ======= -->
       <!-- ======= Portfolio Section ======= -->
@@ -664,9 +671,7 @@
                       <h6 class="category">音樂</h6>
                     </div>
                   </div>
-                  <!-- <h3 class="card-title">
-                                    <a href="blog-single.html">See more ideas about Travel</a>
-                                </h3> -->
+                  <h3 class="card-title"></h3>
                   <p class="card-description"  >
                     從小就喜歡音樂，除了參加社團也去學了小號、吉他、鋼琴。音樂一直是我生活中不可或缺的一部分。畢業後還曾經與朋友組團在酒吧表演。
                   </p>
@@ -687,7 +692,7 @@
                       <h3 class="category">登山</h3>
                     </div>
                   </div>
-                  <!-- <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3> -->
+                  <h3 class="card-title"></h3>
                   <p class="card-description"  >
                     一直都很喜歡大自然，不過登山這個活動是近幾年才開始的，爬了幾座小百岳，很喜歡那種「頭已經洗了一半了」的感覺，即使身體再累，已必須達成目標，以及下山滿腦美食的那種感覺。
                   </p>
@@ -708,7 +713,7 @@
                       <h6 class="category">野營</h6>
                     </div>
                   </div>
-                  <!-- <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3> -->
+                  <h3 class="card-title"></h3>
                   <p class="card-description"  >
                     從開始爬山以後，也同時愛上了野營。野營時，大自然的聲音、沒有訊號的手機、沒有人煙的汙染，全都是自然美好。
                   </p>
@@ -1397,41 +1402,117 @@ const categories = [
   "全部", "Java", "Spring", "Docker", "Repository", "k8s", "Angular", "Apache", "Kafka", "Gradle", "Git", "CICD", "Design Pattern", "db", "Clean Code", "Uncategorized"
 ];
 
-const categoryContainer = document.createElement("div");
-categoryContainer.id = "category-container";
-categoryContainer.classList.add("text-center", "my-3");
+// const categoryContainer = document.createElement("div");
+// categoryContainer.id = "category-container";
+// categoryContainer.classList.add("text-center", "my-3");
 
-document.querySelector("#blog .title-box").appendChild(categoryContainer);
+// document.querySelector("#blog .title-box").appendChild(categoryContainer);
 
-categories.forEach((category) => {
-  const button = document.createElement("button");
-  button.textContent = category;
-  button.classList.add("btn", "btn-outline-secondary", "m-1");
-  button.onclick = () => {
-    currentCategory = category === "全部" ? "" : category;
-    currentPage = 1;
-    renderBlogPage(currentPage, currentCategory, currentSearchTerm);
-  };
-  categoryContainer.appendChild(button);
-});
+// categories.forEach((category) => {
+//   const button = document.createElement("button");
+//   button.textContent = category;
+//   button.classList.add("btn", "btn-outline-secondary", "m-1");
+//   button.onclick = () => {
+//     currentCategory = category === "全部" ? "" : category;
+//     currentPage = 1;
+//     renderBlogPage(currentPage, currentCategory, currentSearchTerm);
+//   };
+//   categoryContainer.appendChild(button);
+// });
 
 // 搜尋功能
 const searchContainer = document.createElement("div");
 searchContainer.classList.add("text-center", "my-3");
-searchContainer.innerHTML = `
-  <input type="text" id="search-input" class="form-control" placeholder="搜尋文章..." style="max-width: 300px; margin: 0 auto;">
-`;
+// searchContainer.innerHTML = `
+//   <input type="text" id="search-input" class="form-control" placeholder="搜尋文章..." style="max-width: 300px; margin: 0 auto;">
+// `;
 
-document.querySelector("#blog .title-box").appendChild(searchContainer);
+// document.querySelector("#blog .title-box").appendChild(searchContainer);
 
 const searchInput = document.getElementById("search-input");
-searchInput.addEventListener("input", (e) => {
-  currentSearchTerm = e.target.value;
-  currentPage = 1;
-  renderBlogPage(currentPage, currentCategory, currentSearchTerm);
-});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const categories = [
+      "全部", "Java", "Spring", "Docker", "Repository", "k8s", "Angular", "Apache", "Kafka", "Gradle", "Git", "CICD", "Design Pattern", "db", "Clean Code", "Uncategorized"
+    ];
+    const categoryContainer = document.getElementById("category-container");
+    
+    categories.forEach((category) => {
+      const button = document.createElement("button");
+      button.textContent = category;
+      button.classList.add("btn", "btn-outline-secondary", "m-1", "category-button");
+      button.onclick = () => {
+        document.querySelectorAll(".category-button").forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        currentCategory = category === "全部" ? "" : category;
+        currentPage = 1;
+        renderBlogPage(currentPage, currentCategory, currentSearchTerm);
+      };
+      categoryContainer.appendChild(button);
+    });
+    
+    // 搜尋功能
+    const searchInput = document.getElementById("search-input");
+    searchInput.addEventListener("input", (e) => {
+      currentSearchTerm = e.target.value;
+      currentPage = 1;
+      renderBlogPage(currentPage, currentCategory, currentSearchTerm);
+    });
+  });
 
 // 初始化
 renderBlogPage(currentPage, currentCategory, currentSearchTerm);
 
 </script>
+<style>
+  /* 主要卡片樣式 */
+  .card-blog {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  }
+  .card-blog:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* 分類按鈕 */
+  .category-button {
+    border-radius: 50px;
+    padding: 8px 16px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .category-button:hover {
+    background-color: #6c757d;
+    color: white;
+  }
+  .category-button.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  /* 文章描述樣式 */
+  .card-description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* 文章標題 */
+  .card-title {
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+
+  /* 搜尋輸入框 */
+  #search-input {
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    transition: border-color 0.2s;
+  }
+  #search-input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+</style>
