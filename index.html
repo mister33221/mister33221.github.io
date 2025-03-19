@@ -4,9 +4,22 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>謝凱威 Kai gitHub page</title>
-    <meta content="" name="description" />
-    <meta content="" name="keywords" />
+    <title>謝凱威 Kai's Github Page</title>
+    <meta name="description" content="這是我的個人網頁及部落格，會紀錄我轉職後的學習歷程級分享生活" />
+    <meta name="keywords" content="Java, Angular, 登山, 野營, 吉他, 謝凱威" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "你的網站名稱",
+      "url": "https://mister33221.github.io",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://mister33221.github.io/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon" />
@@ -112,7 +125,41 @@
         </div>
       </div>
     </div>
-    <!-- End Hero Section -->
+  </section>
+  <!-- End Hero Section -->
+
+  <!-- ======= Blog Section ======= -->
+  <section id="blog" class="services-mf pt-3 route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">部落格</h3>
+            <p class="subtitle-a">技術分享、踩雷紀錄、生活心得</p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 搜尋框 -->
+      <div class="text-center">
+        <input type="text" id="search-input" class="form-control" placeholder="搜尋文章..." style="max-width: 300px; margin: 0 auto;" />
+      </div>
+      
+      <!-- 文章分類按鈕 -->
+<!-- 文章分類按鈕 -->
+<div class="text-center mb-4 mt-2" id="category-container-wrapper">
+  <div id="category-container"></div>
+</div>
+  
+      <!-- 文章區塊 -->
+      <div class="row" id="blog-container"></div>
+  
+      <!-- 分頁控制 -->
+      <div id="pagination" class="text-center mt-3"></div>
+    </div>
+  </section>
+  <!-- End Blog Section -->
 
     <main id="main">
       <!-- ======= About Section ======= -->
@@ -609,33 +656,7 @@
       <!-- End Testimonials Section -->
       <!-- <section id="skills2" class="services-mf pt-5 route">
            
-        </section> -->
-      <!-- ======= Blog Section ======= -->
-      <section id="blog" class="services-mf pt-5 route">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="title-box text-center">
-                <h3 class="title-a">部落格</h3>
-                <p class="subtitle-a">技術分享、踩雷紀錄、生活心得</p>
-                <div class="line-mf"></div>
-                文章分類
-                <div id="category-container" class="row">
-                  <!-- 以 JS 動態產生 -->
-                </div>
-              </div>
-            </div>
-          </div>
-         
-          <div class="row">
-            <div id="blog-container">
-              <!-- 以 JS 動態產生 -->
-            </div>
-            <div id="pagination" class="text-center mt-3"></div>
-          </div>
-        </div>
-      </section>
-      <!-- End Blog Section -->
+
 
       <!-- ======= habit Section ======= -->
       <!-- ======= Portfolio Section ======= -->
@@ -656,7 +677,7 @@
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-img">
-                  <img src="assets/img/habit-1.jpg" alt="" class="img-fluid" />
+                  <img src="assets/img/habit-1.jpg" alt="與朋友組團在酒吧表演" class="img-fluid" />
                 </div>
                 <div class="card-body">
                   <div class="card-category-box">
@@ -664,9 +685,7 @@
                       <h6 class="category">音樂</h6>
                     </div>
                   </div>
-                  <!-- <h3 class="card-title">
-                                    <a href="blog-single.html">See more ideas about Travel</a>
-                                </h3> -->
+                  <h3 class="card-title"></h3>
                   <p class="card-description"  >
                     從小就喜歡音樂，除了參加社團也去學了小號、吉他、鋼琴。音樂一直是我生活中不可或缺的一部分。畢業後還曾經與朋友組團在酒吧表演。
                   </p>
@@ -679,7 +698,7 @@
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-img">
-                  <img src="assets/img/habit-2.jpg" alt="" class="img-fluid" />
+                  <img src="assets/img/habit-2.jpg" alt="登山" class="img-fluid" />
                 </div>
                 <div class="card-body">
                   <div class="card-category-box">
@@ -687,7 +706,7 @@
                       <h3 class="category">登山</h3>
                     </div>
                   </div>
-                  <!-- <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3> -->
+                  <h3 class="card-title"></h3>
                   <p class="card-description"  >
                     一直都很喜歡大自然，不過登山這個活動是近幾年才開始的，爬了幾座小百岳，很喜歡那種「頭已經洗了一半了」的感覺，即使身體再累，已必須達成目標，以及下山滿腦美食的那種感覺。
                   </p>
@@ -700,7 +719,7 @@
             <div class="col-md-4">
               <div class="card card-blog">
                 <div class="card-img">
-                  <img src="assets/img/habit-3.jpg" alt="" class="img-fluid" />
+                  <img src="assets/img/habit-3.jpg" alt="野營" class="img-fluid" />
                 </div>
                 <div class="card-body">
                   <div class="card-category-box">
@@ -708,7 +727,7 @@
                       <h6 class="category">野營</h6>
                     </div>
                   </div>
-                  <!-- <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3> -->
+                  <h3 class="card-title"></h3>
                   <p class="card-description"  >
                     從開始爬山以後，也同時愛上了野營。野營時，大自然的聲音、沒有訊號的手機、沒有人煙的汙染，全都是自然美好。
                   </p>
@@ -828,6 +847,34 @@
   
 
   const blogData = [
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/BywgolDh1x",
+    category: "#[JAVA]Spring Boot Logback 常用功能與設定",
+    description: "每次寫 Logback 的時候，都是東湊西湊，那乾脆把常用的功能與設定整理一下吧。",
+    author: "Kai　2025.03.18",
+    tags: "Java Spring boot Logback",
+  },  
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/H1dDPoHh1g",
+    category: "S[JAVA]pring Boot Jackson 常用功能與使用方法",
+    description: "在做各種專案的時候，都常常用到 Jackson 這個套件，這邊就來整理一下 Jackson 的常用功能與使用方法。",
+    author: "Kai　2025.03.17",
+    tags: "Java Spring boot Jackson"
+  },
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/HkRAX-E3Jg",
+    category: "[Git] Git `rebase`、`reset`、`revert` 差異",
+    description: "真的在開發的時候，好像也不常用到這些指令，但需要用到的時候還是得分清楚挖!",
+    author: "Kai　2025.03.16",
+    tags: "Git rebase reset revert",
+  },
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/ryZ4gpM3yg",
+    category: "[Java] Hashing",
+    description: "偶爾會用到 Hashing，不過都沒去搞懂他到底要幹嘛，哪些場景適合使用，就來寫一篇吧。也包含一般會員系統會怎麼處理密碼的部分。", 
+    author: "Kai　2025.03.15",
+    tags: "Java Hashing",
+  },
   {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/rkLMRWdj1e",
     category: "[Git] Git Tag 使用指南",
@@ -1383,41 +1430,168 @@ const categories = [
   "全部", "Java", "Spring", "Docker", "Repository", "k8s", "Angular", "Apache", "Kafka", "Gradle", "Git", "CICD", "Design Pattern", "db", "Clean Code", "Uncategorized"
 ];
 
-const categoryContainer = document.createElement("div");
-categoryContainer.id = "category-container";
-categoryContainer.classList.add("text-center", "my-3");
-
-document.querySelector("#blog .title-box").appendChild(categoryContainer);
-
-categories.forEach((category) => {
-  const button = document.createElement("button");
-  button.textContent = category;
-  button.classList.add("btn", "btn-outline-secondary", "m-1");
-  button.onclick = () => {
-    currentCategory = category === "全部" ? "" : category;
-    currentPage = 1;
-    renderBlogPage(currentPage, currentCategory, currentSearchTerm);
-  };
-  categoryContainer.appendChild(button);
-});
-
 // 搜尋功能
 const searchContainer = document.createElement("div");
 searchContainer.classList.add("text-center", "my-3");
-searchContainer.innerHTML = `
-  <input type="text" id="search-input" class="form-control" placeholder="搜尋文章..." style="max-width: 300px; margin: 0 auto;">
-`;
 
-document.querySelector("#blog .title-box").appendChild(searchContainer);
+// document.querySelector("#blog .title-box").appendChild(searchContainer);
 
 const searchInput = document.getElementById("search-input");
-searchInput.addEventListener("input", (e) => {
-  currentSearchTerm = e.target.value;
-  currentPage = 1;
-  renderBlogPage(currentPage, currentCategory, currentSearchTerm);
-});
 
-// 初始化
-renderBlogPage(currentPage, currentCategory, currentSearchTerm);
+document.addEventListener("DOMContentLoaded", () => {
+    const categories = [
+      "全部", "Java", "Spring", "Docker", "Repository", "k8s", "Angular", "Apache", "Kafka", "Gradle", "Git", "CICD", "Design Pattern", "db", "Clean Code", "Uncategorized"
+    ];
+    const categoryContainer = document.getElementById("category-container");
+    
+    categories.forEach((category) => {
+      const button = document.createElement("button");
+      button.textContent = category;
+      button.classList.add("btn", "btn-outline-secondary", "m-1", "category-button");
+      button.onclick = () => {
+        document.querySelectorAll(".category-button").forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        currentCategory = category === "全部" ? "" : category;
+        currentPage = 1;
+        renderBlogPage(currentPage, currentCategory, currentSearchTerm);
+      };
+      categoryContainer.appendChild(button);
+    });
+
+    // 添加左右箭頭
+    const leftArrow = document.createElement("button");
+    leftArrow.classList.add("scroll-arrow", "left");
+    leftArrow.innerHTML = "&larr;";
+    leftArrow.onclick = () => {
+      categoryContainer.scrollBy({ left: -100, behavior: "smooth" });
+    };
+    document.getElementById("category-container-wrapper").appendChild(leftArrow);
+
+    const rightArrow = document.createElement("button");
+    rightArrow.classList.add("scroll-arrow", "right");
+    rightArrow.innerHTML = "&rarr;";
+    rightArrow.onclick = () => {
+      categoryContainer.scrollBy({ left: 100, behavior: "smooth" });
+    };
+    document.getElementById("category-container-wrapper").appendChild(rightArrow);
+
+    // 更新箭頭顯示狀態
+    const updateArrows = () => {
+      if (categoryContainer.scrollLeft > 0) {
+        leftArrow.style.display = "block";
+      } else {
+        leftArrow.style.display = "none";
+      }
+      if (categoryContainer.scrollLeft + categoryContainer.clientWidth < categoryContainer.scrollWidth) {
+        rightArrow.style.display = "block";
+      } else {
+        rightArrow.style.display = "none";
+      }
+    };
+
+    categoryContainer.addEventListener("scroll", updateArrows);
+    window.addEventListener("resize", updateArrows);
+    updateArrows();
+    
+    // 搜尋功能
+    const searchInput = document.getElementById("search-input");
+    searchInput.addEventListener("input", (e) => {
+      currentSearchTerm = e.target.value;
+      currentPage = 1;
+      renderBlogPage(currentPage, currentCategory, currentSearchTerm);
+    });
+  });
+
+  // 初始化
+  renderBlogPage(currentPage, currentCategory, currentSearchTerm);
 
 </script>
+<style>
+  /* 主要卡片樣式 */
+  .card-blog {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  }
+  .card-blog:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* 分類按鈕 */
+  .category-button {
+    border-radius: 50px;
+    padding: 8px 16px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .category-button:hover {
+    background-color: #6c757d;
+    color: white;
+  }
+  .category-button.active {
+    background-color: #001225;
+    color: white;
+  }
+  
+  /* 文章描述樣式 */
+  .card-description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* 文章標題 */
+  .card-title {
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+
+  /* 搜尋輸入框 */
+  #search-input {
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    transition: border-color 0.2s;
+  }
+  #search-input:focus {
+    border-color: #001122;
+    outline: none;
+  }
+
+  /* 手機版橫向滾動樣式 */
+  @media (max-width: 768px) {
+    #category-container-wrapper {
+      position: relative;
+    }
+    #category-container {
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none; /* Firefox */
+    }
+    #category-container::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    .category-button {
+      flex: 0 0 auto;
+    }
+    .scroll-arrow {
+      display: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .scroll-arrow.left {
+      left: 0;
+    }
+    .scroll-arrow.right {
+      right: 0;
+    }
+  }
+</style>
