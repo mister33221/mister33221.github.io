@@ -1,2 +1,4 @@
 .qodo
+
+# Ignore VSCode settings
 .vscode/settings.json
