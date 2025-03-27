@@ -1,0 +1,357 @@
+<xml>
+	<meta Version="1.3" ExportTrinityVersion="4.1.1" exportDate="2025-03-27 11:59:40" />
+	<FlowElement IsMainJob="true" uid="c15244a0-dc90-405d-bac8-6aa64014c84f" FlowFullName="ASSET_ETL::FLOW.DAILY_FLOW_NO_SRC" >
+		<JobFlow>
+			<Row>
+				<JobFlowUID>
+					<![CDATA[c15244a0-dc90-405d-bac8-6aa64014c84f]]>
+				</JobFlowUID>
+				<FlowName>
+					<![CDATA[DAILY_FLOW_NO_SRC]]>
+				</FlowName>
+				<Description>
+					<![CDATA[每日例行轉檔作業]]>
+				</Description>
+				<Activate>
+					<![CDATA[1]]>
+				</Activate>
+				<DomainUID>
+					<![CDATA[$ALI_D_ASSET_DAILY                  ]]>
+				</DomainUID>
+				<FrequencyUID>
+					<![CDATA[$ALI_FR_DAILY_FLOW                  ]]>
+				</FrequencyUID>
+				<CategoryUID>
+					<![CDATA[de6d2342-243a-45d1-9328-4d14ebbe62e1]]>
+				</CategoryUID>
+				<SuppressJobDomain>
+					<![CDATA[1]]>
+				</SuppressJobDomain>
+				<BypassError>
+					<![CDATA[1]]>
+				</BypassError>
+				<TxDateRule>
+					<![CDATA[6]]>
+				</TxDateRule>
+				<TxOffsetDay>
+					<![CDATA[1]]>
+				</TxOffsetDay>
+				<Status>
+					<![CDATA[C]]>
+				</Status>
+				<CreateUserUID>
+					<![CDATA[884040fd-9430-479b-95f7-9c3ace272b9b]]>
+				</CreateUserUID>
+				<XMLData>
+					<![CDATA[<xmldata><prop name="usejobtxdate" value="0"/><prop name="usejobretry" value="0"/><prop name="txdateruleworkingcalendar" value="c7c93640-dd33-482e-93eb-4918cab33132"/><prop name="applycompletedtask" value="false"/><prop name="dontsavehistory" value="false"/><prop name="skipmissingtask" value="false"/></xmldata>]]>
+				</XMLData>
+				<OnlineDateTime>
+					<![CDATA[]]>
+				</OnlineDateTime>
+				<OfflineDateTime>
+					<![CDATA[]]>
+				</OfflineDateTime>
+			</Row>
+		</JobFlow>
+		<JobFlowMap>
+			<Row>
+				<JobFlowUID>
+					<![CDATA[c15244a0-dc90-405d-bac8-6aa64014c84f]]>
+				</JobFlowUID>
+				<FlowMap>
+					<![CDATA[<jobflow><level id="1"><job id="L1J1" loc="0" uuid="8e9896ff-d300-4d09-aa5b-c78dac59ab9e"><next condition="if(success)"><goto group="true" jobid="L2J1" mandatory="false"/></next></job><job id="L1J2" loc="14" uuid="123bf51d-40a9-45b7-8bf4-cfabbb8a1fde"><next condition="if(success)"><goto group="true" jobid="L2J1" mandatory="false"/></next></job><job id="L1J3" loc="29" uuid="f8daf7ee-00d7-449a-aa2a-433381e2415c"><next condition="if(success)"><goto group="true" jobid="L2J1" mandatory="false"/></next></job><job id="L1J4" loc="42" uuid="f289b8fb-7b47-44cc-8072-82da5600b1fd"><next condition="if(success)"><goto group="true" jobid="L2J1" mandatory="false"/></next></job></level><level id="2"><job id="L2J1" loc="22" uuid="c8adc728-e981-4be2-bd80-3a612af5eac7"><next condition="if(success)"><goto group="true" jobid="L3J1" mandatory="false"/><goto group="true" jobid="L3J2" mandatory="false"/><goto group="true" jobid="L3J3" mandatory="false"/></next></job></level><level id="3"><job id="L3J1" loc="6" uuid="7efe0215-d4ee-437b-9f16-b7b3a811b1fc"><next condition="if(success)"><goto group="true" jobid="L4J1" mandatory="false"/></next></job><job id="L3J2" loc="22" uuid="47202a7e-bca8-480a-9c53-8d99bdf088a9"><next condition="if(success)"><goto group="true" jobid="L4J1" mandatory="false"/></next></job><job id="L3J3" loc="39" uuid="6c40a4ae-143c-4bb6-a409-9ccc8bb6dce2"><next condition="if(success)"><goto group="true" jobid="L4J1" mandatory="false"/></next></job></level><level id="4"><job id="L4J1" loc="22" uuid="5a98b9de-5054-4ed4-b996-cf77cf8917ab"><next condition="if(success)"><goto group="true" jobid="L5J1" mandatory="false"/></next></job></level><level id="5"><job id="L5J1" loc="22" uuid="3a6fe620-a3a2-4996-8ff5-867653f68c65"><next condition="if(success)"><goto group="true" jobid="L6J1" mandatory="false"/></next></job></level><level id="6"><job id="L6J1" loc="22" uuid="e4a0bc5c-88c0-47f8-ac79-5431a3686206"><next condition="if(success)"><goto group="true" jobid="L7J1" mandatory="false"/></next></job></level><level id="7"><job id="L7J1" loc="22" uuid="45895023-194a-4f03-ae3e-fb05b6613dd5"><next condition="if(success)"><goto group="true" jobid="L8J1" mandatory="false"/><goto group="true" jobid="L8J2" mandatory="false"/><goto group="true" jobid="L8J3" mandatory="false"/><goto group="true" jobid="L8J4" mandatory="false"/></next></job></level><level id="8"><job id="L8J1" loc="0" uuid="d3539bc2-6369-499e-8bf1-ed431e4506ca"><next condition="if(success)"><goto group="true" jobid="L9J1" mandatory="false"/></next></job><job id="L8J2" loc="14" uuid="a64ea628-34a8-48da-a7ef-d8d2a7645845"><next condition="if(success)"><goto group="true" jobid="L9J1" mandatory="false"/></next></job><job id="L8J3" loc="29" uuid="441831c7-6062-40fe-8bc0-e87b5a7e9892"><next condition="if(success)"><goto group="true" jobid="L9J1" mandatory="false"/></next></job><job id="L8J4" loc="43" uuid="d3e176a0-844d-4252-b767-981a3b012531"><next condition="if(success)"><goto group="true" jobid="L9J1" mandatory="false"/></next></job></level><level id="9"><job id="L9J1" loc="22" uuid="5671f519-0264-40b9-915b-c27891d6e8b0"><next condition="if(success)"><goto group="true" jobid="L10J1" mandatory="false"/><goto group="true" jobid="L10J2" mandatory="false"/><goto group="true" jobid="L10J3" mandatory="false"/></next></job></level><level id="10"><job id="L10J1" loc="6" uuid="c0063429-98a8-498b-9bdc-29629af8f216"><next condition="if(success)"><goto group="true" jobid="L11J1" mandatory="false"/></next></job><job id="L10J2" loc="22" uuid="54c57781-49ac-4af9-92c3-1c8409e47437"><next condition="if(success)"><goto group="true" jobid="L11J1" mandatory="false"/></next></job><job id="L10J3" loc="39" uuid="af0d525f-8c4a-4157-a0e2-ef38b0fdeaf5"><next condition="if(success)"><goto group="true" jobid="L11J1" mandatory="false"/></next></job></level><level id="11"><job id="L11J1" loc="22" uuid="f28516cc-444d-4fa9-9573-54db9065240d"><next condition="if(success)"><goto group="true" jobid="L12J1" mandatory="false"/></next></job></level><level id="12"><job id="L12J1" loc="22" uuid="0d5965d0-a051-4d1a-a571-8b74bbe1ef03"><next condition="if(success)"><goto group="true" jobid="L13J1" mandatory="false"/></next></job></level><level id="13"><job id="L13J1" loc="22" uuid="bc6c6b9b-4a01-4c92-a106-6877888e42a2"><next condition="if(success)"><goto group="true" jobid="L14J1" mandatory="false"/></next></job></level><level id="14"><job id="L14J1" loc="22" uuid="b6216371-5a6c-4566-8eea-f01be7bfce3f"><next condition="if(success)"><goto group="true" jobid="L15J1" mandatory="false"/></next></job></level><level id="15"><job id="L15J1" loc="19" uuid="6bfc8eed-d423-4db8-b6ec-87226f4ae3eb"><next condition="if(success)"><goto group="true" jobid="L16J1" mandatory="false"/></next></job></level><level id="16"><job id="L16J1" loc="23" uuid="f29a897f-65fb-4da1-a473-69766b1f4ec1"><next condition="if(success)"><goto group="true" jobid="L17J1" mandatory="false"/></next></job></level><level id="17"><job id="L17J1" loc="23" uuid="d180dc0e-38d1-4735-89b5-999e5a942098"><next condition="if(success)"><goto group="true" jobid="L18J1" mandatory="false"/></next></job></level><level id="18"><job id="L18J1" loc="23" uuid="29a147e8-324f-4ea8-91a6-d3932a8c26dc"><next condition="if(success)"><goto group="true" jobid="L19J1" mandatory="false"/></next></job></level><level id="19"><job id="L19J1" loc="23" uuid="8c4f38f5-a86c-412c-9689-d3e2ed89a8cf"><next condition="if(success)"><goto group="true" jobid="L20J1" mandatory="false"/></next></job></level><level id="20"><job id="L20J1" loc="23" uuid="f121e85c-c388-4b30-95b2-978c33ee5c31"><next condition="if(success)"><goto group="true" jobid="L21J1" mandatory="false"/><goto group="true" jobid="L21J2" mandatory="false"/><goto group="true" jobid="L21J3" mandatory="false"/></next></job></level><level id="21"><job id="L21J1" loc="7" uuid="21794958-3c15-4f89-a5c7-0f3147d4c247"><next condition="if(success)"><goto group="true" jobid="L22J1" mandatory="false"/></next></job><job id="L21J2" loc="24" uuid="cea1c365-88b8-47b7-b5a9-251ebbc65912"><next condition="if(success)"><goto group="true" jobid="L22J1" mandatory="false"/></next></job><job id="L21J3" loc="42" uuid="adbdeb99-a4ef-458c-9235-d4f52649218b"><next condition="if(success)"><goto group="true" jobid="L22J1" mandatory="false"/></next></job></level><level id="22"><job id="L22J1" loc="24" uuid="eee3fa86-0019-4e13-aead-ed768f9a75a6"><next condition="if(success)"><goto group="true" jobid="L23J1" mandatory="false"/></next></job></level><level id="23"><job id="L23J1" loc="24" uuid="1c7c2e6f-2c7c-442d-b9f2-22dbcf28d26d"><next condition="if(success)"><goto group="true" jobid="L24J1" mandatory="false"/></next></job></level><level id="24"><job id="L24J1" loc="24" uuid="af510a65-1156-4a9c-9ab8-5c48e82d78d9"><next condition="if(success)"><goto group="true" jobid="L25J1" mandatory="false"/></next></job></level><level id="25"><job id="L25J1" loc="25" uuid="93a0d3af-4383-4a6e-b799-4b447e238f41"><next condition="if(success)"><goto group="true" jobid="L26J1" mandatory="false"/></next></job></level><level id="26"><job id="L26J1" loc="25" uuid="953b7e18-fd49-4f09-aad7-bde696e7cd07"><next condition="if(success)"><goto group="true" jobid="L27J1" mandatory="false"/></next></job></level><level id="27"><job id="L27J1" loc="25" uuid="77d0c0ec-4dbd-436a-a30b-bb46031a473a"><next condition="if(success)"><goto group="true" jobid="L28J1" mandatory="false"/></next></job></level><level id="28"><job id="L28J1" loc="25" uuid="56cd7feb-f72a-4609-a841-57e6f73155c6"/></level></jobflow>]]>
+				</FlowMap>
+			</Row>
+		</JobFlowMap>
+		<JobExecution>
+			<Row>
+				<JobUID>
+					<![CDATA[c15244a0-dc90-405d-bac8-6aa64014c84f]]>
+				</JobUID>
+				<WCalendarUID>
+					<![CDATA[                                    ]]>
+				</WCalendarUID>
+				<Activate>
+					<![CDATA[0]]>
+				</Activate>
+				<ApplyDateRule>
+					<![CDATA[<xmldata>
+  <prop name="applydaterule" value="1"/>
+</xmldata>
+]]>
+				</ApplyDateRule>
+				<ExecutionType>
+					<![CDATA[1]]>
+				</ExecutionType>
+				<ApplyTimeRule>
+					<![CDATA[<xmldata>
+  <rule starttime="00:00" />
+</xmldata>
+]]>
+				</ApplyTimeRule>
+				<LastCheckDatetime>
+					<![CDATA[]]>
+				</LastCheckDatetime>
+				<HolidayUID>
+					<![CDATA[                                    ]]>
+				</HolidayUID>
+				<ConflictRule>
+					<![CDATA[0]]>
+				</ConflictRule>
+			</Row>
+		</JobExecution>
+		<JobCategory>
+			<Row>
+				<CategoryUID>
+					<![CDATA[de6d2342-243a-45d1-9328-4d14ebbe62e1]]>
+				</CategoryUID>
+				<CategoryName>
+					<![CDATA[FLOW]]>
+				</CategoryName>
+				<Description>
+					<![CDATA[]]>
+				</Description>
+				<Activate>
+					<![CDATA[1]]>
+				</Activate>
+				<XMLData>
+					<![CDATA[]]>
+				</XMLData>
+			</Row>
+		</JobCategory>
+		<BusEntityCategory>
+			<Row>
+				<BusEntityUID>
+					<![CDATA[1b597656-833e-456d-beda-12126aab15e1]]>
+				</BusEntityUID>
+				<CategoryUID>
+					<![CDATA[de6d2342-243a-45d1-9328-4d14ebbe62e1]]>
+				</CategoryUID>
+			</Row>
+		</BusEntityCategory>
+		<BusEntity>
+			<Row>
+				<BusEntityUID>
+					<![CDATA[1b597656-833e-456d-beda-12126aab15e1]]>
+				</BusEntityUID>
+				<BusEntityName>
+					<![CDATA[ASSET_ETL]]>
+				</BusEntityName>
+				<Description>
+					<![CDATA[E8B387E794A2E7B8BDE8A6BDE8BD89E6AA94]]>
+				</Description>
+				<XMLData>
+					<![CDATA[]]>
+				</XMLData>
+			</Row>
+		</BusEntity>
+		<Notification>
+			<Row>
+				<uid>
+					<![CDATA[1b597656-833e-456d-beda-12126aab15e1]]>
+				</uid>
+				<type>
+					<![CDATA[BusEntity]]>
+				</type>
+			</Row>
+			<Row>
+				<uid>
+					<![CDATA[de6d2342-243a-45d1-9328-4d14ebbe62e1]]>
+				</uid>
+				<type>
+					<![CDATA[Category]]>
+				</type>
+			</Row>
+			<Row>
+				<uid>
+					<![CDATA[c15244a0-dc90-405d-bac8-6aa64014c84f]]>
+				</uid>
+				<type>
+					<![CDATA[Job/Flow/DAG]]>
+				</type>
+			</Row>
+		</Notification>
+	</FlowElement>
+	<ResourceElement>
+		<NotificationElement>
+			<Notification uid="1b597656-833e-456d-beda-12126aab15e1" >
+			</Notification>
+			<Notification uid="de6d2342-243a-45d1-9328-4d14ebbe62e1" >
+				<Notification>
+					<Row>
+						<NotificationUID>
+							<![CDATA[84747da0-b470-4755-862c-299b5a42032c]]>
+						</NotificationUID>
+						<NotificationName>
+							<![CDATA[FLOW_FAIL]]>
+						</NotificationName>
+						<Description>
+							<![CDATA[464C4F5720E59FB7E8A18CE5A4B1E69597]]>
+						</Description>
+						<TargetUID>
+							<![CDATA[de6d2342-243a-45d1-9328-4d14ebbe62e1]]>
+						</TargetUID>
+						<NotificationType>
+							<![CDATA[h]]>
+						</NotificationType>
+						<NotificationTiming>
+							<![CDATA[E]]>
+						</NotificationTiming>
+						<TargetType>
+							<![CDATA[G]]>
+						</TargetType>
+						<AttachLog>
+							<![CDATA[0]]>
+						</AttachLog>
+						<XmlData>
+							<![CDATA[3C786D6C646174613E3C70726F70206E616D653D22656E636F6465222076616C75653D225554462D38222F3E3C70726F70206E616D653D2268656164222076616C75653D22266C743B786D6C646174612F2667743B222F3E3C70726F70206E616D653D2268747470426F6479222076616C75653D22222F3E3C70726F70206E616D653D2275726C4C696E65222076616C75653D22222F3E3C70726F70206E616D653D22636F6F6B6965222076616C75653D22266C743B786D6C646174612F2667743B222F3E3C70726F70206E616D653D22687474704D6574686F64222076616C75653D22474554222F3E3C70726F70206E616D653D22626F6479222076616C75653D22266C743B786D6C646174612F2667743B222F3E3C70726F70206E616D653D22636F6E74656E7454797065222076616C75653D2220222F3E3C2F786D6C646174613E]]>
+						</XmlData>
+						<TargetName>
+							<![CDATA[ASSET_ETL/FLOW]]>
+						</TargetName>
+					</Row>
+					<Row>
+						<NotificationUID>
+							<![CDATA[84747da0-b470-4755-862c-299b5a42032c]]>
+						</NotificationUID>
+						<NotificationName>
+							<![CDATA[FLOW_FAIL]]>
+						</NotificationName>
+						<Description>
+							<![CDATA[464C4F5720E59FB7E8A18CE5A4B1E69597]]>
+						</Description>
+						<TargetUID>
+							<![CDATA[de6d2342-243a-45d1-9328-4d14ebbe62e1]]>
+						</TargetUID>
+						<NotificationType>
+							<![CDATA[m]]>
+						</NotificationType>
+						<NotificationTiming>
+							<![CDATA[E]]>
+						</NotificationTiming>
+						<TargetType>
+							<![CDATA[G]]>
+						</TargetType>
+						<AttachLog>
+							<![CDATA[0]]>
+						</AttachLog>
+						<XmlData>
+							<![CDATA[3C786D6C646174613E3C70726F70206E616D653D227375626A656374222076616C75653D22222F3E3C70726F70206E616D653D22646F6D61696E222076616C75653D22222F3E3C70726F70206E616D653D226D656368616E69736D73222076616C75653D2220222F3E3C70726F70206E616D653D22636F6E74656E74222076616C75653D22222F3E3C2F786D6C646174613E]]>
+						</XmlData>
+						<TargetName>
+							<![CDATA[ASSET_ETL/FLOW]]>
+						</TargetName>
+					</Row>
+					<Row>
+						<NotificationUID>
+							<![CDATA[84747da0-b470-4755-862c-299b5a42032c]]>
+						</NotificationUID>
+						<NotificationName>
+							<![CDATA[FLOW_FAIL]]>
+						</NotificationName>
+						<Description>
+							<![CDATA[464C4F5720E59FB7E8A18CE5A4B1E69597]]>
+						</Description>
+						<TargetUID>
+							<![CDATA[de6d2342-243a-45d1-9328-4d14ebbe62e1]]>
+						</TargetUID>
+						<NotificationType>
+							<![CDATA[s]]>
+						</NotificationType>
+						<NotificationTiming>
+							<![CDATA[E]]>
+						</NotificationTiming>
+						<TargetType>
+							<![CDATA[G]]>
+						</TargetType>
+						<AttachLog>
+							<![CDATA[0]]>
+						</AttachLog>
+						<XmlData>
+							<![CDATA[3C786D6C646174613E3C70726F70206E616D653D227375626A656374222076616C75653D22222F3E3C70726F70206E616D653D22636F6E74656E74222076616C75653D22222F3E3C2F786D6C646174613E]]>
+						</XmlData>
+						<TargetName>
+							<![CDATA[ASSET_ETL/FLOW]]>
+						</TargetName>
+					</Row>
+					<Row>
+						<NotificationUID>
+							<![CDATA[84747da0-b470-4755-862c-299b5a42032c]]>
+						</NotificationUID>
+						<NotificationName>
+							<![CDATA[FLOW_FAIL]]>
+						</NotificationName>
+						<Description>
+							<![CDATA[464C4F5720E59FB7E8A18CE5A4B1E69597]]>
+						</Description>
+						<TargetUID>
+							<![CDATA[de6d2342-243a-45d1-9328-4d14ebbe62e1]]>
+						</TargetUID>
+						<NotificationType>
+							<![CDATA[x]]>
+						</NotificationType>
+						<NotificationTiming>
+							<![CDATA[E]]>
+						</NotificationTiming>
+						<TargetType>
+							<![CDATA[G]]>
+						</TargetType>
+						<AttachLog>
+							<![CDATA[0]]>
+						</AttachLog>
+						<XmlData>
+							<![CDATA[3C786D6C646174613E3C70726F70206E616D653D22636D644C696E65222076616C75653D22222F3E3C2F786D6C646174613E]]>
+						</XmlData>
+						<TargetName>
+							<![CDATA[ASSET_ETL/FLOW]]>
+						</TargetName>
+					</Row>
+				</Notification>
+			</Notification>
+			<Notification uid="c15244a0-dc90-405d-bac8-6aa64014c84f" >
+			</Notification>
+		</NotificationElement>
+		<JobNameElement>
+			<Name uid="a64ea628-34a8-48da-a7ef-d8d2a7645845" BusEntityName="ASSET_ETL" CategoryName="DATA" JobName="M_RF_STOCK" />
+			<Name uid="f8daf7ee-00d7-449a-aa2a-433381e2415c" BusEntityName="ASSET_ETL" CategoryName="STAGE" JobName="ST_M_RF_BOND" />
+			<Name uid="d3539bc2-6369-499e-8bf1-ed431e4506ca" BusEntityName="ASSET_ETL" CategoryName="DATA" JobName="M_RF_FUND" />
+			<Name uid="f289b8fb-7b47-44cc-8072-82da5600b1fd" BusEntityName="ASSET_ETL" CategoryName="STAGE" JobName="ST_M_RF_SN" />
+			<Name uid="8c4f38f5-a86c-412c-9689-d3e2ed89a8cf" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="FACT_ASSET_AGG" />
+			<Name uid="adbdeb99-a4ef-458c-9235-d4f52649218b" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="DIM_PROD_AGG_B" />
+			<Name uid="c0063429-98a8-498b-9bdc-29629af8f216" BusEntityName="ASSET_ETL" CategoryName="DATA" JobName="M_AT_INSURANCE_TXN" />
+			<Name uid="f121e85c-c388-4b30-95b2-978c33ee5c31" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="FACT_ACCOUNT_BAL_DTL_AGG" />
+			<Name uid="93a0d3af-4383-4a6e-b799-4b447e238f41" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="FACT_ACCOUNT_BAL_DTL_AGG_B" />
+			<Name uid="f29a897f-65fb-4da1-a473-69766b1f4ec1" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="DIM_PROD_AGG" />
+			<Name uid="af510a65-1156-4a9c-9ab8-5c48e82d78d9" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="FACT_ASSET_AGG_B" />
+			<Name uid="1c7c2e6f-2c7c-442d-b9f2-22dbcf28d26d" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="FACT_DIVIDEND_DTL_AGG_B" />
+			<Name uid="b6216371-5a6c-4566-8eea-f01be7bfce3f" BusEntityName="ASSET_ETL" CategoryName="DATA" JobName="M_AT_DIV" />
+			<Name uid="0d5965d0-a051-4d1a-a571-8b74bbe1ef03" BusEntityName="ASSET_ETL" CategoryName="DATA" JobName="M_AC_ACCOUNT_INFO" />
+			<Name uid="8e9896ff-d300-4d09-aa5b-c78dac59ab9e" BusEntityName="ASSET_ETL" CategoryName="STAGE" JobName="ST_M_RF_FUND" />
+			<Name uid="af0d525f-8c4a-4157-a0e2-ef38b0fdeaf5" BusEntityName="ASSET_ETL" CategoryName="DATA" JobName="M_AC_ACCOUNT_INVENTORY_DTL" />
+			<Name uid="5a98b9de-5054-4ed4-b996-cf77cf8917ab" BusEntityName="ASSET_ETL" CategoryName="STAGE" JobName="ST_M_AC_ACCOUNT" />
+			<Name uid="7efe0215-d4ee-437b-9f16-b7b3a811b1fc" BusEntityName="ASSET_ETL" CategoryName="STAGE" JobName="ST_M_AT_INSURANCE_TXN" />
+			<Name uid="6c40a4ae-143c-4bb6-a409-9ccc8bb6dce2" BusEntityName="ASSET_ETL" CategoryName="STAGE" JobName="ST_M_AC_ACCOUNT_INVENTORY_DTL" />
+			<Name uid="3a6fe620-a3a2-4996-8ff5-867653f68c65" BusEntityName="ASSET_ETL" CategoryName="STAGE" JobName="ST_M_AC_ACCOUNT_INFO" />
+			<Name uid="d180dc0e-38d1-4735-89b5-999e5a942098" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="FACT_ASSET_DTL_AGG" />
+			<Name uid="5671f519-0264-40b9-915b-c27891d6e8b0" BusEntityName="ASSET_ETL" CategoryName="DATA" JobName="M_AC_ACCOUNT_ASSET" />
+			<Name uid="e4a0bc5c-88c0-47f8-ac79-5431a3686206" BusEntityName="ASSET_ETL" CategoryName="STAGE" JobName="ST_M_AC_ACCOUNT_INVENTORY" />
+			<Name uid="47202a7e-bca8-480a-9c53-8d99bdf088a9" BusEntityName="ASSET_ETL" CategoryName="STAGE" JobName="ST_M_OB_CREDIT_RISK_MITIGANT" />
+			<Name uid="f28516cc-444d-4fa9-9573-54db9065240d" BusEntityName="ASSET_ETL" CategoryName="DATA" JobName="M_AC_ACCOUNT" />
+			<Name uid="c8adc728-e981-4be2-bd80-3a612af5eac7" BusEntityName="ASSET_ETL" CategoryName="STAGE" JobName="ST_M_AC_ACCOUNT_ASSET" />
+			<Name uid="d3e176a0-844d-4252-b767-981a3b012531" BusEntityName="ASSET_ETL" CategoryName="DATA" JobName="M_RF_SN" />
+			<Name uid="bc6c6b9b-4a01-4c92-a106-6877888e42a2" BusEntityName="ASSET_ETL" CategoryName="DATA" JobName="M_AC_ACCOUNT_INVENTORY" />
+			<Name uid="cea1c365-88b8-47b7-b5a9-251ebbc65912" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="DIM_PROD_CATE_AGG_B" />
+			<Name uid="123bf51d-40a9-45b7-8bf4-cfabbb8a1fde" BusEntityName="ASSET_ETL" CategoryName="STAGE" JobName="ST_M_RF_STOCK" />
+			<Name uid="45895023-194a-4f03-ae3e-fb05b6613dd5" BusEntityName="ASSET_ETL" CategoryName="STAGE" JobName="ST_M_AT_DIV" />
+			<Name uid="56cd7feb-f72a-4609-a841-57e6f73155c6" BusEntityName="ASSET_ETL" CategoryName="COMM" JobName="CURR_DATA_DATE" />
+			<Name uid="29a147e8-324f-4ea8-91a6-d3932a8c26dc" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="FACT_DIVIDEND_DTL_AGG" />
+			<Name uid="77d0c0ec-4dbd-436a-a30b-bb46031a473a" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="TOP_ACCOUNT_PROD_B" />
+			<Name uid="953b7e18-fd49-4f09-aad7-bde696e7cd07" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="TOP_ACCOUNT_PROD" />
+			<Name uid="eee3fa86-0019-4e13-aead-ed768f9a75a6" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="FACT_ASSET_DTL_AGG_B" />
+			<Name uid="21794958-3c15-4f89-a5c7-0f3147d4c247" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="DIM_USER_ACCOUNT_AGG_B" />
+			<Name uid="6bfc8eed-d423-4db8-b6ec-87226f4ae3eb" BusEntityName="ASSET_ETL" CategoryName="REPORT" JobName="DIM_USER_ACCOUNT_AGG" />
+			<Name uid="441831c7-6062-40fe-8bc0-e87b5a7e9892" BusEntityName="ASSET_ETL" CategoryName="DATA" JobName="M_RF_BOND" />
+			<Name uid="54c57781-49ac-4af9-92c3-1c8409e47437" BusEntityName="ASSET_ETL" CategoryName="DATA" JobName="M_OB_CREDIT_RISK_MITIGANT" />
+		</JobNameElement>
+	</ResourceElement>
+</xml>
