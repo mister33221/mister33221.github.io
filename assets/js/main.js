@@ -237,6 +237,13 @@
 // 部落格資料
 const blogData = [
   {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/SkQpE8STJg",
+    category: "[AI] 什麼是 MCP Server，並在 VScode + Github Copilot 中整合 MCP Server",
+    description: "MCP Server 是一個可以讓我們在使用 AI Client 時，整合各家服務的介面類型 protocol，最近有點紅，就來玩一下。",
+    author: "Kai　2025.03.29",
+    tags: "AI git vscode github"
+  },
+  {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/S1BlX7rTyl",
     category: "[踩雷] Spring Boot 啟動失敗：StackOverflowError 與循環變數問題紀錄",
     description: "最近專案上線進入Production，我出大包，居然無法啟動，想說改改環境變數應該不太需要重啟測試，結果就啟動失敗：StackOverflowError。",
@@ -843,7 +850,7 @@ const searchInput = document.getElementById("search-input");
 
 document.addEventListener("DOMContentLoaded", () => {
     const categories = [
-      "全部", "Java", "Spring", "Docker", "Repository", "k8s", "Angular", "Apache", "Kafka", "Gradle", "Git", "CICD", "Design Pattern", "db", "Clean Code", "Uncategorized"
+      "全部", "Java", "Spring", "踩雷", "AI", "Docker", "Repository", "k8s", "Angular", "Apache", "Kafka", "Gradle", "Git", "CICD", "Design Pattern", "db", "Clean Code", "Uncategorized"
     ];
     const categoryContainer = document.getElementById("category-container");
     
