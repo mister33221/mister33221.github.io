@@ -237,6 +237,13 @@
 // 部落格資料
 const blogData = [
   {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/S1BlX7rTyl",
+    category: "[踩雷] Spring Boot 啟動失敗：StackOverflowError 與循環變數問題紀錄",
+    description: "最近專案上線進入Production，我出大包，居然無法啟動，想說改改環境變數應該不太需要重啟測試，結果就啟動失敗：StackOverflowError。",
+    author: "Kai　2025.03.29",
+    tags: "踩雷 Spring Java Bug Debug"
+  },
+  {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/rymgNI92yx",
     category: "[GIT]產出兩個 Git 分支間的程式碼差異報告（含繁體中文 UTF-8 處理）",
     description: "介紹使用 diff2html 工具產出程式碼差異比較報告及處理繁體中文 UTF-8 編碼問題。",
