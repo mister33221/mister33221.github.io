@@ -238,7 +238,7 @@
 const blogData = [
   {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/SkQpE8STJg",
-    category: "[AI] 什麼是 MCP Server，並在 VScode + Github Copilot 中整合 MCP Server",
+    category: "[AI] VScode + Github Copilot 中整合 MCP Server",
     description: "MCP Server 是一個可以讓我們在使用 AI Client 時，整合各家服務的介面類型 protocol，最近有點紅，就來玩一下。",
     author: "Kai　2025.03.29",
     tags: "AI git vscode github"
