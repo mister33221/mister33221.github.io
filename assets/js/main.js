@@ -237,6 +237,13 @@
 // 部落格資料
 const blogData = [
   {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/BJIClAu0kg",
+    category: "[Angular] Angular LifecycleTest",
+    description: "來複習一下 Angular 最基本的 生命週期，這篇文章會介紹 Angular 的生命週期，並且提供一個簡單的範例來說明。",
+    author: "Kai　2025.04.13 ",
+    tags: "Angular"
+  },
+  {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/SkQpE8STJg",
     category: "[AI] VScode + Github Copilot 中整合 MCP Server",
     description: "MCP Server 是一個可以讓我們在使用 AI Client 時，整合各家服務的介面類型 protocol，最近有點紅，就來玩一下。",
