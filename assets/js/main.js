@@ -237,6 +237,13 @@
 // 部落格資料
 const blogData = [
   {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/S1puSIqRyg",
+    category: "[Angular] RxJS 練習專案",
+    description: "本專案整理並實作了 RxJS 在 Angular 中的常用操作符，並依功能分類為 7 個練習分頁，每頁皆提供互動按鈕與輸出結果區塊。。",
+    author: "Kai　2025.04.14 ",
+    tags: "Angular"
+  },
+  {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/BJIClAu0kg",
     category: "[Angular] Angular LifecycleTest",
     description: "來複習一下 Angular 最基本的 生命週期，這篇文章會介紹 Angular 的生命週期，並且提供一個簡單的範例來說明。",
