@@ -237,13 +237,6 @@
 // 部落格資料
 const blogData = [
   {
-    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/BJhwYUlxge",
-    category: "[Maven] 離線依賴封裝與交付教學",
-    description: "在銀行、金融或是其他高安全性環境中，開發人員經常需要在無法連接外部網路的情況下進行專案的建置與交付。",
-    author: "Kai　2025.05.01",
-    tags: "Java Spring Maven"
-  },
-  {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/S1puSIqRyg",
     category: "[Angular] RxJS 練習專案",
     description: "本專案整理並實作了 RxJS 在 Angular 中的常用操作符，並依功能分類為 7 個練習分頁，每頁皆提供互動按鈕與輸出結果區塊。",
