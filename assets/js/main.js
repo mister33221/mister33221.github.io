@@ -237,6 +237,13 @@
 // 部落格資料
 const blogData = [
   {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/Bkf7MHQgll",
+    category: "[Angular] Tailwind 安裝與設定",
+    description: "到好多地方看怎麼安裝,有些會失敗，最後整理出來的安裝步驟",
+    author: "Kai　2025.04.14 ",
+    tags: "Angular"
+  },
+  {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/S1puSIqRyg",
     category: "[Angular] RxJS 練習專案",
     description: "本專案整理並實作了 RxJS 在 Angular 中的常用操作符，並依功能分類為 7 個練習分頁，每頁皆提供互動按鈕與輸出結果區塊。",
