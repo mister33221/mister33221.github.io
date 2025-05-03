@@ -237,10 +237,17 @@
 // 部落格資料
 const blogData = [
   {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/rJTCUHmxgg",
+    category: "[Angular]Angular Build 環境設定：自訂環境 vs Production Build",
+    description: "最近要 Release 才知道用 Production 來打包跟一般自訂的環境打包有差這麼多......",
+    author: "Kai　2025.05.03",
+    tags: "Angular"
+  },
+  {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/Bkf7MHQgll",
     category: "[Angular] Tailwind 安裝與設定",
     description: "到好多地方看怎麼安裝,有些會失敗，最後整理出來的安裝步驟",
-    author: "Kai　2025.04.14 ",
+    author: "Kai　2025.05.03",
     tags: "Angular"
   },
   {
