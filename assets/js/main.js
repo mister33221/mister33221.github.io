@@ -942,3 +942,124 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 初始化
   renderBlogPage(currentPage, currentCategory, currentSearchTerm);
+
+
+
+// ----懸浮圖片功能 start----
+  document.addEventListener('DOMContentLoaded', function() {
+    const hoverContainer = document.getElementById('hover-image-container');
+    const hoverImage = document.getElementById('hover-image');
+    const hoverCaption = document.getElementById('hover-caption');
+    const triggers = document.querySelectorAll('.hover-trigger');
+    let isMobile = window.innerWidth < 768;
+    let activeElement = null;
+    
+    // 判斷設備類型
+    window.addEventListener('resize', function() {
+      isMobile = window.innerWidth < 768;
+    });
+    
+    // 滑鼠懸停顯示圖片
+    triggers.forEach(trigger => {
+      // 滑鼠事件 (桌面版)
+      trigger.addEventListener('mouseenter', function(e) {
+        if (isMobile) return;
+        
+        const imageSrc = this.getAttribute('data-image');
+        const caption = this.getAttribute('data-caption');
+        
+        showImage(imageSrc, caption, e);
+      });
+      
+      trigger.addEventListener('mousemove', function(e) {
+        if (isMobile) return;
+        
+        // 更新圖片位置
+        updatePosition(e);
+      });
+      
+      trigger.addEventListener('mouseleave', function() {
+        if (isMobile) return;
+        
+        hideImage();
+      });
+      
+      // 觸摸事件 (手機版)
+      trigger.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        
+        const imageSrc = this.getAttribute('data-image');
+        const caption = this.getAttribute('data-caption');
+        
+        // 如果已有活動元素且不是當前元素，移除活動狀態
+        if (activeElement && activeElement !== this) {
+          activeElement.classList.remove('active');
+          hideImage();
+        }
+        
+        // 切換當前元素狀態
+        if (this.classList.contains('active')) {
+          this.classList.remove('active');
+          hideImage();
+          activeElement = null;
+        } else {
+          this.classList.add('active');
+          showImage(imageSrc, caption);
+          activeElement = this;
+        }
+      });
+    });
+    
+    // 點擊其他區域關閉圖片 (手機版)
+    document.addEventListener('touchstart', function(e) {
+      if (activeElement && !activeElement.contains(e.target) && !hoverContainer.contains(e.target)) {
+        activeElement.classList.remove('active');
+        hideImage();
+        activeElement = null;
+      }
+    });
+    
+    // 顯示圖片
+    function showImage(src, caption, event) {
+      hoverImage.src = src;
+      hoverCaption.textContent = caption || '';
+      
+      hoverImage.onload = function() {
+        hoverContainer.style.display = 'block';
+        
+        if (event && !isMobile) {
+          updatePosition(event);
+        }
+      };
+    }
+    
+    // 隱藏圖片
+    function hideImage() {
+      hoverContainer.style.display = 'none';
+    }
+    
+    // 更新圖片位置 (桌面版)
+    function updatePosition(e) {
+      const x = e.clientX;
+      const y = e.clientY;
+      
+      // 根據滑鼠位置計算容器位置
+      let posX = x + 20; // 滑鼠右側20px
+      let posY = y + 20; // 滑鼠下方20px
+      
+      // 檢查是否超出視窗右側
+      if (posX + hoverContainer.offsetWidth > window.innerWidth) {
+        posX = x - hoverContainer.offsetWidth - 10;
+      }
+      
+      // 檢查是否超出視窗底部
+      if (posY + hoverContainer.offsetHeight > window.innerHeight) {
+        posY = y - hoverContainer.offsetHeight - 10;
+      }
+      
+      // 設置容器位置
+      hoverContainer.style.left = posX + 'px';
+      hoverContainer.style.top = posY + 'px';
+    }
+  });
+// ----懸浮圖片功能 end----

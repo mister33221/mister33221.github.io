@@ -1636,3 +1636,60 @@ footer .credits a {
       right: 0;
     }
   }
+
+  /*-----懸浮圖片功能 start-----*/
+
+    .hover-trigger {
+    position: relative;
+    cursor: pointer;
+    color: #0078ff;
+    text-decoration: underline;
+    transition: color 0.3s;
+  }
+  
+  .hover-trigger:hover {
+    color: #00aeff;
+  }
+  
+  .hover-image-container {
+    position: fixed;
+    display: none;
+    z-index: 1000;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    padding: 5px;
+    transition: opacity 0.3s;
+    max-width: 300px;
+    max-height: 300px;
+  }
+  
+  .hover-image-container img {
+    max-width: 100%;
+    max-height: 250px;
+    display: block;
+    border-radius: 5px;
+  }
+  
+  .hover-caption {
+    padding: 8px 5px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* 手機版調整 */
+  @media (max-width: 768px) {
+    .hover-image-container {
+      position: fixed;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%);
+      max-width: 80%;
+    }
+    
+    .hover-trigger.active {
+      color: #00aeff;
+    }
+  }
+  /* -----懸浮圖片功能 end----- */
