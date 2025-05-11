@@ -237,6 +237,13 @@
 // 部落格資料
 const blogData = [
   {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/rkyd3QAele",
+    category: "[Spring]ORM 與 Spring data jpa",
+    description: "來稍微聊一下 ORM 與 有脈絡的了解一下 Spring data JPA吧。<br>因為最近我才知道原來 Spring data JPA 的 findAll() 是把每個欄位列出來啊....。",
+    author: "Kai　2025.05,11",
+    tags: "Java, Spring, Spring data JPA, ORM" 
+  }, 
+  {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/rJTCUHmxgg",
     category: "[Angular]Angular Build 環境設定：自訂環境 vs Production Build",
     description: "最近要 Release 才知道用 Production 來打包跟一般自訂的環境打包有差這麼多......",
