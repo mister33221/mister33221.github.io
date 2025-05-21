@@ -237,11 +237,14 @@
 // 部落格資料
 const blogData = [
   {
-    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/rkyd3QAele",
-    category: "[Spring]ORM 與 Spring data jpa",
-    description: "來稍微聊一下 ORM 與 有脈絡的了解一下 Spring data JPA吧。<br>因為最近我才知道原來 Spring data JPA 的 findAll() 是把每個欄位列出來啊....。",
-    author: "Kai　2025.05,11",
-    tags: "Java, Spring, Spring data JPA, ORM" 
+
+  },
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/SkF7m8ibgg",
+    category: "[Redis]caffeine-redis-cluster-h2-practice",
+    description: "本來只是想練習一下 Redis Cluster 搭配 Redis stack 的 RedisJSON 與 Redisearch，沒想到 Redisearch 的限制這麼多，沒辦法好好搜尋，甚至必須犧牲 Redis Cluster 的優勢才能順利查詢。這個功能還是只適合單體的架構。"
+    author: "Kai　2025.05.21",
+    tags: "Java, Spring, Redis" 
   }, 
   {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/rJTCUHmxgg",
