@@ -237,9 +237,6 @@
 // 部落格資料
 const blogData = [
   {
-
-  },
-  {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/SkF7m8ibgg",
     category: "[Redis]caffeine-redis-cluster-h2-practice",
     description: "本來只是想練習一下 Redis Cluster 搭配 Redis stack 的 RedisJSON 與 Redisearch，沒想到 Redisearch 的限制這麼多，沒辦法好好搜尋，甚至必須犧牲 Redis Cluster 的優勢才能順利查詢。這個功能還是只適合單體的架構。",
