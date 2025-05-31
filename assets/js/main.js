@@ -239,7 +239,7 @@ const blogData = [
   {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/HJswE2Ufel",
     category: "[AI]IntelliJ 整合 GitHub Copilot agent 與 IntelliJ MCP Server",
-    description: "因為之前都是用 VScode insider 整合 Copilot agent 和 MCP，Intellij 沒有 Agent mode 可以用。最近又看到別人都用 Claude Desktop 整合 Intellij 和 MCP，沒道理我課 Copilot 的不行吧!!就來試試看。",
+    description: "因為之前都是用 VScode insider 整合 Github Copilot agent 和 MCP，Intellij 中的 Github copilot 沒有 Agent mode 可以用。最近又看到別人都用 Claude Desktop 整合 Intellij 和 MCP，沒道理我課 Copilot 的不行吧!!就來試試看。",
     author: "Kai　2025.05.30",
     tags: "AI, Intellij, GitHub, Copilot, MCP"
   },
