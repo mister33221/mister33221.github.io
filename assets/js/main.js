@@ -237,6 +237,13 @@
 // 部落格資料
 const blogData = [
   {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/Skngqcf7ll",
+    category: "[Uncategorized]Linux Auth",
+    description: "一直以來在使用 Linux 時，只有熟悉那些常常用到的指令，例如 `cp` `mv` `rm` `ll` 這些，知道 `ll` 最前面有一串奇怪的字串是權限，但是從來沒有了解他到底在做什麼，直到最近專案上線，很多鬼故事發生...，我還是讀一下好了。",
+    author: "Kai　2025.06.8",
+    tags: "Linux, Permissions, Security, Uncategorized"
+  },
+  {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/HJswE2Ufel",
     category: "[AI]IntelliJ 整合 GitHub Copilot agent 與 IntelliJ MCP Server",
     description: "因為之前都是用 VScode insider 整合 Github Copilot agent 和 MCP，Intellij 中的 Github copilot 沒有 Agent mode 可以用。最近又看到別人都用 Claude Desktop 整合 Intellij 和 MCP，沒道理我課 Copilot 的不行吧!!就來試試看。",
