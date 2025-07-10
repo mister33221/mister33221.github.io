@@ -237,6 +237,13 @@
 // 部落格資料
 const blogData = [
   {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/Skn3s4TSge",
+    category: "DDD 專案實戰練習",
+    description: "這是一篇紀錄 DDD 架構專案要如何執行、規劃、實作、思路的文章。可以 Clone 這個專案，其中的 readme 有更詳細的說明。",
+    author: "Kai　2025.07.10",
+    tags: "DDD, Java, Spring, Domain-Driven Design, DDD實戰",
+  },
+  {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/Skngqcf7ll",
     category: "[Uncategorized]Linux Auth",
     description: "一直以來在使用 Linux 時，只有熟悉那些常常用到的指令，例如 `cp` `mv` `rm` `ll` 這些，知道 `ll` 最前面有一串奇怪的字串是權限，但是從來沒有了解他到底在做什麼，直到最近專案上線，很多鬼故事發生...，我還是讀一下好了。",
