@@ -35,6 +35,204 @@
       "tags": ["民謠", "咖啡廳"],
       "date": "2025-07-18",
       "status": "pending"
+    },
+    {
+      "id": 4,
+      "title": "電子音樂派對",
+      "content": "國際知名DJ雲集！一整晚非停歇的電子舞曲，LED燈光秀，及獨特的視覺投影，帶來沉浸式的電音體驗。適合熱愛跳舞和夜生活的朋友。",
+      "cost": "$600",
+      "location": "OMNI 夜店",
+      "locationUrl": "https://maps.google.com/maps?q=OMNI夜店",
+      "officialUrl": "https://omni.tw",
+      "tags": ["電子音樂", "夜店", "派對"],
+      "date": "2025-07-15",
+      "status": "approved"
+    },
+    {
+      "id": 5,
+      "title": "爵士樂現場演出",
+      "content": "台北爵士樂團帶來經典爵士名曲演奏，沉浸在悠揚的薩克斯風和即興演奏的魅力中。提供精緻餐點和特調雞尾酒，度過一個優雅的夜晚。",
+      "cost": "$500",
+      "location": "藍調酒吧",
+      "locationUrl": "https://maps.google.com/maps?q=藍調酒吧",
+      "officialUrl": "https://bluenote.tw",
+      "tags": ["爵士", "現場演出", "酒吧"],
+      "date": "2025-07-15",
+      "status": "approved"
+    },
+    {
+      "id": 6,
+      "title": "古典音樂沙龍",
+      "content": "由台北交響樂團首席小提琴家帶來貝多芬、莫札特的經典作品。在優雅的沙龍環境中，近距離感受古典音樂的震撼與精緻。茶點與香檳無限供應。",
+      "cost": "$800",
+      "location": "大安沙龍音樂廳",
+      "locationUrl": null,
+      "officialUrl": "https://taipeisymphony.org",
+      "tags": ["古典音樂", "小提琴", "沙龍"],
+      "date": "2025-07-15",
+      "status": "approved"
+    },
+    {
+      "id": 7,
+      "title": "嘻哈文化夜",
+      "content": "台灣新生代饒舌歌手表演，體驗台灣本土嘻哈文化的活力與創意。現場還有Breaking和Popping舞蹈表演，以及塗鴉藝術展示。",
+      "cost": "$400",
+      "location": "華山1914創意園區 中3館",
+      "locationUrl": "https://maps.google.com/maps?q=華山1914創意產業園區",
+      "officialUrl": null,
+      "tags": ["嘻哈", "饒舌", "街舞"],
+      "date": "2025-08-05",
+      "status": "pending"
+    },
+    {
+      "id": 8,
+      "title": "民族音樂節",
+      "content": "來自台灣原住民及亞洲各地的傳統音樂表演，體驗多元文化的音樂魅力。有原住民歌謠、印尼gamelan、日本和太鼓等精彩演出。另有文創市集和工作坊。",
+      "cost": "$300",
+      "location": "台北市客家文化主題公園",
+      "locationUrl": "https://maps.google.com/maps?q=台北市客家文化主題公園",
+      "officialUrl": "https://www.folkfest.tw",
+      "tags": ["民族音樂", "文化", "表演"],
+      "date": "2025-08-15",
+      "status": "approved"
+    },
+    {
+      "id": 9,
+      "title": "夏季露天電影節",
+      "content": "在星空下觀賞經典電影，本週播映「樂來越愛你」。自備野餐墊，現場提供爆米花和飲料。提早到場可佔據最佳位置！",
+      "cost": "$200",
+      "location": "大安森林公園",
+      "locationUrl": "https://maps.google.com/maps?q=大安森林公園",
+      "officialUrl": null,
+      "tags": ["露天電影", "約會", "戶外"],
+      "date": "2025-07-31",
+      "status": "approved"
+    },
+    {
+      "id": 10,
+      "title": "展演空間開幕派對",
+      "content": "全新的獨立音樂展演空間開幕活動！多組本地獨立樂團輪番上陣，現場有限量紀念T恤義賣及抽獎活動。支持台灣獨立音樂新聚落！",
+      "cost": "$200",
+      "location": "地下室展演空間",
+      "locationUrl": null,
+      "officialUrl": "https://basement.tw",
+      "tags": ["開幕", "展演空間", "獨立音樂"],
+      "date": "2025-07-20",
+      "status": "sponsored"
+    },
+    {
+      "id": 11,
+      "title": "春季森林音樂祭",
+      "content": "在春意盎然的森林中享受音樂饗宴，大自然的懷抱中聆聽民謠、輕搖滾和爵士樂。帶著野餐墊和家人朋友一同度過愜意的一天！",
+      "cost": "$350",
+      "location": "陽明山國家公園",
+      "locationUrl": "https://maps.google.com/maps?q=陽明山國家公園",
+      "officialUrl": "https://springmusicfest.tw",
+      "tags": ["戶外", "森林", "音樂祭"],
+      "date": "2025-04-15",
+      "status": "approved"
+    },
+    {
+      "id": 12,
+      "title": "週末爵士午茶",
+      "content": "在老式咖啡館中享受優雅的週末午後，現場爵士三重奏演出經典曲目，搭配精緻的英式下午茶點，度過悠閒的時光。",
+      "cost": "$450",
+      "location": "老派咖啡館",
+      "locationUrl": null,
+      "officialUrl": null,
+      "tags": ["爵士", "下午茶", "週末"],
+      "date": "2025-06-01",
+      "status": "approved"
+    },
+    {
+      "id": 13,
+      "title": "台北國際音樂週",
+      "content": "為期一週的國際音樂慶典，匯集世界各地的音樂家和表演者。包含古典、爵士、世界音樂等多元風格，在台北多個場地同時舉辦。",
+      "cost": "$1000",
+      "location": "台北國家音樂廳",
+      "locationUrl": "https://maps.google.com/maps?q=台北國家音樂廳",
+      "officialUrl": "https://taipeimusic.com",
+      "tags": ["國際", "音樂週", "多元"],
+      "date": "2025-05-10",
+      "status": "sponsored"
+    },
+    {
+      "id": 14,
+      "title": "搖滾酒吧之夜",
+      "content": "每週四的經典搖滾之夜，本週特別企劃：翻唱90年代經典搖滾金曲。氣氛熱烈，適合與朋友同樂，享受現場樂團的熱情演出。",
+      "cost": "$300",
+      "location": "Legacy Taipei",
+      "locationUrl": "https://maps.google.com/maps?q=Legacy+Taipei",
+      "officialUrl": null,
+      "tags": ["搖滾", "酒吧", "翻唱"],
+      "date": "2025-08-22",
+      "status": "pending"
+    },
+    {
+      "id": 15,
+      "title": "阿卡貝拉音樂會",
+      "content": "無伴奏合唱團帶來精彩的純人聲音樂會，展現人聲的無限可能。演出曲目橫跨古典、流行、爵士等多元風格，震撼你的聽覺。",
+      "cost": "$400",
+      "location": "松菸誠品表演廳",
+      "locationUrl": "https://maps.google.com/maps?q=松山文創園區",
+      "officialUrl": "https://acappella.tw",
+      "tags": ["阿卡貝拉", "合唱", "人聲"],
+      "date": "2025-07-29",
+      "status": "approved"
+    },
+    {
+      "id": 16,
+      "title": "電音嘉年華",
+      "content": "一年一度的電子音樂盛會，邀請國際知名DJ和本地新星，三個舞台不同風格，從黃昏跳到黎明。戶外舞池，燈光特效，沉浸式體驗。",
+      "cost": "$1200",
+      "location": "大佳河濱公園",
+      "locationUrl": "https://maps.google.com/maps?q=大佳河濱公園",
+      "officialUrl": "https://electrocarnival.tw",
+      "tags": ["電子音樂", "嘉年華", "DJ"],
+      "date": "2025-09-05",
+      "status": "approved",
+      "isMultiDay": true,
+      "multiDayInfo": {
+        "totalDays": 3,
+        "currentDay": 1,
+        "allDates": ["2025-09-05", "2025-09-06", "2025-09-07"]
+      }
+    },
+    {
+      "id": 16,
+      "title": "電音嘉年華 (2/3日)",
+      "content": "一年一度的電子音樂盛會，邀請國際知名DJ和本地新星，三個舞台不同風格，從黃昏跳到黎明。戶外舞池，燈光特效，沉浸式體驗。",
+      "cost": "$1200",
+      "location": "大佳河濱公園",
+      "locationUrl": "https://maps.google.com/maps?q=大佳河濱公園",
+      "officialUrl": "https://electrocarnival.tw",
+      "tags": ["電子音樂", "嘉年華", "DJ"],
+      "date": "2025-09-06",
+      "status": "approved",
+      "isMultiDay": true,
+      "multiDayInfo": {
+        "totalDays": 3,
+        "currentDay": 2,
+        "allDates": ["2025-09-05", "2025-09-06", "2025-09-07"]
+      }
+    },
+    {
+      "id": 16,
+      "title": "電音嘉年華 (3/3日)",
+      "content": "一年一度的電子音樂盛會，邀請國際知名DJ和本地新星，三個舞台不同風格，從黃昏跳到黎明。戶外舞池，燈光特效，沉浸式體驗。",
+      "cost": "$1200",
+      "location": "大佳河濱公園",
+      "locationUrl": "https://maps.google.com/maps?q=大佳河濱公園",
+      "officialUrl": "https://electrocarnival.tw",
+      "tags": ["電子音樂", "嘉年華", "DJ"],
+      "date": "2025-09-07",
+      "status": "approved",
+      "isMultiDay": true,
+      "multiDayInfo": {
+        "totalDays": 3,
+        "currentDay": 3,
+        "allDates": ["2025-09-05", "2025-09-06", "2025-09-07"]
+      }
     }
   ],
   "comments": {
@@ -84,7 +282,57 @@
         ]
       }
     ],
-    "3": []
+    "3": [],
+    "4": [
+      {
+        "id": 5,
+        "author": "電音愛好者",
+        "content": "OMNI的音響系統超棒！上次去跳到天亮，這次一定要再去",
+        "time": "2025-07-13 20:15",
+        "replies": []
+      }
+    ],
+    "6": [
+      {
+        "id": 6,
+        "author": "古典樂迷",
+        "content": "終於可以近距離欣賞首席的演出，貝多芬的「月光」一定很精彩",
+        "time": "2025-07-12 09:30",
+        "replies": []
+      }
+    ],
+    "10": [
+      {
+        "id": 7,
+        "author": "音樂人",
+        "content": "台北需要更多這樣的獨立展演空間！一定去支持",
+        "time": "2025-07-14 11:20",
+        "replies": []
+      }
+    ],
+    "16": [
+      {
+        "id": 8,
+        "author": "電音達人",
+        "content": "去年錯過了，今年一定要衝三天全場！有人知道陣容了嗎？",
+        "time": "2025-07-01 22:10",
+        "replies": [
+          {
+            "id": 81,
+            "author": "官方小編",
+            "content": "陣容即將公布！請密切關注我們的社交媒體，保證會超乎期待！",
+            "time": "2025-07-02 10:15"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "author": "音樂節常客",
+        "content": "建議大家記得帶雨衣、防曬和足夠的水！去年天氣多變，要做好準備才能玩得盡興",
+        "time": "2025-07-05 15:40",
+        "replies": []
+      }
+    ]
   },
   "settings": {
     "commentIdCounter": 100,
