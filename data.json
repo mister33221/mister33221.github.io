@@ -1,0 +1,96 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "夏日搖滾音樂祭",
+      "content": "台灣獨立樂團大集合！滅火器、草東沒有派對、茄子蛋等知名樂團聯合演出，感受台灣搖滾的熱血魂！現場還有精釀啤酒和在地小食。",
+      "cost": "$800",
+      "location": "台北華山1914文化創意產業園區",
+      "locationUrl": "https://maps.google.com/maps?q=台北華山1914文化創意產業園區",
+      "officialUrl": "https://summermusicfest.tw",
+      "tags": ["搖滾", "獨立音樂", "戶外"],
+      "date": "2025-07-20",
+      "status": "sponsored"
+    },
+    {
+      "id": 2,
+      "title": "Livehouse新團發表會",
+      "content": "發掘台灣音樂新星！五組新興獨立樂團首次亮相，包含後搖、民謠、電子等多元風格。小場地、近距離，感受最純粹的音樂能量。",
+      "cost": "免費",
+      "location": "The Wall 公館",
+      "locationUrl": "https://maps.google.com/maps?q=The+Wall+公館",
+      "officialUrl": "https://thewall.com.tw",
+      "tags": ["Livehouse", "新團", "免費"],
+      "date": "2025-07-25",
+      "status": "approved"
+    },
+    {
+      "id": 3,
+      "title": "民謠咖啡夜",
+      "content": "在溫馨的咖啡廳裡，聆聽台灣創作歌手的溫柔歌聲。陳綺貞風格的民謠演出，配上手沖精品咖啡，度過一個療癒的夜晚。",
+      "cost": "$350",
+      "location": "永康街某間咖啡廳",
+      "locationUrl": null,
+      "officialUrl": null,
+      "tags": ["民謠", "咖啡廳"],
+      "date": "2025-07-18",
+      "status": "pending"
+    }
+  ],
+  "comments": {
+    "1": [
+      {
+        "id": 1,
+        "author": "搖滾少女",
+        "content": "超期待這次的搖滾祭！滅火器是我的愛團，終於可以現場聽到島嶼天光了 🔥",
+        "time": "2025-07-10 14:30",
+        "replies": [
+          {
+            "id": 11,
+            "author": "團團小編",
+            "content": "滅火器的現場真的超燃！記得早點去卡前排位置喔～",
+            "time": "2025-07-10 15:20"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "author": "窮學生",
+        "content": "800元對學生來說有點小貴...但為了草東還是要衝！有人要一起分攤停車費嗎？",
+        "time": "2025-07-11 09:15",
+        "replies": []
+      },
+      {
+        "id": 3,
+        "author": "華山常客",
+        "content": "華山的音響設備很棒，交通也方便！建議搭捷運比較不會塞車",
+        "time": "2025-07-12 16:45",
+        "replies": []
+      }
+    ],
+    "2": [
+      {
+        "id": 4,
+        "author": "獨立音樂愛好者",
+        "content": "The Wall的音響和氛圍都超讚！新團發表會通常驚喜很多，說不定會挖到寶團",
+        "time": "2025-07-13 10:00",
+        "replies": [
+          {
+            "id": 41,
+            "author": "場地經理",
+            "content": "歡迎大家來支持新生代樂團！現場會有簽名會和周邊義賣",
+            "time": "2025-07-13 11:30"
+          }
+        ]
+      }
+    ],
+    "3": []
+  },
+  "settings": {
+    "commentIdCounter": 100,
+    "currentMonth": 6,
+    "currentYear": 2025,
+    "selectedDate": null,
+    "currentTags": []
+  }
+}
