@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>活動管理平台</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: linear-gradient(
+          135deg,
+          #1a1a1a 0%,
+          #2d2d2d 50%,
+          #1a1a1a 100%
+        );
+        background-size: 400% 400%;
+        animation: gradientShift 20s ease infinite;
+        min-height: 100vh;
+        color: #e5e5e5;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 255, 255, 0.03) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(0, 0, 0, 0.1) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        text-align: center;
+        color: #ffffff;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .header h1 {
+        font-size: 3.5em;
+        margin-bottom: 0;
+        font-weight: 800;
+        color: #ffffff;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      .main-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .card {
+        background: rgba(40, 40, 40, 0.95);
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #666666, #999999, #666666);
+      }
+
+      .calendar-section h2,
+      .add-event-section h2 {
+        color: #ffffff;
+        margin-bottom: 16px;
+        font-size: 1.4em;
+        font-weight: 700;
+      }
+
+      .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+        margin-top: 15px;
+      }
+
+      .calendar-header {
+        text-align: center;
+        font-weight: bold;
+        padding: 12px;
+        background: linear-gradient(135deg, #666666, #888888);
+        color: white;
+        border-radius: 8px;
+        font-size: 0.9em;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .calendar-day {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #555555;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        position: relative;
+        background: rgba(60, 60, 60, 0.8);
+        color: #e5e5e5;
+      }
+
+      .calendar-day:hover {
+        background: linear-gradient(135deg, #777777, #999999);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      }
+
+      .calendar-day.selected {
+        background: linear-gradient(135deg, #666666, #888888);
+        color: white;
+        border-color: #999999;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      }
+
+      .calendar-day.has-event::after {
+        content: "●";
+        position: absolute;
+        bottom: 4px;
+        right: 4px;
+        font-size: 8px;
+        color: #cccccc;
+      }
+
+      .form-group {
+        margin-bottom: 12px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 4px;
+        font-weight: 600;
+        color: #e5e5e5;
+        font-size: 0.9em;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #555555;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        background: rgba(60, 60, 60, 0.9);
+        color: #e5e5e5;
+        font-family: "Inter", sans-serif;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #888888;
+        box-shadow: 0 0 0 2px rgba(136, 136, 136, 0.2);
+        background: rgba(70, 70, 70, 0.9);
+      }
+
+      .form-group textarea {
+        height: 60px;
+        resize: vertical;
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: #999999;
+        font-size: 13px;
+      }
+
+      .submit-btn {
+        background: linear-gradient(135deg, #666666, #888888);
+        color: white;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        width: 100%;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .submit-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .submit-btn:hover {
+        background: linear-gradient(135deg, #777777, #999999);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .submit-btn:hover::before {
+        left: 100%;
+      }
+
+      .events-section {
+        grid-column: 1 / -1;
+      }
+
+      .events-section h2 {
+        color: #ffffff;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+        text-align: center;
+        font-weight: 800;
+        position: relative;
+      }
+
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 20px;
+      }
+
+      .event-card {
+        background: rgba(45, 45, 45, 0.98);
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .event-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #666666, #888888, #666666);
+      }
+
+      .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+
+      .event-card.sponsored {
+        background: rgba(55, 55, 55, 0.98);
+        border: 2px solid #888888;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        position: relative;
+      }
+
+      .event-card.sponsored::before {
+        background: linear-gradient(90deg, #888888, #aaaaaa, #888888);
+      }
+
+      .event-card.sponsored .event-title {
+        color: #ffffff;
+      }
+
+      .event-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 15px;
+      }
+
+      .event-title {
+        font-size: 1.4em;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+
+      .event-date {
+        font-size: 0.9em;
+        color: #cccccc;
+        font-weight: 500;
+        background: rgba(80, 80, 80, 0.6);
+        padding: 4px 10px;
+        border-radius: 4px;
+        display: inline-block;
+      }
+
+      .event-status {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8em;
+        font-weight: 600;
+      }
+
+      .status-pending {
+        background: linear-gradient(135deg, #666666, #777777);
+        color: white;
+      }
+
+      .status-approved {
+        background: linear-gradient(135deg, #888888, #aaaaaa);
+        color: white;
+      }
+
+      .status-sponsored {
+        background: linear-gradient(135deg, #999999, #bbbbbb);
+        color: #333333;
+        font-weight: 700;
+      }
+
+      .event-content {
+        margin-bottom: 15px;
+        color: #cccccc;
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      .event-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .event-location {
+        font-size: 0.9em;
+        color: #ffffff;
+        font-weight: 600;
+      }
+
+      .event-cost {
+        font-weight: 700;
+        color: #ffffff;
+        font-size: 1.1em;
+        background: rgba(120, 120, 120, 0.8);
+        padding: 5px 12px;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+      }
+
+      .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 85vh;
+        overflow-y: auto;
+      }
+
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 28px;
+        cursor: pointer;
+        color: #999;
+      }
+
+      .close:hover {
+        color: #333;
+      }
+
+      .month-selector {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .month-btn {
+        background: linear-gradient(135deg, #666666, #777777);
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .month-btn:hover {
+        background: linear-gradient(135deg, #777777, #888888);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .current-month {
+        font-size: 1.3em;
+        font-weight: 700;
+        color: #ffffff;
+      }
+
+      /* 留言區域樣式 */
+      .comments-section {
+        margin-top: 30px;
+        border-top: 2px solid #e2e8f0;
+        padding-top: 20px;
+      }
+
+      .comments-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .comments-title {
+        font-size: 1.2em;
+        font-weight: 600;
+        color: #4a5568;
+      }
+
+      .comments-count {
+        color: #667eea;
+        font-size: 0.9em;
+      }
+
+      .comment-form {
+        background: #f8fafc;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      .comment-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        resize: vertical;
+        min-height: 60px;
+        font-size: 14px;
+      }
+
+      .comment-input:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      .comment-form-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+      }
+
+      .comment-author-input {
+        padding: 8px 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        font-size: 14px;
+        width: 150px;
+      }
+
+      .comment-submit {
+        background: #667eea;
+        color: white;
+        padding: 8px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.3s ease;
+      }
+
+      .comment-submit:hover {
+        background: #5a67d8;
+      }
+
+      .comments-list {
+        max-height: 300px;
+        overflow-y: auto;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 10px;
+        background: #fafafa;
+      }
+
+      .comment-item {
+        background: white;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 10px;
+        border-left: 3px solid #667eea;
+      }
+
+      .comment-item.reply {
+        margin-left: 30px;
+        border-left-color: #a0aec0;
+        background: #f7fafc;
+      }
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .comment-author {
+        font-weight: 600;
+        color: #4a5568;
+        font-size: 14px;
+      }
+
+      .comment-time {
+        color: #a0aec0;
+        font-size: 12px;
+      }
+
+      .comment-content {
+        color: #4a5568;
+        line-height: 1.4;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      .comment-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .reply-btn {
+        background: none;
+        border: none;
+        color: #667eea;
+        cursor: pointer;
+        font-size: 12px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        transition: background 0.3s ease;
+      }
+
+      .reply-btn:hover {
+        background: #e2e8f0;
+      }
+
+      .reply-form {
+        margin-top: 10px;
+        padding: 10px;
+        background: #f0f4f8;
+        border-radius: 6px;
+        display: none;
+      }
+
+      .reply-form.active {
+        display: block;
+      }
+
+      .reply-input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        font-size: 13px;
+        min-height: 50px;
+        resize: vertical;
+      }
+
+      .reply-form-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+      }
+
+      .reply-author-input {
+        padding: 6px 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        font-size: 13px;
+        width: 120px;
+      }
+
+      .reply-submit {
+        background: #667eea;
+        color: white;
+        padding: 6px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+      }
+
+      .cancel-reply {
+        background: #a0aec0;
+        color: white;
+        padding: 6px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+        margin-right: 8px;
+      }
+
+      .load-more-comments {
+        text-align: center;
+        margin-top: 15px;
+      }
+
+      .load-more-btn {
+        background: #e2e8f0;
+        color: #4a5568;
+        padding: 8px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.3s ease;
+      }
+
+      .load-more-btn:hover {
+        background: #cbd5e0;
+      }
+
+      .no-comments {
+        text-align: center;
+        color: #a0aec0;
+        padding: 20px;
+        font-style: italic;
+      }
+
+      .replying-to {
+        background: #e2e8f0;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        color: #4a5568;
+        margin-bottom: 8px;
+      }
+
+      /* Google Maps 相關樣式 */
+      .location-info {
+        margin-top: 8px;
+        padding: 8px;
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      .location-preview {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #0369a1;
+      }
+
+      .location-link {
+        color: #0369a1;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: 500;
+      }
+
+      .location-link:hover {
+        text-decoration: underline;
+      }
+
+      .location-icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      .event-location-link {
+        color: #0369a1;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: 500;
+      }
+
+      .event-location-link:hover {
+        text-decoration: underline;
+      }
+
+      /* 標籤相關樣式 */
+      .tags-input-container {
+        margin-top: 6px;
+      }
+
+      .tags-display {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-bottom: 6px;
+      }
+
+      .tag {
+        background: linear-gradient(135deg, #666666, #777777);
+        color: white;
+        padding: 3px 10px;
+        border-radius: 4px;
+        font-size: 0.75em;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .tag-remove {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 0;
+        margin-left: 2px;
+        font-size: 12px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+
+      .tag-remove:hover {
+        background: rgba(255, 255, 255, 0.4);
+        transform: scale(1.1);
+      }
+
+      .tag-input {
+        padding: 7px 10px;
+        border: 1px solid #555555;
+        border-radius: 6px;
+        font-size: 13px;
+        outline: none;
+        transition: all 0.3s ease;
+        background: rgba(60, 60, 60, 0.9);
+        color: #e5e5e5;
+        font-family: "Inter", sans-serif;
+      }
+
+      .tag-input:focus {
+        border-color: #888888;
+        box-shadow: 0 0 0 2px rgba(136, 136, 136, 0.2);
+        background: rgba(70, 70, 70, 0.9);
+      }
+
+      .tag-hint {
+        font-size: 11px;
+        color: #999999;
+        margin-top: 3px;
+        font-weight: 400;
+      }
+
+      .event-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .event-tag {
+        background: linear-gradient(135deg, #666666, #777777);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 0.8em;
+        font-weight: 500;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .event-official-url {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .official-url-link {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.9em;
+        transition: all 0.3s ease;
+        background: rgba(120, 120, 120, 0.8);
+        padding: 4px 10px;
+        border-radius: 4px;
+      }
+
+      .official-url-link:hover {
+        color: #ffffff;
+        background: rgba(140, 140, 140, 0.8);
+        transform: translateY(-1px);
+      }
+
+      .external-link-icon {
+        width: 14px;
+        height: 14px;
+      }
+
+      .location-info {
+        display: none;
+      }
+
+      /* 彈窗詳情標籤樣式 */
+      .event-details strong {
+        color: #333333;
+        font-weight: 700;
+        font-size: 1em;
+      }
+
+      /* 彈窗中內容值的樣式 */
+      .modal-content .event-location-link {
+        color: #444444;
+        font-weight: 600;
+      }
+
+      .modal-content .event-location-link:hover {
+        color: #222222;
+      }
+
+      .modal-content .event-cost-value {
+        color: #444444;
+        font-weight: 600;
+      }
+
+      .modal-content .official-url-link {
+        color: #444444;
+        background: rgba(240, 240, 240, 0.8);
+        font-weight: 600;
+      }
+
+      .modal-content .official-url-link:hover {
+        color: #222222;
+        background: rgba(220, 220, 220, 0.8);
+      }
+
+      .modal-content span {
+        color: #444444;
+        font-weight: 600;
+      }
+
+      /* 表單緊湊佈局 */
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .form-row .form-group {
+        margin-bottom: 0;
+      }
+
+      @media (max-width: 600px) {
+        .form-row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .events-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* 預設隱藏右側面板 */
+      .modal-right-panel {
+        display: none;
+      }
+
+      /* 預設顯示mobile討論區 */
+      .comments-section-mobile {
+        display: block;
+      }
+
+      /* Desktop版本的modal左右分欄佈局 */
+      @media (min-width: 769px) {
+        .modal-content {
+          max-width: 1200px !important;
+          padding: 0 !important;
+          display: flex !important;
+          max-height: 85vh;
+        }            .modal-left-panel {
+                flex: 1;
+                padding: 30px;
+                overflow-y: auto;
+                max-height: 85vh;
+                /* 隱藏滾動條 */
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none; /* IE and Edge */
+            }
+
+            .modal-left-panel::-webkit-scrollbar {
+                display: none; /* Chrome, Safari, Opera */
+            }
+
+        .modal-right-panel {
+          flex: 1;
+          border-left: 1px solid #e2e8f0;
+          display: flex !important;
+          flex-direction: column;
+          max-height: 85vh;
+        }
+
+        .comments-section-desktop {
+          flex: 1;
+          padding: 30px;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .comments-section-desktop .comments-list {
+          flex: 1;
+          overflow-y: auto;
+          max-height: none;
+        }
+
+        .comments-section-mobile {
+          display: none !important;
+        }
+      }
+
+      /* Mobile版本保持原有佈局 */
+      @media (max-width: 768px) {
+        .modal-content {
+          display: block !important;
+          padding: 30px !important;
+          max-width: 600px !important;
+        }
+
+        .modal-left-panel {
+          display: block;
+        }
+
+        .modal-right-panel {
+          display: none !important;
+        }
+
+        .comments-section-mobile {
+          display: block !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>OPENGIG</h1>
+      </div>
+
+      <div class="main-content">
+        <!-- 日曆區塊 -->
+        <div class="card calendar-section">
+          <h2>選擇日期</h2>
+          <div class="month-selector">
+            <button class="month-btn" onclick="changeMonth(-1)">‹</button>
+            <div class="current-month" id="currentMonth">2025年7月</div>
+            <button class="month-btn" onclick="changeMonth(1)">›</button>
+          </div>
+          <div class="calendar" id="calendar"></div>
+        </div>
+
+        <!-- 新增活動區塊 -->
+        <div class="card add-event-section">
+          <h2>新增活動</h2>
+          <form id="eventForm">
+            <div class="form-group">
+              <label for="eventTitle">活動標題</label>
+              <input type="text" id="eventTitle" required />
+            </div>
+            <div class="form-group">
+              <label for="eventContent">活動內容</label>
+              <textarea id="eventContent" required></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="eventCost">費用</label>
+                <input type="text" id="eventCost" placeholder="免費 或 $100" />
+              </div>
+              <div class="form-group">
+                <label for="eventOfficialUrl">官方網址</label>
+                <input
+                  type="url"
+                  id="eventOfficialUrl"
+                  placeholder="https://example.com"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="eventLocation">地點</label>
+              <input
+                type="text"
+                id="eventLocation"
+                placeholder="請輸入地點名稱或 Google Maps 網址"
+                required
+              />
+              <div class="location-info" id="locationInfo"></div>
+            </div>
+            <div class="form-group">
+              <label for="eventTags">標籤</label>
+              <div class="tags-input-container">
+                <div class="tags-display" id="tagsDisplay"></div>
+                <input
+                  type="text"
+                  id="tagInput"
+                  class="tag-input"
+                  placeholder="輸入標籤名稱後按 Enter"
+                />
+                <div class="tag-hint">
+                  最多可以加入 3 個標籤，輸入後按 Enter 確認
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="submit-btn">提交活動</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- 活動列表區塊 -->
+      <div class="events-section">
+        <h2>活動列表</h2>
+        <div class="events-grid" id="eventsGrid"></div>
+      </div>
+    </div>
+
+    <!-- 彈窗 -->
+    <div id="eventModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-left-panel" id="modalLeftPanel"></div>
+        <div class="modal-right-panel" id="modalRightPanel"></div>
+      </div>
+    </div>
+
+    <script>
+      // 資料儲存
+      let events = [];
+      let comments = {};
+      let commentIdCounter = 100;
+      let currentMonth = 6; // 7月 (0-based)
+      let currentYear = 2025;
+      let selectedDate = null;
+      let currentTags = []; // 儲存當前正在輸入的標籤
+
+      // 載入資料
+      async function loadData() {
+        try {
+          const response = await fetch("data.json");
+          const data = await response.json();
+          events = data.events;
+          comments = data.comments;
+          commentIdCounter = data.settings.commentIdCounter;
+          currentMonth = data.settings.currentMonth;
+          currentYear = data.settings.currentYear;
+          selectedDate = data.settings.selectedDate;
+          currentTags = data.settings.currentTags;
+
+          // 載入完成後初始化頁面
+          generateCalendar();
+          displayEvents();
+        } catch (error) {
+          console.error("載入資料失敗:", error);
+          // 如果載入失敗，使用預設空資料
+          events = [];
+          comments = {};
+          generateCalendar();
+          displayEvents();
+        }
+      }
+
+      // 初始化
+      document.addEventListener("DOMContentLoaded", function () {
+        loadData(); // 載入JSON資料
+        setupEventListeners();
+        setupLocationInput();
+        setupTagsInput();
+      });
+
+      function setupLocationInput() {
+        const locationInput = document.getElementById("eventLocation");
+        const locationInfo = document.getElementById("locationInfo");
+
+        locationInput.addEventListener("input", function () {
+          const value = this.value.trim();
+
+          if (isGoogleMapsUrl(value)) {
+            const locationName = extractLocationName(value);
+            showLocationPreview(locationName, value);
+          } else {
+            hideLocationPreview();
+          }
+        });
+
+        function showLocationPreview(name, url) {
+          locationInfo.innerHTML = `
+                    <div class="location-preview">
+                        <svg class="location-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        <span>地點: ${name}</span>
+                        <a href="${url}" target="_blank" class="location-link">
+                            <svg class="location-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                            </svg>
+                            在 Google Maps 中查看
+                        </a>
+                    </div>
+                `;
+          locationInfo.style.display = "block";
+        }
+
+        function hideLocationPreview() {
+          locationInfo.style.display = "none";
+        }
+      }
+
+      function isGoogleMapsUrl(url) {
+        return (
+          url.includes("maps.google.com") ||
+          url.includes("goo.gl/maps") ||
+          url.includes("maps.app.goo.gl") ||
+          url.includes("google.com/maps")
+        );
+      }
+
+      function extractLocationName(url) {
+        // 嘗試從 URL 中解析地點名稱
+        let locationName = "未知地點";
+
+        try {
+          // 處理不同格式的 Google Maps URL
+          if (url.includes("?q=")) {
+            const match = url.match(/[?&]q=([^&]+)/);
+            if (match) {
+              locationName = decodeURIComponent(match[1]).replace(/\+/g, " ");
+            }
+          } else if (url.includes("/place/")) {
+            const match = url.match(/\/place\/([^\/]+)/);
+            if (match) {
+              locationName = decodeURIComponent(match[1]).replace(/\+/g, " ");
+            }
+          } else if (url.includes("@")) {
+            // 處理座標格式的 URL
+            const match = url.match(/([^\/]+)\/.*@/);
+            if (match) {
+              locationName = decodeURIComponent(match[1]).replace(/\+/g, " ");
+            }
+          }
+        } catch (e) {
+          console.error("解析地點名稱時出錯:", e);
+        }
+
+        return locationName;
+      }
+
+      function formatLocationDisplay(location, locationUrl) {
+        if (locationUrl && isGoogleMapsUrl(locationUrl)) {
+          return `
+                    <a href="${locationUrl}" target="_blank" class="event-location-link">
+                        <svg class="location-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        ${location}
+                    </a>
+                `;
+        } else {
+          return `
+                    <span>
+                        <svg class="location-icon" viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px; margin-right: 5px; vertical-align: text-bottom;">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        ${location}
+                    </span>
+                `;
+        }
+      }
+
+      function setupEventListeners() {
+        // 表單提交
+        document
+          .getElementById("eventForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            addEvent();
+          });
+
+        // 彈窗關閉
+        document.querySelector(".close").addEventListener("click", function () {
+          document.getElementById("eventModal").style.display = "none";
+        });
+
+        // 點擊彈窗外部關閉
+        window.addEventListener("click", function (e) {
+          const modal = document.getElementById("eventModal");
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+      }
+
+      function generateCalendar() {
+        const calendar = document.getElementById("calendar");
+        const monthNames = [
+          "1月",
+          "2月",
+          "3月",
+          "4月",
+          "5月",
+          "6月",
+          "7月",
+          "8月",
+          "9月",
+          "10月",
+          "11月",
+          "12月",
+        ];
+        const dayNames = ["日", "一", "二", "三", "四", "五", "六"];
+
+        document.getElementById(
+          "currentMonth"
+        ).textContent = `${currentYear}年${monthNames[currentMonth]}`;
+
+        calendar.innerHTML = "";
+
+        // 添加星期標題
+        dayNames.forEach((day) => {
+          const dayHeader = document.createElement("div");
+          dayHeader.className = "calendar-header";
+          dayHeader.textContent = day;
+          calendar.appendChild(dayHeader);
+        });
+
+        // 獲取月份資訊
+        const firstDay = new Date(currentYear, currentMonth, 1);
+        const lastDay = new Date(currentYear, currentMonth + 1, 0);
+        const startingDayOfWeek = firstDay.getDay();
+        const daysInMonth = lastDay.getDate();
+
+        // 添加空白日期
+        for (let i = 0; i < startingDayOfWeek; i++) {
+          const emptyDay = document.createElement("div");
+          calendar.appendChild(emptyDay);
+        }
+
+        // 添加日期
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dayElement = document.createElement("div");
+          dayElement.className = "calendar-day";
+          dayElement.textContent = day;
+
+          const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(
+            2,
+            "0"
+          )}-${String(day).padStart(2, "0")}`;
+
+          // 檢查是否有活動
+          const hasEvent = events.some((event) => event.date === dateStr);
+          if (hasEvent) {
+            dayElement.classList.add("has-event");
+          }
+
+          dayElement.addEventListener("click", function () {
+            document
+              .querySelectorAll(".calendar-day")
+              .forEach((d) => d.classList.remove("selected"));
+            this.classList.add("selected");
+            selectedDate = dateStr;
+          });
+
+          calendar.appendChild(dayElement);
+        }
+      }
+
+      function changeMonth(direction) {
+        currentMonth += direction;
+        if (currentMonth > 11) {
+          currentMonth = 0;
+          currentYear++;
+        } else if (currentMonth < 0) {
+          currentMonth = 11;
+          currentYear--;
+        }
+        generateCalendar();
+      }
+
+      function addEvent() {
+        if (!selectedDate) {
+          alert("請先選擇日期");
+          return;
+        }
+
+        const title = document.getElementById("eventTitle").value;
+        const content = document.getElementById("eventContent").value;
+        const cost = document.getElementById("eventCost").value || "免費";
+        const locationInput = document.getElementById("eventLocation").value;
+        const officialUrl =
+          document.getElementById("eventOfficialUrl").value || null;
+
+        let location = locationInput;
+        let locationUrl = null;
+
+        // 如果輸入的是 Google Maps URL，解析地點名稱
+        if (isGoogleMapsUrl(locationInput)) {
+          location = extractLocationName(locationInput);
+          locationUrl = locationInput;
+        }
+
+        const newEvent = {
+          id: Date.now(),
+          title,
+          content,
+          cost,
+          location,
+          locationUrl,
+          officialUrl,
+          tags: [...currentTags], // 複製標籤陣列
+          date: selectedDate,
+          status: "pending",
+        };
+
+        events.push(newEvent);
+        displayEvents();
+        generateCalendar();
+
+        // 清空表單
+        document.getElementById("eventForm").reset();
+        document.getElementById("locationInfo").style.display = "none";
+        currentTags = []; // 清空標籤
+        document.getElementById("tagsDisplay").innerHTML = "";
+        alert("活動已提交，等待管理員審核");
+      }
+
+      function displayEvents() {
+        const eventsGrid = document.getElementById("eventsGrid");
+        eventsGrid.innerHTML = "";
+
+        // 排序活動（按日期）
+        const sortedEvents = events.sort(
+          (a, b) => new Date(a.date) - new Date(b.date)
+        );
+
+        sortedEvents.forEach((event) => {
+          const eventCard = document.createElement("div");
+          eventCard.className = `event-card ${
+            event.status === "sponsored" ? "sponsored" : ""
+          }`;
+
+          const statusText = {
+            pending: "審核中",
+            approved: "已審核",
+            sponsored: "精選活動",
+          };
+
+          const statusClass = {
+            pending: "status-pending",
+            approved: "status-approved",
+            sponsored: "status-sponsored",
+          };
+
+          eventCard.innerHTML = `
+                    <div class="event-header">
+                        <div>
+                            <div class="event-title">${event.title}</div>
+                            <div class="event-date">${formatDate(
+                              event.date
+                            )}</div>
+                        </div>
+                        <div class="event-status ${statusClass[event.status]}">
+                            ${statusText[event.status]}
+                        </div>
+                    </div>
+                    <div class="event-content">${event.content.substring(
+                      0,
+                      100
+                    )}${event.content.length > 100 ? "..." : ""}</div>
+                    ${
+                      event.tags && event.tags.length > 0
+                        ? `
+                        <div class="event-tags">
+                            ${event.tags
+                              .map(
+                                (tag) => `<span class="event-tag">${tag}</span>`
+                              )
+                              .join("")}
+                        </div>
+                    `
+                        : ""
+                    }
+                    <div class="event-details">
+                        <div class="event-location">${formatLocationDisplay(
+                          event.location,
+                          event.locationUrl
+                        )}</div>
+                        <div class="event-cost">${event.cost}</div>
+                    </div>
+                    ${
+                      event.officialUrl
+                        ? `
+                        <div class="event-official-url">
+                            <a href="${event.officialUrl}" target="_blank" class="official-url-link">
+                                <svg class="external-link-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                                </svg>
+                                官方網站
+                            </a>
+                        </div>
+                    `
+                        : ""
+                    }
+                `;
+
+          eventCard.addEventListener("click", function () {
+            showEventModal(event);
+          });
+
+          eventsGrid.appendChild(eventCard);
+        });
+      }
+
+    function showEventModal(event) {
+    const modal = document.getElementById('eventModal');
+    const modalLeftPanel = document.getElementById('modalLeftPanel');
+    const modalRightPanel = document.getElementById('modalRightPanel');
+
+    const statusText = {
+        'pending': '審核中',
+        'approved': '已審核',
+        'sponsored': '精選活動'
+    };
+
+    const statusClass = {
+        'pending': 'status-pending',
+        'approved': 'status-approved',
+        'sponsored': 'status-sponsored'
+    };
+
+    const eventComments = comments[event.id] || [];
+    const totalComments = eventComments.reduce((count, comment) => count + 1 + comment.replies.length, 0);
+
+    modalLeftPanel.innerHTML = `
+        <div class="event-header">
+            <div>
+                <div class="event-title" style="font-size: 1.5em;">${event.title}</div>
+                <div class="event-date" style="font-size: 1.1em;">${formatDate(event.date)}</div>
+            </div>
+            <div class="event-status ${statusClass[event.status]}">
+                ${statusText[event.status]}
+            </div>
+        </div>
+        <div style="margin: 20px 0;">
+            <h3 style="margin-bottom: 10px; color: #4a5568;">活動內容</h3>
+            <p style="line-height: 1.6; color: #636e72;">${event.content}</p>
+        </div>
+        ${event.tags && event.tags.length > 0 ? `
+            <div style="margin: 15px 0;">
+                <h4 style="margin-bottom: 8px; color: #4a5568;">標籤</h4>
+                <div class="event-tags">
+                    ${event.tags.map(tag => `<span class="event-tag">${tag}</span>`).join('')}
+                </div>
+            </div>
+        ` : ''}
+        <div class="event-details" style="margin-top: 20px;">
+            <div>
+                <strong>費用</strong><br>
+                <span class="event-cost-value">${event.cost}</span>
+                ${event.officialUrl ? `<br><br><strong>官方網址</strong><br>
+                <a href="${event.officialUrl}" target="_blank" class="official-url-link">
+                    <svg class="external-link-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                    </svg>
+                    查看官方網站
+                </a>` : ''}
+                <br><br><strong>地點</strong><br>
+                ${formatLocationDisplay(event.location, event.locationUrl)}
+            </div>
+        </div>
+
+        <!-- Mobile版留言 -->
+        <div class="comments-section comments-section-mobile">
+            <div class="comments-header">
+                <div class="comments-title">討論區</div>
+                <div class="comments-count">${totalComments} 則留言</div>
+            </div>
+            <div class="comment-form">
+                <textarea class="comment-input" placeholder="分享你的想法或經驗..." id="commentInput-mobile-${event.id}"></textarea>
+                <div class="comment-form-actions">
+                    <input type="text" class="comment-author-input" placeholder="你的名字" id="commentAuthor-mobile-${event.id}">
+                    <button class="comment-submit" onclick="submitComment(${event.id}, 'mobile')">發布留言</button>
+                </div>
+            </div>
+            <div class="comments-list" id="commentsList-mobile-${event.id}">
+                ${renderComments(eventComments, event.id)}
+            </div>
+        </div>
+    `;
+
+    modalRightPanel.innerHTML = `
+        <div class="comments-section-desktop">
+            <div class="comments-header">
+                <div class="comments-title">討論區</div>
+                <div class="comments-count">${totalComments} 則留言</div>
+            </div>
+            <div class="comment-form">
+                <textarea class="comment-input" placeholder="分享你的想法或經驗..." id="commentInput-desktop-${event.id}"></textarea>
+                <div class="comment-form-actions">
+                    <input type="text" class="comment-author-input" placeholder="你的名字" id="commentAuthor-desktop-${event.id}">
+                    <button class="comment-submit" onclick="submitComment(${event.id}, 'desktop')">發布留言</button>
+                </div>
+            </div>
+            <div class="comments-list" id="commentsList-desktop-${event.id}">
+                ${renderComments(eventComments, event.id)}
+            </div>
+        </div>
+    `;
+
+    modal.style.display = 'block';
+}
+
+      function renderComments(commentList, eventId) {
+        if (commentList.length === 0) {
+          return '<div class="no-comments">還沒有留言，快來分享你的想法吧！</div>';
+        }
+
+        let html = "";
+        commentList.forEach((comment) => {
+          html += `
+                    <div class="comment-item" data-comment-id="${comment.id}">
+                        <div class="comment-header">
+                            <span class="comment-author">${comment.author}</span>
+                            <span class="comment-time">${comment.time}</span>
+                        </div>
+                        <div class="comment-content">${comment.content}</div>
+                        <div class="comment-actions">
+                            <button class="reply-btn" onclick="toggleReplyForm(${comment.id}, ${eventId})">回覆</button>
+                        </div>
+                        <div class="reply-form" id="replyForm-${comment.id}">
+                            <div class="replying-to">回覆給 ${comment.author}</div>
+                            <textarea class="reply-input" placeholder="輸入回覆..." id="replyInput-${comment.id}"></textarea>
+                            <div class="reply-form-actions">
+                                <input type="text" class="reply-author-input" placeholder="你的名字" id="replyAuthor-${comment.id}">
+                                <div>
+                                    <button class="cancel-reply" onclick="cancelReply(${comment.id})">取消</button>
+                                    <button class="reply-submit" onclick="submitReply(${comment.id}, ${eventId})">回覆</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+          // 渲染回覆
+          comment.replies.forEach((reply) => {
+            html += `
+                        <div class="comment-item reply">
+                            <div class="comment-header">
+                                <span class="comment-author">${reply.author}</span>
+                                <span class="comment-time">${reply.time}</span>
+                            </div>
+                            <div class="comment-content">${reply.content}</div>
+                        </div>
+                    `;
+          });
+        });
+
+        return html;
+      }
+
+      function submitComment(eventId, version = "mobile") {
+        const suffix = version === "desktop" ? "desktop" : "mobile";
+        const contentInput = document.getElementById(
+          `commentInput-${suffix}-${eventId}`
+        );
+        const authorInput = document.getElementById(
+          `commentAuthor-${suffix}-${eventId}`
+        );
+
+        const content = contentInput.value.trim();
+        const author = authorInput.value.trim() || "匿名用戶";
+
+        if (!content) {
+          alert("請輸入留言內容");
+          return;
+        }
+
+        const newComment = {
+          id: ++commentIdCounter,
+          author: author,
+          content: content,
+          time: new Date().toLocaleString("zh-TW", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+          replies: [],
+        };
+
+        if (!comments[eventId]) {
+          comments[eventId] = [];
+        }
+
+        comments[eventId].push(newComment);
+
+        // 清空輸入框
+        contentInput.value = "";
+        authorInput.value = "";
+
+        // 重新渲染兩個版本的留言列表
+        const commentsListMobile = document.getElementById(
+          `commentsList-mobile-${eventId}`
+        );
+        const commentsListDesktop = document.getElementById(
+          `commentsList-desktop-${eventId}`
+        );
+        const renderedComments = renderComments(comments[eventId], eventId);
+
+        if (commentsListMobile) {
+          commentsListMobile.innerHTML = renderedComments;
+        }
+        if (commentsListDesktop) {
+          commentsListDesktop.innerHTML = renderedComments;
+        }
+
+        // 更新留言數量
+        const totalComments = comments[eventId].reduce(
+          (count, comment) => count + 1 + comment.replies.length,
+          0
+        );
+        document.querySelectorAll(".comments-count").forEach((countElement) => {
+          countElement.textContent = `${totalComments} 則留言`;
+        });
+      }
+
+      function toggleReplyForm(commentId, eventId) {
+        const replyForm = document.getElementById(`replyForm-${commentId}`);
+
+        // 先關閉所有其他回覆表單
+        document.querySelectorAll(".reply-form").forEach((form) => {
+          if (form.id !== `replyForm-${commentId}`) {
+            form.classList.remove("active");
+          }
+        });
+
+        replyForm.classList.toggle("active");
+      }
+
+      function cancelReply(commentId) {
+        const replyForm = document.getElementById(`replyForm-${commentId}`);
+        replyForm.classList.remove("active");
+
+        // 清空輸入框
+        document.getElementById(`replyInput-${commentId}`).value = "";
+        document.getElementById(`replyAuthor-${commentId}`).value = "";
+      }
+
+      function submitReply(commentId, eventId) {
+        const replyInput = document.getElementById(`replyInput-${commentId}`);
+        const authorInput = document.getElementById(`replyAuthor-${commentId}`);
+
+        const content = replyInput.value.trim();
+        const author = authorInput.value.trim() || "匿名用戶";
+
+        if (!content) {
+          alert("請輸入回覆內容");
+          return;
+        }
+
+        const newReply = {
+          id: ++commentIdCounter,
+          author: author,
+          content: content,
+          time: new Date().toLocaleString("zh-TW", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+        };
+
+        // 找到對應的留言並添加回覆
+        const eventComments = comments[eventId];
+        const comment = eventComments.find((c) => c.id === commentId);
+        if (comment) {
+          comment.replies.push(newReply);
+        }
+
+        // 關閉回覆表單
+        cancelReply(commentId);
+
+        // 重新渲染兩個版本的留言列表
+        const commentsListMobile = document.getElementById(
+          `commentsList-mobile-${eventId}`
+        );
+        const commentsListDesktop = document.getElementById(
+          `commentsList-desktop-${eventId}`
+        );
+        const renderedComments = renderComments(comments[eventId], eventId);
+
+        if (commentsListMobile) {
+          commentsListMobile.innerHTML = renderedComments;
+        }
+        if (commentsListDesktop) {
+          commentsListDesktop.innerHTML = renderedComments;
+        }
+
+        // 更新留言數量
+        const totalComments = comments[eventId].reduce(
+          (count, comment) => count + 1 + comment.replies.length,
+          0
+        );
+        document.querySelectorAll(".comments-count").forEach((countElement) => {
+          countElement.textContent = `${totalComments} 則留言`;
+        });
+      }
+
+      function formatDate(dateStr) {
+        const date = new Date(dateStr);
+        const months = [
+          "1月",
+          "2月",
+          "3月",
+          "4月",
+          "5月",
+          "6月",
+          "7月",
+          "8月",
+          "9月",
+          "10月",
+          "11月",
+          "12月",
+        ];
+        return `${date.getFullYear()}年${
+          months[date.getMonth()]
+        }${date.getDate()}日`;
+      }
+
+      function setupTagsInput() {
+        const tagInput = document.getElementById("tagInput");
+        const tagsDisplay = document.getElementById("tagsDisplay");
+
+        tagInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            addTag(this.value.trim());
+            this.value = "";
+          }
+        });
+
+        function addTag(tagText) {
+          if (!tagText) return;
+
+          // 檢查是否已達到最大標籤數
+          if (currentTags.length >= 3) {
+            alert("最多只能加入 3 個標籤");
+            return;
+          }
+
+          // 檢查是否已存在相同標籤
+          if (currentTags.includes(tagText)) {
+            alert("此標籤已存在");
+            return;
+          }
+
+          currentTags.push(tagText);
+          updateTagsDisplay();
+        }
+
+        function updateTagsDisplay() {
+          tagsDisplay.innerHTML = currentTags
+            .map(
+              (tag, index) => `
+                    <div class="tag">
+                        ${tag}
+                        <button type="button" class="tag-remove" onclick="removeTag(${index})">×</button>
+                    </div>
+                `
+            )
+            .join("");
+        }
+
+        // 全域函數供按鈕使用
+        window.removeTag = function (index) {
+          currentTags.splice(index, 1);
+          updateTagsDisplay();
+        };
+      }
+    </script>
+  </body>
+</html>
