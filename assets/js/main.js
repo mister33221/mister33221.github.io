@@ -237,6 +237,76 @@
 // 部落格資料
 const blogData = [
   {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/Skn3s4TSge",
+    category: "DDD 專案實戰練習",
+    description: "這是一篇紀錄 DDD 架構專案要如何執行、規劃、實作、思路的文章。可以 Clone 這個專案，其中的 readme 有更詳細的說明。",
+    author: "Kai　2025.07.10",
+    tags: "DDD, Java, Spring, Domain-Driven Design, DDD實戰",
+  },
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/Skngqcf7ll",
+    category: "[Uncategorized]Linux Auth",
+    description: "一直以來在使用 Linux 時，只有熟悉那些常常用到的指令，例如 `cp` `mv` `rm` `ll` 這些，知道 `ll` 最前面有一串奇怪的字串是權限，但是從來沒有了解他到底在做什麼，直到最近專案上線，很多鬼故事發生...，我還是讀一下好了。",
+    author: "Kai　2025.06.8",
+    tags: "Linux, Permissions, Security, Uncategorized"
+  },
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/HJswE2Ufel",
+    category: "[AI]IntelliJ 整合 GitHub Copilot agent 與 IntelliJ MCP Server",
+    description: "因為之前都是用 VScode insider 整合 Github Copilot agent 和 MCP，Intellij 中的 Github copilot 沒有 Agent mode 可以用。最近又看到別人都用 Claude Desktop 整合 Intellij 和 MCP，沒道理我課 Copilot 的不行吧!!就來試試看。",
+    author: "Kai　2025.05.30",
+    tags: "AI, Intellij, GitHub, Copilot, MCP"
+  },
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/SkF7m8ibgg",
+    category: "[Redis]caffeine-redis-cluster-h2-practice",
+    description: "本來只是想練習一下 Redis Cluster 搭配 Redis stack 的 RedisJSON 與 Redisearch，沒想到 Redisearch 的限制這麼多，沒辦法好好搜尋，甚至必須犧牲 Redis Cluster 的優勢才能順利查詢。這個功能還是只適合單體的架構。",
+    author: "Kai　2025.05.21",
+    tags: "Java, Spring, Redis" 
+  }, 
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/rJTCUHmxgg",
+    category: "[Angular]Angular Build 環境設定：自訂環境 vs Production Build",
+    description: "最近要 Release 才知道用 Production 來打包跟一般自訂的環境打包有差這麼多......",
+    author: "Kai　2025.05.03",
+    tags: "Angular"
+  },
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/Bkf7MHQgll",
+    category: "[Angular] Tailwind 安裝與設定",
+    description: "到好多地方看怎麼安裝,有些會失敗，最後整理出來的安裝步驟",
+    author: "Kai　2025.05.03",
+    tags: "Angular"
+  },
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/S1puSIqRyg",
+    category: "[Angular] RxJS 練習專案",
+    description: "本專案整理並實作了 RxJS 在 Angular 中的常用操作符，並依功能分類為 7 個練習分頁，每頁皆提供互動按鈕與輸出結果區塊。",
+    author: "Kai　2025.04.14 ",
+    tags: "Angular"
+  },
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/BJIClAu0kg",
+    category: "[Angular] Angular LifecycleTest",
+    description: "來複習一下 Angular 最基本的 生命週期，這篇文章會介紹 Angular 的生命週期，並且提供一個簡單的範例來說明。",
+    author: "Kai　2025.04.13 ",
+    tags: "Angular"
+  },
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/SkQpE8STJg",
+    category: "[AI] VScode + Github Copilot 中整合 MCP Server",
+    description: "MCP Server 是一個可以讓我們在使用 AI Client 時，整合各家服務的介面類型 protocol，最近有點紅，就來玩一下。",
+    author: "Kai　2025.03.29",
+    tags: "AI git vscode github"
+  },
+  {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/S1BlX7rTyl",
+    category: "[踩雷] Spring Boot 啟動失敗：StackOverflowError 與循環變數問題紀錄",
+    description: "最近專案上線進入Production，我出大包，居然無法啟動，想說改改環境變數應該不太需要重啟測試，結果就啟動失敗：StackOverflowError。",
+    author: "Kai　2025.03.29",
+    tags: "踩雷 Spring Java Bug Debug"
+  },
+  {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/rymgNI92yx",
     category: "[GIT]產出兩個 Git 分支間的程式碼差異報告（含繁體中文 UTF-8 處理）",
     description: "介紹使用 diff2html 工具產出程式碼差異比較報告及處理繁體中文 UTF-8 編碼問題。",
@@ -836,7 +906,7 @@ const searchInput = document.getElementById("search-input");
 
 document.addEventListener("DOMContentLoaded", () => {
     const categories = [
-      "全部", "Java", "Spring", "Docker", "Repository", "k8s", "Angular", "Apache", "Kafka", "Gradle", "Git", "CICD", "Design Pattern", "db", "Clean Code", "Uncategorized"
+      "全部", "Java", "Spring", "踩雷", "AI", "Docker", "Repository", "k8s", "Angular", "Apache", "Kafka", "Gradle", "Git", "CICD", "Design Pattern", "db", "Clean Code", "Uncategorized"
     ];
     const categoryContainer = document.getElementById("category-container");
     
@@ -900,3 +970,124 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 初始化
   renderBlogPage(currentPage, currentCategory, currentSearchTerm);
+
+
+
+// ----懸浮圖片功能 start----
+  document.addEventListener('DOMContentLoaded', function() {
+    const hoverContainer = document.getElementById('hover-image-container');
+    const hoverImage = document.getElementById('hover-image');
+    const hoverCaption = document.getElementById('hover-caption');
+    const triggers = document.querySelectorAll('.hover-trigger');
+    let isMobile = window.innerWidth < 768;
+    let activeElement = null;
+    
+    // 判斷設備類型
+    window.addEventListener('resize', function() {
+      isMobile = window.innerWidth < 768;
+    });
+    
+    // 滑鼠懸停顯示圖片
+    triggers.forEach(trigger => {
+      // 滑鼠事件 (桌面版)
+      trigger.addEventListener('mouseenter', function(e) {
+        if (isMobile) return;
+        
+        const imageSrc = this.getAttribute('data-image');
+        const caption = this.getAttribute('data-caption');
+        
+        showImage(imageSrc, caption, e);
+      });
+      
+      trigger.addEventListener('mousemove', function(e) {
+        if (isMobile) return;
+        
+        // 更新圖片位置
+        updatePosition(e);
+      });
+      
+      trigger.addEventListener('mouseleave', function() {
+        if (isMobile) return;
+        
+        hideImage();
+      });
+      
+      // 觸摸事件 (手機版)
+      trigger.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        
+        const imageSrc = this.getAttribute('data-image');
+        const caption = this.getAttribute('data-caption');
+        
+        // 如果已有活動元素且不是當前元素，移除活動狀態
+        if (activeElement && activeElement !== this) {
+          activeElement.classList.remove('active');
+          hideImage();
+        }
+        
+        // 切換當前元素狀態
+        if (this.classList.contains('active')) {
+          this.classList.remove('active');
+          hideImage();
+          activeElement = null;
+        } else {
+          this.classList.add('active');
+          showImage(imageSrc, caption);
+          activeElement = this;
+        }
+      });
+    });
+    
+    // 點擊其他區域關閉圖片 (手機版)
+    document.addEventListener('touchstart', function(e) {
+      if (activeElement && !activeElement.contains(e.target) && !hoverContainer.contains(e.target)) {
+        activeElement.classList.remove('active');
+        hideImage();
+        activeElement = null;
+      }
+    });
+    
+    // 顯示圖片
+    function showImage(src, caption, event) {
+      hoverImage.src = src;
+      hoverCaption.textContent = caption || '';
+      
+      hoverImage.onload = function() {
+        hoverContainer.style.display = 'block';
+        
+        if (event && !isMobile) {
+          updatePosition(event);
+        }
+      };
+    }
+    
+    // 隱藏圖片
+    function hideImage() {
+      hoverContainer.style.display = 'none';
+    }
+    
+    // 更新圖片位置 (桌面版)
+    function updatePosition(e) {
+      const x = e.clientX;
+      const y = e.clientY;
+      
+      // 根據滑鼠位置計算容器位置
+      let posX = x + 20; // 滑鼠右側20px
+      let posY = y + 20; // 滑鼠下方20px
+      
+      // 檢查是否超出視窗右側
+      if (posX + hoverContainer.offsetWidth > window.innerWidth) {
+        posX = x - hoverContainer.offsetWidth - 10;
+      }
+      
+      // 檢查是否超出視窗底部
+      if (posY + hoverContainer.offsetHeight > window.innerHeight) {
+        posY = y - hoverContainer.offsetHeight - 10;
+      }
+      
+      // 設置容器位置
+      hoverContainer.style.left = posX + 'px';
+      hoverContainer.style.top = posY + 'px';
+    }
+  });
+// ----懸浮圖片功能 end----
