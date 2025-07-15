@@ -335,21 +335,22 @@
           inset 0 1px 0 rgba(255, 255, 255, 0.1);
       }
 
-      .event-card.sponsored {
-        background: rgba(55, 55, 55, 0.98);
-        border: 2px solid #888888;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        position: relative;
-      }
+.event-card.sponsored {
+  background: rgba(55, 55, 55, 0.98);
+  border: 2px solid #d4af37; /* 金色邊框 */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(212, 175, 55, 0.6); /* 添加金色光暈 */
+  position: relative;
+}
 
-      .event-card.sponsored::before {
-        background: linear-gradient(90deg, #888888, #aaaaaa, #888888);
-      }
+.event-card.sponsored::before {
+  background: linear-gradient(90deg, #d4af37, #f6e27f, #d4af37);
+}
 
-      .event-card.sponsored .event-title {
-        color: #ffffff;
-      }
+.event-card.sponsored .event-title {
+  color: #ffd700; /* 金色標題 */
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
 
       .event-header {
         display: flex;
@@ -398,11 +399,19 @@
         color: white;
       }
 
-      .status-sponsored {
-        background: linear-gradient(135deg, #999999, #bbbbbb);
-        color: #333333;
-        font-weight: 700;
-      }
+.status-sponsored {
+  background: linear-gradient(135deg, #d4af37, #f6e27f);
+  color: #333;
+  font-weight: 700;
+  border: 1px solid #d4af37;
+  box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+
+.event-card.sponsored:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(212, 175, 55, 0.8);
+}
 
       .event-content {
         margin-bottom: 15px;
@@ -1362,6 +1371,23 @@
         margin-bottom: 16px;
       }
 
+      .calendar-day.featured-day {
+  border: 2px solid #d4af37;  /* 金色邊框 */
+  box-shadow: 0 0 5px rgba(212, 175, 55, 0.8);
+  background: linear-gradient(135deg, #444, #222);
+  position: relative;
+}
+
+/* 可以加上精選標記 */
+.calendar-day.featured-day::after {
+  content: "★";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 12px;
+  color: #ffd700;
+}
+
       @media (max-width: 600px) {
         .form-row {
           grid-template-columns: 1fr;
@@ -2031,92 +2057,73 @@
         document.getElementById("dailyEventsModal").style.display = "none";
       }
 
-      function generateCalendar() {
-        const calendar = document.getElementById("calendar");
-        const monthNames = [
-          "1月",
-          "2月",
-          "3月",
-          "4月",
-          "5月",
-          "6月",
-          "7月",
-          "8月",
-          "9月",
-          "10月",
-          "11月",
-          "12月",
-        ];
-        const dayNames = ["日", "一", "二", "三", "四", "五", "六"];
+function generateCalendar() {
+  const calendar = document.getElementById("calendar");
+  const monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
+  const dayNames = ["日", "一", "二", "三", "四", "五", "六"];
 
-        document.getElementById(
-          "currentMonth"
-        ).textContent = `${currentYear}年${monthNames[currentMonth]}`;
+  document.getElementById("currentMonth").textContent = `${currentYear}年${monthNames[currentMonth]}`;
+  calendar.innerHTML = "";
 
-        calendar.innerHTML = "";
+  // 星期標題
+  dayNames.forEach((day) => {
+    const dayHeader = document.createElement("div");
+    dayHeader.className = "calendar-header";
+    dayHeader.textContent = day;
+    calendar.appendChild(dayHeader);
+  });
 
-        // 添加星期標題
-        dayNames.forEach((day) => {
-          const dayHeader = document.createElement("div");
-          dayHeader.className = "calendar-header";
-          dayHeader.textContent = day;
-          calendar.appendChild(dayHeader);
-        });
+  const firstDay = new Date(currentYear, currentMonth, 1);
+  const lastDay = new Date(currentYear, currentMonth + 1, 0);
+  const startingDayOfWeek = firstDay.getDay();
+  const daysInMonth = lastDay.getDate();
 
-        // 獲取月份資訊
-        const firstDay = new Date(currentYear, currentMonth, 1);
-        const lastDay = new Date(currentYear, currentMonth + 1, 0);
-        const startingDayOfWeek = firstDay.getDay();
-        const daysInMonth = lastDay.getDate();
+  // 空白日期
+  for (let i = 0; i < startingDayOfWeek; i++) {
+    const emptyDay = document.createElement("div");
+    calendar.appendChild(emptyDay);
+  }
 
-        // 添加空白日期
-        for (let i = 0; i < startingDayOfWeek; i++) {
-          const emptyDay = document.createElement("div");
-          calendar.appendChild(emptyDay);
-        }
+  // 日期 + 活動判斷
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dayElement = document.createElement("div");
+    dayElement.className = "calendar-day";
+    dayElement.textContent = day;
 
-        // 添加日期
-        for (let day = 1; day <= daysInMonth; day++) {
-          const dayElement = document.createElement("div");
-          dayElement.className = "calendar-day";
-          dayElement.textContent = day;
+    const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
-          const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(
-            2,
-            "0"
-          )}-${String(day).padStart(2, "0")}`;
+    // 有活動
+    const hasEvent = events.some((event) => event.date === dateStr);
+    if (hasEvent) {
+      dayElement.classList.add("has-event");
+    }
 
-          // 檢查是否有活動
-          const hasEvent = events.some((event) => event.date === dateStr);
-          if (hasEvent) {
-            dayElement.classList.add("has-event");
-          }
-          
-          // 檢查是否為過去日期
-          const currentDate = new Date();
-          currentDate.setHours(0, 0, 0, 0);
-          const calendarDate = new Date(dateStr);
-          if (calendarDate < currentDate) {
-            dayElement.classList.add("past-date");
-          }
+    // 有精選活動
+    const hasFeaturedEvent = events.some((event) => event.date === dateStr && event.status === "sponsored");
+    if (hasFeaturedEvent) {
+      dayElement.classList.add("featured-day");
+    }
 
-          dayElement.addEventListener("click", function () {
-            document
-              .querySelectorAll(".calendar-day")
-              .forEach((d) => d.classList.remove("selected"));
-            this.classList.add("selected");
-            selectedDate = dateStr;
-            
-            // 顯示「新增活動」按鈕
-            document.getElementById("addEventBtn").style.display = "block";
-            
-            // 顯示當日活動
-            updateSelectedDateEvents(dateStr);
-          });
+    // 過去日期
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const thisDate = new Date(dateStr);
+    if (thisDate < today) {
+      dayElement.classList.add("past-date");
+    }
 
-          calendar.appendChild(dayElement);
-        }
-      }
+    dayElement.addEventListener("click", function () {
+      document.querySelectorAll(".calendar-day").forEach((d) => d.classList.remove("selected"));
+      this.classList.add("selected");
+      selectedDate = dateStr;
+
+      document.getElementById("addEventBtn").style.display = "block";
+      updateSelectedDateEvents(dateStr);
+    });
+
+    calendar.appendChild(dayElement);
+  }
+}
 
       function changeMonth(direction) {
         currentMonth += direction;
