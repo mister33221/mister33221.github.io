@@ -247,6 +247,14 @@
 
 // 部落格資料
 const blogData = [
+    {
+    href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/BJM0Kv97Zx",
+    category: "[Tone.js] Java to Lofi 音樂產生器",
+    description:
+      "發現一個好玩的小東西，就快速的 vibe coding 出一個可以把 Java 程式碼轉成 Lofi 音樂的工具，沒太多深究，純粹好玩。",
+    author: "Kai　2025.12.25",
+    tags: "Java, Lofi, tone.js",
+  },
   {
     href: "https://hackmd.io/@ohQEG7SsQoeXVwVP2-v06A/HJSht9kulg",
     category: "[Java] Spring Boot Redis：`SCAN` vs `KEYS` 筆記",

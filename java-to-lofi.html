@@ -1,0 +1,1040 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Java → Lo-fi Band（Tone.js + Tree-sitter）</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#111823; --panel2:#0f1620;
+      --text:#e7eef7; --muted:rgba(231,238,247,.75);
+      --border:rgba(231,238,247,.14); --accent:#66aaff;
+      --good:#4ade80; --warn:#fbbf24; --bad:#fb7185;
+    }
+    *{ box-sizing:border-box; }
+    body{ margin:0; font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif; background:var(--bg); color:var(--text); }
+    h1{ margin:0 0 10px 0; font-size:18px; font-weight:700; letter-spacing:.2px; }
+    .wrap{ padding:14px; max-width:1320px; margin:0 auto; }
+
+    .top{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+    }
+    .row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    button{
+      background:#1b2a3d; color:var(--text);
+      border:1px solid var(--border);
+      padding:8px 12px; border-radius:10px;
+      cursor:pointer;
+    }
+    button:hover{ border-color:rgba(231,238,247,.28); }
+    button:active{ transform:translateY(1px); }
+    label{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:13px; }
+    input[type="number"], select{
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--border);
+      color:var(--text);
+      padding:6px 8px; border-radius:10px; outline:none;
+    }
+    input[type="range"]{ width:150px; }
+
+    .pill{
+      padding:6px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      color:var(--muted); font-size:12px;
+    }
+    .pill b{ color:var(--text); font-weight:700; }
+
+    .mixer{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .strip{
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--border);
+      border-radius:12px; padding:10px;
+      min-width:190px;
+    }
+    .strip h4{ margin:0 0 8px 0; font-size:12px; color:var(--muted); letter-spacing:.3px; }
+    .strip .val{ font-variant-numeric:tabular-nums; color:var(--text); }
+
+    .viz-wrap{
+      margin-top:10px;
+      background:rgba(0,0,0,.2);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:10px;
+    }
+    canvas{ width:100%; height:180px; display:block; border-radius:10px; background:rgba(0,0,0,.55); }
+
+    .bottom{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .panel{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:14px;
+      overflow:hidden;
+      min-height:520px;
+      display:flex;
+      flex-direction:column;
+    }
+    .panel .hd{
+      padding:10px 12px;
+      background:rgba(255,255,255,.03);
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .panel .hd .title{ font-size:13px; color:var(--muted); }
+    .panel .bd{ padding:0; flex:1; display:flex; min-height:0; }
+
+    textarea{
+      width:100%; height:100%;
+      resize:none; border:0; outline:none;
+      padding:12px;
+      background:var(--panel2);
+      color:var(--text);
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+      font-size:13px; line-height:1.55; tab-size:2;
+    }
+
+    .codeview{
+      width:100%; height:100%;
+      overflow:auto;
+      padding:10px 0;
+      background:var(--panel2);
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+      font-size:13px; line-height:1.55;
+    }
+    .line{
+      display:grid;
+      grid-template-columns:56px 1fr;
+      gap:10px;
+      padding:2px 12px;
+      border-left:3px solid transparent;
+      white-space:pre;
+    }
+    .ln{
+      color:rgba(231,238,247,.45);
+      text-align:right;
+      padding-right:6px;
+      user-select:none;
+      font-variant-numeric:tabular-nums;
+    }
+    .txt{ color:rgba(231,238,247,.92); }
+    .line.active{
+      background:rgba(102,170,255,.16);
+      border-left-color:var(--accent);
+    }
+    .line.active .ln{ color:rgba(231,238,247,.85); }
+    .line.dim .txt{ color:rgba(231,238,247,.68); }
+
+    @media (max-width:980px){
+      .bottom{ grid-template-columns:1fr; }
+      .panel{ min-height:420px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <h1>Java → Lo-fi</h1>
+
+      <div class="row">
+        <button id="btnPlay">Parse & Play</button>
+        <button id="btnStop">Stop</button>
+
+        <label>Lo-fi 氛圍
+          <select id="mood">
+            <option value="cozy" selected>Cozy</option>
+            <option value="dusty">Dusty</option>
+            <option value="dreamy">Dreamy</option>
+          </select>
+        </label>
+
+        <label>BPM <input id="bpm" type="number" value="86" min="50" max="140" /></label>
+
+        <label>Swing <span id="swingTxt" style="color:var(--text);font-variant-numeric:tabular-nums;">0.30</span>
+          <input id="swing" type="range" min="0" max="0.7" step="0.01" value="0.30" />
+        </label>
+
+        <label>視覺化
+          <select id="vizMode">
+            <option value="waveform" selected>Waveform</option>
+            <option value="fft">FFT</option>
+          </select>
+        </label>
+
+        <label>解析度
+          <select id="vizSize">
+            <option value="256" selected>256</option>
+            <option value="512">512</option>
+          </select>
+        </label>
+
+        <span class="pill">狀態：<b id="status">idle</b></span>
+        <span class="pill">Bars：<b id="bars">-</b></span>
+        <span class="pill">Events：<b id="evCount">-</b></span>
+        <span class="pill">Follow：<b id="follow">off</b></span>
+      </div>
+
+      <div class="mixer">
+        <div class="strip">
+          <h4>Master</h4>
+          <div class="row" style="gap:8px;">
+            <label>Vol <span class="val" id="vMasterTxt">0.70</span></label>
+            <input id="vMaster" type="range" min="0" max="1.2" step="0.01" value="0.70" />
+          </div>
+        </div>
+
+        <div class="strip">
+          <h4>Drums</h4>
+          <div class="row" style="gap:8px;">
+            <label>Vol <span class="val" id="vDrumsTxt">0.95</span></label>
+            <input id="vDrums" type="range" min="0" max="1.2" step="0.01" value="0.95" />
+          </div>
+        </div>
+
+        <div class="strip">
+          <h4>Bass</h4>
+          <div class="row" style="gap:8px;">
+            <label>Vol <span class="val" id="vBassTxt">0.78</span></label>
+            <input id="vBass" type="range" min="0" max="1.2" step="0.01" value="0.78" />
+          </div>
+        </div>
+
+        <div class="strip">
+          <h4>Chords</h4>
+          <div class="row" style="gap:8px;">
+            <label>Vol <span class="val" id="vChordsTxt">0.62</span></label>
+            <input id="vChords" type="range" min="0" max="1.2" step="0.01" value="0.62" />
+          </div>
+        </div>
+
+        <div class="strip">
+          <h4>Melody</h4>
+          <div class="row" style="gap:8px;">
+            <label>Vol <span class="val" id="vMelodyTxt">0.55</span></label>
+            <input id="vMelody" type="range" min="0" max="1.2" step="0.01" value="0.55" />
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-wrap">
+        <canvas id="viz"></canvas>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="panel">
+        <div class="hd">
+          <div class="title">下方左：貼入程式碼（Java）</div>
+          <span class="pill">tree-sitter-java</span>
+        </div>
+        <div class="bd">
+          <textarea id="code">// 貼上你的 Java
+public class Demo {
+  public int add(int a, int b) {
+    if (a > 0) {
+      for (int i = 0; i < 3; i++) {
+        b += i;
+      }
+    } else {
+      while (b < 10) {
+        b++;
+      }
+    }
+    return a + b;
+  }
+
+  public void hello() {
+    System.out.println("hi");
+  }
+}</textarea>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="hd">
+          <div class="title">下方右：播放時顯示程式碼 + 目前行號高亮（循環也會跟著動）</div>
+          <span class="pill">Line follow</span>
+        </div>
+        <div class="bd">
+          <div id="codeView" class="codeview"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tone.js：UMD 只載一次 -->
+  <script src="https://cdn.jsdelivr.net/npm/tone@15.1.22/build/Tone.js"></script>
+
+  <script type="module">
+    // -------------------- helpers --------------------
+    const Tone = window.Tone;
+    const $ = (id) => document.getElementById(id);
+    const clamp = (n,a,b)=>Math.max(a,Math.min(b,n));
+
+    function setStatus(text, level){
+      const el = $("status");
+      el.textContent = text;
+      el.style.color =
+        level === "good" ? "var(--good)" :
+        level === "warn" ? "var(--warn)" :
+        level === "bad"  ? "var(--bad)"  : "var(--text)";
+    }
+
+    // -------------------- state (avoid touching Transport before unlock) --------------------
+    let audioUnlocked = false;
+
+    const mix = {
+      master: 0.70,
+      drums: 0.95,
+      bass: 0.78,
+      chords: 0.62,
+      melody: 0.55
+    };
+
+    const audio = {
+      nodes: null,
+      parts: [],
+      analyser: null,
+      vizRaf: null
+    };
+
+    // -------------------- UI binding --------------------
+    function bindRange(id, key){
+      const el = $(id);
+      const txt = $(id + "Txt");
+      const apply = () => {
+        const v = Number(el.value);
+        mix[key] = v;
+        if(txt) txt.textContent = v.toFixed(2);
+        if(audio.nodes?.[key]?.gain) audio.nodes[key].gain.value = v;
+      };
+      el.addEventListener("input", apply);
+      apply();
+    }
+    bindRange("vMaster","master");
+    bindRange("vDrums","drums");
+    bindRange("vBass","bass");
+    bindRange("vChords","chords");
+    bindRange("vMelody","melody");
+
+    $("swing").addEventListener("input", () => {
+      $("swingTxt").textContent = Number($("swing").value).toFixed(2);
+      if(audioUnlocked){
+        try{
+          Tone.Transport.swing = Number($("swing").value);
+          Tone.Transport.swingSubdivision = "8n";
+        }catch(e){}
+      }
+    });
+
+    // -------------------- code view --------------------
+    const codeView = $("codeView");
+    let activeLine = -1;
+
+    function escapeHtml(s){
+      return s.replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+    }
+
+    function renderCodeView(code){
+      const lines = code.replaceAll("\r\n","\n").replaceAll("\r","\n").split("\n");
+      let html = "";
+      for(let i=0;i<lines.length;i++){
+        const ln = i+1;
+        html += '<div class="line dim" data-line="'+ln+'">'
+          + '<div class="ln">'+ln+'</div>'
+          + '<div class="txt">'+escapeHtml(lines[i])+'</div>'
+          + '</div>';
+      }
+      codeView.innerHTML = html;
+      activeLine = -1;
+      $("follow").textContent = "ready";
+    }
+
+    function highlightLine(line){
+      if(!line || line < 1) return;
+      if(activeLine === line) return;
+      const prev = codeView.querySelector('.line[data-line="'+activeLine+'"]');
+      if(prev) prev.classList.remove("active");
+      const cur = codeView.querySelector('.line[data-line="'+line+'"]');
+      if(cur){
+        cur.classList.add("active");
+        cur.classList.remove("dim");
+        activeLine = line;
+        const top = cur.offsetTop;
+        const mid = codeView.clientHeight / 2;
+        codeView.scrollTo({ top: Math.max(0, top - mid), behavior:"auto" });
+      }
+    }
+
+    renderCodeView($("code").value);
+    $("code").addEventListener("input", () => {
+      renderCodeView($("code").value);
+      $("follow").textContent = "off";
+    });
+
+    // -------------------- tree-sitter init --------------------
+    const { Parser, Language } = await import("https://cdn.jsdelivr.net/npm/web-tree-sitter@0.25.3/tree-sitter.js");
+    await Parser.init({
+      locateFile(path){
+        return "https://cdn.jsdelivr.net/npm/web-tree-sitter@0.25.3/" + path;
+      }
+    });
+    const JAVA_WASM = "https://unpkg.com/tree-sitter-wasms@0.1.13/out/tree-sitter-java.wasm";
+    const JavaLang = await Language.load(JAVA_WASM);
+    const parser = new Parser();
+    parser.setLanguage(JavaLang);
+
+    // -------------------- music primitives --------------------
+    const NOTE_BASE = { C:0, D:2, E:4, F:5, G:7, A:9, B:11 };
+    function noteToMidi(note){
+      const m = /^([A-G])([#b]?)(-?\d+)$/.exec(note.trim());
+      if(!m) return 60;
+      let sem = NOTE_BASE[m[1]];
+      if(m[2] === "#") sem += 1;
+      if(m[2] === "b") sem -= 1;
+      const oct = Number(m[3]);
+      return (oct + 1) * 12 + sem;
+    }
+    function midiToNote(m){
+      const names = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+      const n = ((m % 12) + 12) % 12;
+      const oct = Math.floor(m / 12) - 1;
+      return names[n] + String(oct);
+    }
+    function timeOfStep(step){
+      const bars = Math.floor(step / 16);
+      const remain = step % 16;
+      const beats = Math.floor(remain / 4);
+      const sixteenth = remain % 4;
+      return `${bars}:${beats}:${sixteenth}`;
+    }
+    function hashToInt(str){
+      let h = 2166136261;
+      for(let i=0;i<str.length;i++){
+        h ^= str.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+      }
+      return (h >>> 0);
+    }
+
+    // Lo-fi friendly scale: D minor pentatonic (relative-ish)
+    const PENTA = [0, 3, 5, 7, 10];
+    function penta(baseMidi, seed){
+      const deg = PENTA[seed % PENTA.length];
+      return baseMidi + deg;
+    }
+
+    // -------------------- AST -> base events --------------------
+    function astToBaseEvents(tree, code){
+      const src = code.replaceAll("\r\n","\n").replaceAll("\r","\n");
+      const songSeed = hashToInt(src.slice(0, Math.min(6000, src.length)));
+
+      const events = [];
+      let step = 0;
+
+      const nodeText = (node) => src.slice(node.startIndex, node.endIndex);
+      const lineOf = (node) => (node.startPosition ? node.startPosition.row : 0) + 1;
+
+      // 一個事件佔用的 step（16n）
+      const DUR = {
+        method: 8,     // 半小節
+        if: 2,
+        loop: 4,
+        return: 4,
+        assign: 1,
+        call: 1,
+        decl: 2,
+        id: 1
+      };
+
+      function push(kind, seed, node, dur){
+        events.push({
+          kind,
+          step,
+          time: timeOfStep(step),
+          line: lineOf(node),
+          seed: (seed >>> 0),
+          durSteps: dur
+        });
+        step += dur;
+      }
+
+      function walk(node, ctx){
+        const depth = ctx.depth || 0;
+        const methodSeed = ctx.methodSeed || 1;
+
+        if(node.type === "method_declaration"){
+          const nameNode = node.childForFieldName("name");
+          const name = nameNode ? nodeText(nameNode) : "method";
+          const seed = (hashToInt(name) ^ songSeed) >>> 0;
+          push("method", seed, node, DUR.method);
+
+          const next = { depth: depth+1, methodSeed: seed };
+          for(let i=0;i<node.childCount;i++) walk(node.child(i), next);
+          return;
+        }
+
+        if(node.type === "if_statement"){
+          push("if", (methodSeed + depth*13 + 17) ^ songSeed, node, DUR.if);
+        } else if(node.type === "for_statement" || node.type === "enhanced_for_statement" || node.type === "while_statement"){
+          push("loop", (methodSeed + depth*17 + 29) ^ songSeed, node, DUR.loop);
+        } else if(node.type === "return_statement"){
+          push("return", (methodSeed + 999 + depth*7) ^ songSeed, node, DUR.return);
+        } else if(node.type === "local_variable_declaration"){
+          push("decl", (methodSeed + depth*5) ^ songSeed, node, DUR.decl);
+        } else if(node.type === "assignment_expression"){
+          push("assign", (methodSeed + depth*3) ^ songSeed, node, DUR.assign);
+        } else if(node.type === "method_invocation"){
+          const txt = nodeText(node);
+          push("call", (hashToInt(txt) + methodSeed) ^ songSeed, node, DUR.call);
+        } else if(node.type === "identifier"){
+          const txt = nodeText(node);
+          const seed = ((hashToInt(txt) + methodSeed) ^ songSeed) >>> 0;
+          // 降低密度，避免太吵
+          if((seed % 6) === 0){
+            push("id", seed, node, DUR.id);
+          }
+        }
+
+        for(let i=0;i<node.childCount;i++){
+          walk(node.child(i), { depth: depth+1, methodSeed });
+        }
+      }
+
+      walk(tree.rootNode, { depth:0, methodSeed:1 });
+
+      const bars = Math.max(1, Math.ceil(step / 16));
+      const totalSteps = bars * 16;
+      return { events, bars, totalSteps, songSeed };
+    }
+
+    // -------------------- Arrange (Lo-fi 4 tracks) --------------------
+    function arrangeLofi(baseEvents, bars, totalSteps, songSeed){
+      // 每個 bar 一個 seed / 能量
+      const barSeeds = Array.from({length:bars}, ()=>songSeed);
+      const barEnergy = Array.from({length:bars}, ()=>0);
+
+      for(const e of baseEvents){
+        const b = Math.floor(e.step / 16);
+        if(b<0 || b>=bars) continue;
+        barSeeds[b] = (barSeeds[b] ^ e.seed) >>> 0;
+
+        let w = 0.4;
+        if(e.kind==="loop") w = 2.5;
+        if(e.kind==="if") w = 1.2;
+        if(e.kind==="return") w = 2.0;
+        barEnergy[b] += w;
+      }
+
+      // step -> nearest event（拿來做 line follow + 小變化）
+      const sorted = baseEvents.slice().sort((a,b)=>a.step-b.step);
+      const nearest = new Array(totalSteps);
+      let idx = 0, last = null;
+      for(let s=0;s<totalSteps;s++){
+        while(idx < sorted.length && sorted[idx].step <= s){
+          last = sorted[idx]; idx++;
+        }
+        nearest[s] = last;
+      }
+
+      // Lo-fi key center：D minor-ish（你也可以改）
+      const rootMidi = noteToMidi("D2");
+
+      function barRoot(step){
+        const b = Math.floor(step / 16);
+        const seed = barSeeds[b] >>> 0;
+        const deg = PENTA[seed % PENTA.length];
+        // 少量換和聲：偶爾上移 2 半音
+        const bump = ((seed >> 4) % 5 === 0) ? 2 : 0;
+        return rootMidi + deg + bump;
+      }
+
+      // --- Chords (1~2 per bar, mellow) ---
+      const chords = [];
+      function chordVoicing(root, seed){
+        // Lo-fi 常用：m7 / add9 느낌（但壓低音數，避免爆）
+        // 這裡用 3 音：root, m3, m7 或 add9
+        const use9 = (seed % 3 === 0);
+        const third = root + 3;
+        const seventh = root + 10;
+        const ninth = root + 14;
+        const notes = use9 ? [root+12, third+12, ninth+12] : [root+12, third+12, seventh+12];
+        return notes.map(midiToNote);
+      }
+
+      for(let b=0;b<bars;b++){
+        const base = b*16;
+        const seed = barSeeds[b];
+        const r = barRoot(base);
+        const v = chordVoicing(r, seed);
+
+        // 主和弦：bar 起點
+        chords.push({ time: timeOfStep(base), step:base, line:1, notes:v, dur:"1m", vel:0.35 });
+
+        // 能量高時：半小節換一下（更有流動）
+        if(barEnergy[b] > 3.0){
+          const r2 = barRoot(base+8) + ((seed % 2) ? 5 : 0); // 偶爾移到四度
+          const v2 = chordVoicing(r2, seed+7);
+          chords.push({ time: timeOfStep(base+8), step:base+8, line:1, notes:v2, dur:"2n", vel:0.32 });
+        }
+      }
+
+      // --- Bass (simple groove) ---
+      const bass = [];
+      for(let b=0;b<bars;b++){
+        const base = b*16;
+        const r = barRoot(base);
+        const fifth = r + 7;
+
+        // 基本：1、3 拍
+        bass.push({ time: timeOfStep(base+0), step:base+0, line:1, note:midiToNote(r),     dur:"4n", vel:0.55 });
+        bass.push({ time: timeOfStep(base+8), step:base+8, line:1, note:midiToNote(r),     dur:"4n", vel:0.52 });
+
+        // 小變化：bar 末尾走向
+        const seed = barSeeds[b];
+        if((seed % 2) === 0){
+          bass.push({ time: timeOfStep(base+12), step:base+12, line:1, note:midiToNote(fifth), dur:"8n", vel:0.46 });
+          bass.push({ time: timeOfStep(base+14), step:base+14, line:1, note:midiToNote(r+2),   dur:"8n", vel:0.42 });
+        }
+
+        // 讓語法影響 bass：遇到 return 就加強根音
+        for(const e of baseEvents){
+          if(Math.floor(e.step/16)!==b) continue;
+          if(e.kind==="return"){
+            bass.push({ time: timeOfStep(e.step), step:e.step, line:e.line, note:midiToNote(r-12), dur:"2n", vel:0.62 });
+          }
+          if(e.kind==="loop" && (e.seed % 2 === 0)){
+            bass.push({ time: timeOfStep(e.step+2), step:e.step+2, line:e.line, note:midiToNote(r), dur:"8n", vel:0.50 });
+          }
+        }
+      }
+
+      // --- Drums (lo-fi backbeat + hats, density from loops) ---
+      const drums = [];
+      for(let b=0;b<bars;b++){
+        const base = b*16;
+        const energy = barEnergy[b];
+        const dense = energy > 3.2;
+
+        // hats：8th（dense 時 16th 少量點綴）
+        for(let s=0;s<16;s+=2){
+          const ev = nearest[base+s];
+          const vel = 0.20 + (dense ? 0.05 : 0);
+          drums.push({ time: timeOfStep(base+s), step:base+s, line: ev?ev.line:1, type:"hat", vel });
+        }
+        if(dense){
+          // 16th ghost hats（不每個都加，避免太吵）
+          for(let s=1;s<16;s+=4){
+            const ev = nearest[base+s];
+            drums.push({ time: timeOfStep(base+s), step:base+s, line: ev?ev.line:1, type:"hat", vel:0.13 });
+          }
+        }
+
+        // snare：2、4
+        drums.push({ time: timeOfStep(base+4),  step:base+4,  line:1, type:"snare", vel:0.55 });
+        drums.push({ time: timeOfStep(base+12), step:base+12, line:1, type:"snare", vel:0.58 });
+
+        // kick：1、（有時）3+ & 變化
+        drums.push({ time: timeOfStep(base+0), step:base+0, line:1, type:"kick", vel:0.62 });
+        if((barSeeds[b] % 3) === 0) drums.push({ time: timeOfStep(base+8), step:base+8, line:1, type:"kick", vel:0.56 });
+        if(dense && (barSeeds[b] % 2) === 0) drums.push({ time: timeOfStep(base+10), step:base+10, line:1, type:"kick", vel:0.46 });
+
+        // 語法點綴：if / return -> snare ghost
+        for(const e of baseEvents){
+          if(Math.floor(e.step/16)!==b) continue;
+          if(e.kind==="if"){
+            drums.push({ time: timeOfStep(e.step), step:e.step, line:e.line, type:"snare", vel:0.22 });
+          }
+          if(e.kind==="return"){
+            drums.push({ time: timeOfStep(e.step), step:e.step, line:e.line, type:"kick", vel:0.55 });
+            drums.push({ time: timeOfStep(e.step+1), step:e.step+1, line:e.line, type:"hat", vel:0.18 });
+          }
+        }
+      }
+
+      // --- Melody (sparse, tied to identifiers/calls/return) ---
+      const melody = [];
+      const stepUsed = new Set();
+      for(const e of baseEvents){
+        if(!(e.kind==="call" || e.kind==="id" || e.kind==="return" || e.kind==="method")) continue;
+
+        // 避免太密：同 step 只放一個
+        if(stepUsed.has(e.step)) continue;
+        stepUsed.add(e.step);
+
+        const base = barRoot(e.step) + 36; // 高一點
+        const n = penta(base, e.seed);
+        const dur = (e.kind==="return" || e.kind==="method") ? "4n" : "8n";
+        const vel = (e.kind==="return") ? 0.48 : (e.kind==="method"?0.44:0.36);
+
+        melody.push({ time:e.time, step:e.step, line:e.line, note:midiToNote(n), dur, vel });
+
+        // return 做一個小下行（很 lo-fi）
+        if(e.kind==="return"){
+          const s2 = e.step + 2;
+          if(s2 < totalSteps && !stepUsed.has(s2)){
+            stepUsed.add(s2);
+            melody.push({ time: timeOfStep(s2), step:s2, line:e.line, note:midiToNote(n-2), dur:"8n", vel:0.34 });
+          }
+        }
+      }
+
+      // --- Follow (loop safe) ---
+      const follow = [];
+      for(let s=0;s<totalSteps;s+=2){
+        const ev = nearest[s];
+        follow.push({ time: timeOfStep(s), step:s, line: ev ? ev.line : 1 });
+      }
+
+      return { drums, bass, chords, melody, follow };
+    }
+
+    // -------------------- Visualizer --------------------
+    const canvas = $("viz");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas(){
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.max(1, Math.floor(rect.width));
+      const h = Math.max(1, Math.floor(rect.height || 180));
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    function stopViz(){
+      if(audio.vizRaf) cancelAnimationFrame(audio.vizRaf);
+      audio.vizRaf = null;
+      if(audio.analyser?.dispose){
+        try{ audio.analyser.dispose(); }catch(e){}
+      }
+      audio.analyser = null;
+    }
+
+    function startViz(){
+      stopViz();
+      resizeCanvas();
+      const mode = $("vizMode").value;
+      const size = Number($("vizSize").value || 256);
+      audio.analyser = new Tone.Analyser(mode, size);
+
+      const draw = () => {
+        audio.vizRaf = requestAnimationFrame(draw);
+
+        const rect = canvas.getBoundingClientRect();
+        const w = Math.max(1, Math.floor(rect.width));
+        const h = Math.max(1, Math.floor(rect.height || 180));
+
+        ctx.clearRect(0,0,w,h);
+        ctx.fillStyle = "rgba(0,0,0,0.55)";
+        ctx.fillRect(0,0,w,h);
+        ctx.strokeStyle = "rgba(231,238,247,0.25)";
+        ctx.strokeRect(0.5,0.5,w-1,h-1);
+
+        if(!audio.analyser) return;
+
+        const data = audio.analyser.getValue();
+        let maxAbs = 0;
+        for(let i=0;i<data.length;i++){
+          const av = Math.abs(data[i]);
+          if(av > maxAbs) maxAbs = av;
+        }
+
+        ctx.fillStyle = "rgba(231,238,247,0.85)";
+        ctx.font = "12px system-ui";
+        ctx.fillText(`mode=${mode} size=${data.length} maxAbs=${maxAbs.toFixed(4)}`, 10, 18);
+
+        if(mode === "waveform"){
+          ctx.beginPath();
+          ctx.strokeStyle = "rgba(231,238,247,0.95)";
+          ctx.lineWidth = 2;
+          const mid = h/2;
+          for(let i=0;i<data.length;i++){
+            const x = (i/(data.length-1)) * w;
+            const y = mid + data[i] * (h*0.35);
+            if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+          }
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.strokeStyle = "rgba(231,238,247,0.22)";
+          ctx.moveTo(0, mid);
+          ctx.lineTo(w, mid);
+          ctx.stroke();
+        }else{
+          const barW = w / data.length;
+          for(let i=0;i<data.length;i++){
+            const v = data[i];
+            // 可能是 dB-ish，保守映射
+            let norm = 0;
+            if(Number.isFinite(v)){
+              if(v <= 0 && v >= -120) norm = (v + 120) / 120;
+              else norm = Math.min(1, Math.abs(v));
+            }
+            norm = clamp(norm, 0, 1);
+            const barH = norm * (h * 0.82);
+            ctx.fillStyle = "rgba(231,238,247,0.85)";
+            ctx.fillRect(i*barW, h-barH, Math.max(1, barW-0.5), barH);
+          }
+        }
+      };
+
+      draw();
+      return audio.analyser;
+    }
+
+    // -------------------- dispose / stop --------------------
+    function disposeAudio(){
+      stopViz();
+
+      for(const p of audio.parts){
+        try{ p.dispose(); }catch(e){}
+      }
+      audio.parts = [];
+
+      if(audio.nodes){
+        for(const k of Object.keys(audio.nodes)){
+          const n = audio.nodes[k];
+          if(n?.dispose){
+            try{ n.dispose(); }catch(e){}
+          }
+        }
+      }
+      audio.nodes = null;
+
+      if(audioUnlocked){
+        try{
+          Tone.Transport.stop();
+          Tone.Transport.cancel(0);
+          Tone.Transport.loop = false;
+        }catch(e){}
+      }
+
+      $("follow").textContent = "off";
+      setStatus("idle");
+    }
+
+    $("btnStop").addEventListener("click", () => {
+      disposeAudio();
+    });
+
+    // -------------------- Lo-fi mood preset --------------------
+    const MOOD = {
+      cozy:   { bpm:86,  lpHz: 6500, sat:0.05, reverbWet:0.08, delayWet:0.10, vinyl:0.020 },
+      dusty:  { bpm:82,  lpHz: 5600, sat:0.08, reverbWet:0.06, delayWet:0.08, vinyl:0.030 },
+      dreamy: { bpm:92,  lpHz: 7200, sat:0.04, reverbWet:0.12, delayWet:0.16, vinyl:0.016 }
+    };
+
+    function applyMoodToUI(){
+      const m = MOOD[$("mood").value];
+      $("bpm").value = m.bpm;
+    }
+    $("mood").addEventListener("change", applyMoodToUI);
+    applyMoodToUI();
+
+    // -------------------- Build audio graph (after Tone.start) --------------------
+    async function buildLofiGraph(moodKey){
+      const m = MOOD[moodKey];
+
+      const nodes = {};
+
+      // master chain
+      nodes.master = new Tone.Gain(mix.master);
+      nodes.comp = new Tone.Compressor(-20, 3);
+      nodes.lp = new Tone.Filter({ type:"lowpass", frequency:m.lpHz, rolloff:-24, Q:0.7 });
+      nodes.sat = new Tone.Distortion({ distortion:m.sat, oversample:"2x" });
+      nodes.rev = new Tone.Reverb({ decay:1.6, preDelay:0.01, wet:m.reverbWet });
+      try{ await nodes.rev.generate(); }catch(e){}
+      nodes.tap = new Tone.Gain(1);
+      nodes.lim = new Tone.Limiter(-1);
+
+      nodes.master.chain(nodes.comp, nodes.sat, nodes.lp, nodes.rev, nodes.tap, nodes.lim, Tone.Destination);
+
+      // visualizer
+      startViz();
+      nodes.tap.connect(audio.analyser);
+
+      // buses
+      nodes.drums  = new Tone.Gain(mix.drums).connect(nodes.master);
+      nodes.bass   = new Tone.Gain(mix.bass).connect(nodes.master);
+      nodes.chords = new Tone.Gain(mix.chords).connect(nodes.master);
+      nodes.melody = new Tone.Gain(mix.melody).connect(nodes.master);
+
+      // drums
+      nodes.kick = new Tone.MembraneSynth({
+        pitchDecay: 0.02,
+        octaves: 8,
+        envelope: { attack: 0.001, decay: 0.22, sustain: 0.0, release: 0.05 }
+      }).connect(nodes.drums);
+
+      nodes.snare = new Tone.NoiseSynth({
+        noise: { type: "white" },
+        envelope: { attack: 0.001, decay: 0.12, sustain: 0.0, release: 0.04 }
+      });
+      nodes.snareBP = new Tone.Filter({ type:"bandpass", frequency:1800, Q:1.2 });
+      nodes.snare.chain(nodes.snareBP, nodes.drums);
+
+      nodes.hat = new Tone.NoiseSynth({
+        noise: { type: "pink" },
+        envelope: { attack: 0.001, decay: 0.03, sustain: 0.0, release: 0.02 }
+      });
+      nodes.hatHP = new Tone.Filter({ type:"highpass", frequency:6500, Q:0.7 });
+      nodes.hat.chain(nodes.hatHP, nodes.drums);
+
+      // vinyl noise (subtle)
+      nodes.vinyl = new Tone.Noise("pink");
+      nodes.vinylGain = new Tone.Gain(m.vinyl);
+      nodes.vinylLP = new Tone.Filter({ type:"lowpass", frequency:2200, rolloff:-24, Q:0.7 });
+      nodes.vinyl.chain(nodes.vinylGain, nodes.vinylLP, nodes.master);
+      nodes.vinyl.start();
+
+      // bass
+      nodes.bassSynth = new Tone.MonoSynth({
+        oscillator: { type:"sine" },
+        envelope: { attack: 0.01, decay: 0.10, sustain: 0.55, release: 0.12 },
+        filter: { type:"lowpass", rolloff:-24, Q:0.8 },
+        filterEnvelope: { attack: 0.01, decay: 0.06, sustain: 0.2, release: 0.08, baseFrequency: 80, octaves: 2.0 }
+      }).connect(nodes.bass);
+
+      // chords (soft keys-ish)
+      nodes.chordDelay = new Tone.FeedbackDelay({ delayTime:"8n", feedback:0.18, wet:m.delayWet });
+      nodes.chordLP = new Tone.Filter({ type:"lowpass", frequency:3200, rolloff:-24, Q:0.7 });
+
+      nodes.chordSynth = new Tone.PolySynth(Tone.Synth, {
+        oscillator: { type:"triangle" },
+        envelope: { attack: 0.02, decay: 0.20, sustain: 0.45, release: 0.80 }
+      });
+      nodes.chordSynth.maxPolyphony = 6;
+      nodes.chordSynth.chain(nodes.chordDelay, nodes.chordLP, nodes.chords);
+
+      // melody (soft pluck)
+      nodes.melDelay = new Tone.FeedbackDelay({ delayTime:"8n", feedback:0.22, wet:m.delayWet * 0.9 });
+      nodes.melLP = new Tone.Filter({ type:"lowpass", frequency:4200, rolloff:-24, Q:0.8 });
+
+      nodes.melSynth = new Tone.MonoSynth({
+        oscillator: { type:"triangle" },
+        envelope: { attack: 0.005, decay: 0.18, sustain: 0.0, release: 0.12 },
+        filter: { type:"lowpass", rolloff:-24, Q:1.0 },
+        filterEnvelope: { attack: 0.005, decay: 0.10, sustain: 0.0, release: 0.10, baseFrequency: 400, octaves: 2.2 }
+      });
+      nodes.melSynth.chain(nodes.melDelay, nodes.melLP, nodes.melody);
+
+      audio.nodes = nodes;
+      // 音量套用（避免拖拉後不一致）
+      nodes.master.gain.value = mix.master;
+      nodes.drums.gain.value = mix.drums;
+      nodes.bass.gain.value = mix.bass;
+      nodes.chords.gain.value = mix.chords;
+      nodes.melody.gain.value = mix.melody;
+
+      return nodes;
+    }
+
+    // -------------------- Play --------------------
+    $("btnPlay").addEventListener("click", async () => {
+      try{
+        setStatus("starting...", "warn");
+
+        await Tone.start();  // ✅ 點擊解鎖
+        audioUnlocked = true;
+
+        // reset
+        disposeAudio();
+
+        // now it's safe to touch Transport
+        const moodKey = $("mood").value;
+        const m = MOOD[moodKey];
+
+        const bpm = Number($("bpm").value || m.bpm);
+        Tone.Transport.bpm.value = bpm;
+
+        const sw = Number($("swing").value);
+        Tone.Transport.swing = sw;
+        Tone.Transport.swingSubdivision = "8n";
+        $("swingTxt").textContent = sw.toFixed(2);
+
+        const code = $("code").value;
+        renderCodeView(code);
+
+        setStatus("parsing...", "warn");
+        const tree = parser.parse(code);
+        const r = astToBaseEvents(tree, code);
+
+        $("bars").textContent = String(r.bars);
+        $("evCount").textContent = String(r.events.length);
+
+        const band = arrangeLofi(r.events, r.bars, r.totalSteps, r.songSeed);
+
+        setStatus("building audio...", "warn");
+        await buildLofiGraph(moodKey);
+
+        const loopEnd = `${r.bars}m`;
+        Tone.Transport.loop = true;
+        Tone.Transport.loopEnd = loopEnd;
+
+        // Parts
+        const pDrums = new Tone.Part((time, v) => {
+          if(v.type === "kick")  audio.nodes.kick.triggerAttackRelease("C1", "16n", time, v.vel);
+          if(v.type === "snare") audio.nodes.snare.triggerAttackRelease("16n", time, v.vel);
+          if(v.type === "hat")   audio.nodes.hat.triggerAttackRelease("32n", time, v.vel);
+        }, band.drums).start(0);
+
+        const pBass = new Tone.Part((time, v) => {
+          audio.nodes.bassSynth.triggerAttackRelease(v.note, v.dur, time, v.vel);
+        }, band.bass).start(0);
+
+        const pChords = new Tone.Part((time, v) => {
+          audio.nodes.chordSynth.triggerAttackRelease(v.notes, v.dur, time, v.vel);
+        }, band.chords).start(0);
+
+        const pMelody = new Tone.Part((time, v) => {
+          audio.nodes.melSynth.triggerAttackRelease(v.note, v.dur, time, v.vel);
+        }, band.melody).start(0);
+
+        // Follow：每次 loop 都會重跑（Part.loop=true）
+        const pFollow = new Tone.Part((time, v) => {
+          Tone.Draw.schedule(() => {
+            $("follow").textContent = "on";
+            highlightLine(v.line);
+          }, time);
+        }, band.follow).start(0);
+
+        const parts = [pDrums, pBass, pChords, pMelody, pFollow];
+        for(const p of parts){
+          p.loop = true;
+          p.loopEnd = loopEnd;
+          audio.parts.push(p);
+        }
+
+        setStatus(`playing (${moodKey})`, "good");
+        Tone.Transport.start("+0.05");
+      }catch(err){
+        console.error(err);
+        setStatus("error (see console)", "bad");
+      }
+    });
+
+    // 小提示：切回分頁後如果被瀏覽器暫停音訊
+    document.addEventListener("visibilitychange", () => {
+      if(!audioUnlocked) return;
+      try{
+        const ctx = Tone.getContext();
+        if(document.visibilityState === "visible" && ctx.state === "suspended"){
+          setStatus("suspended（再點 Play）", "warn");
+        }
+      }catch(e){}
+    });
+  </script>
+</body>
+</html>
