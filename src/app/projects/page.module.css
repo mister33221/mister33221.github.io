@@ -1,0 +1,7 @@
+.header { margin-bottom: 3rem; }
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--accent-1);
+  margin-bottom: 0.6rem;
+}
+.sub { font-size: 0.95rem; color: var(--text-secondary); font-family: var(--font-serif); }

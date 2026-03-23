@@ -1,0 +1,104 @@
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.sidebar {
+  position: sticky;
+  top: calc(var(--nav-h) + 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  margin-bottom: 0.75rem;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--text-primary);
+}
+
+.title {
+  font-size: 0.875rem;
+  color: var(--accent-1);
+  font-family: var(--font-mono);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  width: 100%;
+}
+
+.linkItem {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  transition: color 300ms;
+  display: block;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid transparent;
+}
+.linkItem:hover {
+  color: var(--accent-2);
+  border-bottom-color: rgba(196,98,45,0.3);
+}
+
+.main { display: flex; flex-direction: column; gap: 3rem; }
+
+.section {}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--accent-1);
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+
+.bio { font-size: 0.95rem; }
+
+.skillGroups { display: flex; flex-direction: column; gap: 1.25rem; }
+.skillGroup {}
+.skillGroupTitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 0.6rem;
+}
+.skillTags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.interestTags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; gap: 2rem; }
+  .sidebar { position: static; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 1rem; }
+  .avatar { width: 80px; height: 80px; margin-bottom: 0; }
+  .links { flex-direction: row; width: auto; }
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "proj-work-001",
+    "name": "電商平台前端重構",
+    "tagline": "將舊有 jQuery 程式碼遷移至 React + TypeScript，大幅提升可維護性與效能",
+    "description": "/content/projects/proj-work-001.md",
+    "tech": ["React", "TypeScript", "CSS Modules", "Vite"],
+    "highlights": [
+      "重構 40+ 個頁面元件，導入 React Server Components 降低 bundle size 35%",
+      "建立設計系統元件庫，統一 UI 規格，減少重複代碼 60%",
+      "制定 TypeScript 最佳實踐文件，涵蓋 20 人開發團隊"
+    ],
+    "status": "completed",
+    "links": {
+      "github": "",
+      "demo": ""
+    },
+    "cover": "",
+    "featured": true,
+    "year": 2023,
+    "type": "work"
+  },
+  {
+    "id": "proj-work-002",
+    "name": "內部 DevOps CLI 工具鏈",
+    "tagline": "用 Rust 取代原有 Bash 腳本，統一管理 CI/CD 流程與環境設定",
+    "description": "/content/projects/proj-work-002.md",
+    "tech": ["Rust", "CLI", "Docker", "GitHub Actions"],
+    "highlights": [
+      "CI 建構時間減少 25%，腳本執行時間從 8s 降至 < 200ms",
+      "支援多環境設定切換，消除手動 .env 管理的錯誤",
+      "零外部依賴的單一執行檔，部署不需額外安裝 runtime"
+    ],
+    "status": "completed",
+    "links": {
+      "github": "",
+      "demo": ""
+    },
+    "cover": "",
+    "featured": true,
+    "year": 2024,
+    "type": "work"
+  },
+  {
+    "id": "proj-side-001",
+    "name": "Ember CLI",
+    "tagline": "輕量的 Rust CLI 工具，用來管理本地開發環境的環境變數",
+    "description": "/content/projects/proj-001.md",
+    "tech": ["Rust", "CLI", "TOML"],
+    "highlights": [
+      "使用 Rust 的型別系統確保設定檔的安全解析",
+      "支援多環境切換與 .env 檔案自動載入",
+      "零依賴的執行時期效能，啟動時間 < 5ms"
+    ],
+    "status": "completed",
+    "links": {
+      "github": "https://github.com/yourname/ember-cli",
+      "demo": ""
+    },
+    "cover": "",
+    "featured": true,
+    "year": 2024,
+    "type": "side"
+  },
+  {
+    "id": "proj-side-002",
+    "name": "Fogboard",
+    "tagline": "極簡主義的個人知識管理工具，以 Markdown 為核心",
+    "description": "/content/projects/proj-002.md",
+    "tech": ["TypeScript", "React", "IndexedDB"],
+    "highlights": [
+      "純前端架構，所有資料儲存於 IndexedDB，無需後端",
+      "雙向連結與反向引用的圖譜視覺化",
+      "支援 Vim keybinding 的 Markdown 編輯器"
+    ],
+    "status": "in-progress",
+    "links": {
+      "github": "https://github.com/yourname/fogboard",
+      "demo": "https://fogboard.example.com"
+    },
+    "cover": "",
+    "featured": true,
+    "year": 2024,
+    "type": "side"
+  }
+]

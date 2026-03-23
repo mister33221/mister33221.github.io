@@ -1,0 +1,52 @@
+{
+  "basics": {
+    "name": "Your Name",
+    "title": "Software Engineer",
+    "email": "you@example.com",
+    "location": "Taipei, Taiwan",
+    "summary": "熱愛系統程式設計與前端工程的全端工程師，對效能最佳化與開發者體驗有深度的關注。業餘時間投入 Post-Rock 音樂與戶外攀岩。"
+  },
+  "experience": [
+    {
+      "company": "某某科技有限公司",
+      "role": "Senior Software Engineer",
+      "period": "2022.06 — 至今",
+      "location": "Taipei",
+      "points": [
+        "主導前端架構重構，導入 React Server Components，頁面載入時間降低 40%",
+        "建立內部 CLI 工具鏈（Rust），取代原有的 Bash 腳本，減少 CI 建構時間 25%",
+        "負責審閱 PR 並制定 TypeScript 最佳實踐文件，涵蓋 15+ 人開發團隊",
+        "與 PM 協作規劃產品 Roadmap，參與技術選型評估"
+      ]
+    },
+    {
+      "company": "新創公司 ABC",
+      "role": "Frontend Engineer",
+      "period": "2020.09 — 2022.05",
+      "location": "Remote",
+      "points": [
+        "從零建構 SaaS 產品的前端，使用 React + TypeScript + Tailwind CSS",
+        "實作 WebSocket 即時通知系統，支援 5,000+ 並行連線",
+        "優化 Lighthouse 分數從 52 提升至 94（Performance 指標）"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "國立某某大學",
+      "degree": "資訊工程學系 學士",
+      "period": "2016 — 2020"
+    }
+  ],
+  "skills": {
+    "Languages": ["Rust", "TypeScript", "Python", "Go"],
+    "Frontend": ["React", "Next.js", "CSS / CSS Modules", "WebGL"],
+    "Backend": ["Node.js", "Axum", "PostgreSQL", "Redis"],
+    "Tools": ["Git", "Docker", "Kubernetes", "Neovim"]
+  },
+  "languages": [
+    { "language": "中文", "level": "母語" },
+    { "language": "英文", "level": "工作使用（TOEIC 900）" }
+  ],
+  "interests": ["Post-Rock", "野營", "電吉他", "底片攝影", "攀岩"]
+}

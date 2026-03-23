@@ -1,0 +1,46 @@
+.footer {
+  position: relative;
+  margin-top: 6rem;
+  padding: 2.5rem 0 2rem;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.emberWrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.links a {
+  color: var(--text-secondary);
+  transition: color 300ms;
+}
+.links a:hover { color: var(--accent-2); }
+
+.copy {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 480px) {
+  .inner { flex-direction: column; gap: 1rem; text-align: center; }
+}

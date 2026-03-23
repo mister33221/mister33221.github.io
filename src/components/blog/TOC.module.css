@@ -1,0 +1,75 @@
+/* Mobile */
+.mobile { display: none; }
+
+@media (max-width: 1080px) {
+  .mobile {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 2rem;
+    overflow: hidden;
+    background: var(--bg-card);
+  }
+  .desktop { display: none; }
+}
+
+.toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+}
+
+/* Desktop sidebar — sticky is handled by .tocCol in the page layout */
+.desktop {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+}
+
+.heading {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  font-family: var(--font-mono);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li { margin: 0; }
+
+.sub { padding-left: 1rem; }
+
+.item {
+  display: block;
+  padding: 0.3rem 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  padding-left: 0.6rem;
+  transition: color 250ms, border-color 250ms;
+  line-height: 1.5;
+}
+.item:hover { color: var(--text-primary); }
+.active {
+  color: var(--accent-2) !important;
+  border-left-color: var(--accent-2) !important;
+}

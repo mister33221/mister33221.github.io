@@ -1,0 +1,19 @@
+{
+  "name": "Your Name",
+  "title": "Software Engineer / 音樂愛好者",
+  "avatar": "/images/avatar.jpg",
+  "bio": "/content/bio.md",
+  "location": "Taipei, Taiwan",
+  "skills": {
+    "Languages": ["Rust", "TypeScript", "Python"],
+    "Frontend": ["React", "CSS", "WebGL"],
+    "Tools": ["Git", "Docker", "Neovim"]
+  },
+  "interests": ["Post-Rock", "野營", "電吉他", "底片攝影"],
+  "links": {
+    "github": "https://github.com/yourname",
+    "linkedin": "",
+    "email": "you@example.com"
+  },
+  "resume_pdf": "/assets/resume.pdf"
+}

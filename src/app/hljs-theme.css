@@ -1,0 +1,16 @@
+/* highlight.js — custom dark theme matching site palette */
+.hljs { color: #c9c4bb; background: #151513; }
+.hljs-keyword, .hljs-selector-tag, .hljs-built_in { color: #c4622d; }
+.hljs-string, .hljs-attr, .hljs-template-variable { color: #b5a07a; }
+.hljs-number, .hljs-literal { color: #e8956d; }
+.hljs-comment, .hljs-quote { color: #5a5a50; font-style: italic; }
+.hljs-function, .hljs-name { color: #d4b896; }
+.hljs-type, .hljs-class .hljs-title { color: #c4a96d; }
+.hljs-variable, .hljs-params { color: #c9c4bb; }
+.hljs-meta { color: #7a7870; }
+.hljs-symbol, .hljs-bullet { color: #8f4a2a; }
+.hljs-link { color: #b5a07a; text-decoration: underline; }
+.hljs-deletion { color: #c4622d; }
+.hljs-addition { color: #5a6b4f; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 600; }

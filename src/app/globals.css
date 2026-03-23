@@ -1,0 +1,375 @@
+/* ─── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Serif+TC:wght@300;400&family=Noto+Sans+TC:wght@300;400&family=JetBrains+Mono:wght@300;400&display=swap');
+
+/* ─── Design Tokens ─────────────────────────────────────────────────────────── */
+:root {
+  --bg-primary:   #0f1210;
+  --bg-secondary: #1a1a18;
+  --bg-card:      #1e1e1b;
+  --text-primary: #e2ddd4;
+  --text-secondary: #7a7870;
+  --accent-1: #b5a07a;   /* straw yellow */
+  --accent-2: #c4622d;   /* ember orange */
+  --accent-3: #8f4a2a;   /* burnt terracotta */
+  --moss:     #5a6b4f;   /* culture only */
+  --border:   #2a2a26;
+  --code-bg:  #151513;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-serif:   'Noto Serif TC', 'Noto Serif', serif;
+  --font-sans:    'Noto Sans TC', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --nav-h: 60px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Reset ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Grain texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ─── Typography ─────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+.display-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+p { line-height: 1.8; letter-spacing: 0.02em; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 400ms var(--ease);
+}
+a:hover { color: var(--accent-2); }
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+/* ─── Layout ─────────────────────────────────────────────────────────────────── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.container-narrow {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ─── Article Markdown Content ───────────────────────────────────────────────── */
+.article-body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--text-primary);
+}
+
+.article-body h1,
+.article-body h2,
+.article-body h3,
+.article-body h4 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  /* offset for fixed navbar when jumping via TOC anchor */
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+}
+.article-body h2 { font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+.article-body h3 { font-size: 1.15rem; color: var(--accent-1); }
+.article-body h4 { font-size: 1rem; color: var(--text-secondary); }
+
+.article-body p { margin-bottom: 1.5rem; }
+
+.article-body a {
+  color: var(--accent-1);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: color 300ms, text-decoration-color 300ms;
+}
+.article-body a:hover {
+  color: var(--accent-2);
+  text-decoration-color: var(--accent-2);
+}
+
+.article-body ul, .article-body ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.article-body li { margin-bottom: 0.4rem; }
+
+.article-body blockquote {
+  border-left: 3px solid var(--accent-3);
+  padding: 0.8rem 1.5rem;
+  margin: 1.5rem 0;
+  background: var(--bg-card);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.article-body code:not(pre code) {
+  background: var(--accent-3);
+  color: var(--text-primary);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-size: 0.85em;
+  opacity: 0.9;
+}
+
+.article-body pre {
+  background: var(--code-bg) !important;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  position: relative;
+}
+.article-body pre code {
+  display: block;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+.article-body th, .article-body td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  text-align: left;
+}
+.article-body th {
+  background: var(--bg-card);
+  color: var(--accent-1);
+  font-weight: 400;
+}
+
+.article-body img {
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  margin: 1.5rem 0;
+}
+
+.article-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+  opacity: 0.4;
+}
+
+/* ─── Code block copy button ─────────────────────────────────────────────────── */
+.code-block-wrapper {
+  position: relative;
+}
+.copy-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 300ms var(--ease);
+  z-index: 2;
+}
+.copy-btn:hover { color: var(--accent-2); border-color: var(--accent-2); }
+.copy-btn.copied { color: var(--moss); border-color: var(--moss); }
+
+/* ─── Tags / Badges ──────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2em 0.65em;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  transition: color 300ms, border-color 300ms;
+}
+.tag:hover { color: var(--accent-1); border-color: var(--accent-1); }
+.tag.active { color: var(--accent-2); border-color: var(--accent-2); background: rgba(196,98,45,0.08); }
+
+.tag-culture {
+  background: rgba(90,107,79,0.15);
+  color: var(--moss);
+  border-color: rgba(90,107,79,0.3);
+}
+.tag-mood {
+  background: rgba(90,107,79,0.1);
+  color: var(--moss);
+  border-color: rgba(90,107,79,0.25);
+  font-style: italic;
+}
+.tag-category {
+  background: rgba(143,74,42,0.15);
+  color: var(--accent-3);
+  border-color: rgba(143,74,42,0.3);
+}
+
+/* ─── Cards ──────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  transition: border-color 400ms var(--ease), transform 400ms var(--ease);
+  border-left: 2px solid transparent;
+}
+.card:hover {
+  border-left-color: var(--accent-2);
+  transform: translateX(2px);
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 300ms var(--ease);
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--accent-2);
+  color: var(--text-primary);
+  border-color: var(--accent-2);
+}
+.btn-primary:hover {
+  background: var(--accent-3);
+  border-color: var(--accent-3);
+  color: var(--text-primary);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+}
+.btn-outline:hover {
+  background: rgba(181,160,122,0.1);
+  color: var(--accent-2);
+  border-color: var(--accent-2);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+.btn-ghost:hover { color: var(--accent-2); border-color: var(--accent-2); }
+
+/* ─── Section divider ────────────────────────────────────────────────────────── */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  opacity: 0.2;
+  margin: 3rem 0;
+}
+
+/* ─── Fade-in animation ──────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fadeUp 400ms var(--ease) both;
+}
+.fade-up-delay-1 { animation-delay: 100ms; }
+.fade-up-delay-2 { animation-delay: 200ms; }
+.fade-up-delay-3 { animation-delay: 300ms; }
+
+/* ─── Rating Stars ───────────────────────────────────────────────────────────── */
+.stars { color: var(--moss); font-size: 0.9rem; letter-spacing: 0.05em; }
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .container, .container-narrow { padding: 0 1.25rem; }
+  .article-body h2 { font-size: 1.25rem; }
+  .article-body h3 { font-size: 1.05rem; }
+}
+
+/* ─── Print Styles ───────────────────────────────────────────────────────────── */
+@media print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  body::after { display: none; }
+  nav, .no-print { display: none !important; }
+  a { color: #000; text-decoration: none; }
+  .print-page-break { page-break-before: always; }
+}
