@@ -21,7 +21,7 @@ export default function Home() {
         </div>
         <div className={`container ${styles.heroContent}`}>
           <p className={styles.heroPre}>Hello, I am</p>
-          <h1 className={`display-title ${styles.heroTitle}`}>謝凱威 Kai</h1>
+          <h1 className={`display-title ${styles.heroTitle}`}>Kai</h1>
           <p className={styles.heroSub}>Java 後端工程師，邊聽後搖邊寫程式，週末可能在某座山上。</p>
           <div className={styles.heroCta}>
             <Link href="/blog" className="btn btn-primary">Tech Writing</Link>

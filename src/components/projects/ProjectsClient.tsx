@@ -36,10 +36,10 @@ export default function ProjectsClient({ projects, contentsMap }: Props) {
     [tabProjects]
   )
 
-  const filtered = useMemo(
-    () => activeTech ? tabProjects.filter(p => p.tech.includes(activeTech)) : tabProjects,
-    [tabProjects, activeTech]
-  )
+  const filtered = useMemo(() => {
+    const list = activeTech ? tabProjects.filter(p => p.tech.includes(activeTech)) : tabProjects
+    return [...list].sort((a, b) => b.year - a.year)
+  }, [tabProjects, activeTech])
 
   const workCount = projects.filter(p => p.type === 'work').length
   const sideCount = projects.filter(p => p.type === 'side').length
@@ -153,6 +153,19 @@ export default function ProjectsClient({ projects, contentsMap }: Props) {
                       dangerouslySetInnerHTML={{ __html: contentsMap[proj.id] }}
                     />
                   )}
+                  {/* Collapse button */}
+                  <div className={styles.collapseRow}>
+                    <button
+                      className={styles.collapseBtn}
+                      onClick={() => setExpanded(null)}
+                      aria-label="收起"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                        <path d="M5 15l7-7 7 7"/>
+                      </svg>
+                      收起
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

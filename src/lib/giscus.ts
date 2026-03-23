@@ -8,7 +8,7 @@
 
 const giscusConfig = {
   // GitHub repo：格式 "username/repo-name"
-  repo: (process.env.NEXT_PUBLIC_GISCUS_REPO ?? 'yourname/yourrepo') as `${string}/${string}`,
+  repo: (process.env.NEXT_PUBLIC_GISCUS_REPO ?? 'mister33221/mister33221.github.io') as `${string}/${string}`,
 
   // Repo ID：從 giscus.app 取得（data-repo-id）
   repoId: process.env.NEXT_PUBLIC_GISCUS_REPO_ID ?? 'YOUR_REPO_ID',
