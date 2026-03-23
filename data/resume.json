@@ -8,15 +8,26 @@
   },
   "experience": [
     {
-      "company": "精誠數位科技（前身原碼數位科技）",
+      "company": "精誠資訊",
       "role": "高級程式分析師",
-      "period": "2021.07 — 至今",
+      "period": "2022.07 — 至今",
       "location": "Taipei",
       "points": [
         "主要以 Java Spring Boot 進行後端功能開發，並支援 Angular 前端實作",
-        "參與金融業、電商、不動產、教育平台等多種領域系統開發與維護",
+        "參與不動產、電商、銀行資產等多種領域系統開發與維護",
         "銀行資產總覽系統負責分散式架構設計，導入 Redis Cluster + Caffeine 多層快取，進行壓力測試與黑白箱測試",
         "社會政策系統翻新專案全程導入 AI 協作開發，建立 AI 開發規範與自動 Code Review 流程"
+      ]
+    },
+    {
+      "company": "原碼數位科技",
+      "role": "程式設計師",
+      "period": "2021.07 — 2022.07",
+      "location": "Taipei",
+      "points": [
+        "金融業人事系統翻新：將 JSP + DB2 舊系統重構為 Angular + Spring 前後端分離架構",
+        "線上語言教學平台：使用 Spring Boot WebFlux + Angular 13，部署於 GCP",
+        "園區介紹網頁無障礙改版：依照 WCAG 規範調整前端，完成政府無障礙認證申請"
       ]
     },
     {

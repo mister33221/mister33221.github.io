@@ -21,7 +21,7 @@ export default function Navbar() {
       <div className={styles.inner}>
         {/* Logo */}
         <Link href="/" className={styles.logo} aria-label="Home">
-          <span className={styles.logoText}>YN</span>
+          <span className={styles.logoText}>KW</span>
           <div className={styles.logoEmber} aria-hidden="true">
             <EmberParticles variant="logo" style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }} />
           </div>

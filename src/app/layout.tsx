@@ -6,10 +6,10 @@ import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Your Name',
-    default: 'Your Name — Software Engineer',
+    template: '%s | 謝凱威 Kai',
+    default: '謝凱威 Kai — Java 後端工程師',
   },
-  description: '個人網站：技術筆記、影視音樂評論、作品集與線上履歷',
+  description: '謝凱威的個人網站：技術筆記、影視音樂評論、作品集與線上履歷',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
