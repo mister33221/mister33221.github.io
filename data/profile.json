@@ -1,19 +1,20 @@
 {
-  "name": "Your Name",
-  "title": "Software Engineer / 音樂愛好者",
+  "name": "謝凱威 Kai",
+  "title": "Java 後端工程師",
   "avatar": "/images/avatar.jpg",
   "bio": "/content/bio.md",
   "location": "Taipei, Taiwan",
   "skills": {
-    "Languages": ["Rust", "TypeScript", "Python"],
-    "Frontend": ["React", "CSS", "WebGL"],
-    "Tools": ["Git", "Docker", "Neovim"]
+    "後端": ["Java", "Spring MVC", "Spring Boot", "Spring Data JPA", "MyBatis", "Maven", "Hibernate"],
+    "前端": ["Angular", "TypeScript", "JavaScript", "HTML", "CSS", "JSP", "jQuery"],
+    "資料庫": ["MySQL", "MariaDB", "PostgreSQL", "DB2", "Redis"],
+    "版本控制": ["Git"]
   },
-  "interests": ["Post-Rock", "野營", "電吉他", "底片攝影"],
+  "interests": ["後搖音樂", "登山", "野營", "吉他"],
   "links": {
-    "github": "https://github.com/yourname",
-    "linkedin": "",
-    "email": "you@example.com"
+    "github": "https://github.com/mister33221",
+    "linkedin": "https://www.linkedin.com/in/mister33221/",
+    "email": "mister33221@gmail.com"
   },
   "resume_pdf": "/assets/resume.pdf"
 }

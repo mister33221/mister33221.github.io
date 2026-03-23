@@ -1,27 +1,32 @@
-## 背景
+## 專案背景
 
-團隊的 CI/CD 流程依賴大量 Bash 腳本，散落在不同 repo 中，沒有統一的介面。新人入職時需要花 1-2 天才能理解所有腳本的用途和使用方式。
+為一語言教學新創公司開發的線上學習平台，提供用戶瀏覽文章、購買課程、進行線上課程，以及供管理員使用的後台管理系統。
 
-## 技術架構
+## 我的角色
 
-用 Rust 寫了一個統一的 CLI 工具 `dev`，包含以下子命令：
+擔任 PG，專案成員為 PM×1、SA×2、PG×4。
 
-```
-dev setup          # 設定本地開發環境
-dev env <name>     # 切換環境設定
-dev build          # 構建 Docker 映像
-dev deploy <env>   # 部署到指定環境
-dev logs <service> # 查看服務日誌
-```
+主要負責：
+- 後台管理功能規劃與實現：課程上下架、會員權限控管、留言管理、文章管理
+- 協助前台部分功能實作
+- 後端 API 設計與串接
 
-所有設定統一放在根目錄的 `dev.config.toml`，由各 repo 自行定義。
+## 技術細節
 
-## 遇到的難題
+**後端**
+- Spring Boot with WebFlux（響應式架構）
+- Spring Security + JWT 做認證與授權
+- R2DBC 搭配 PostgreSQL 14 進行非同步資料庫操作
+- Swagger 文件自動產生，Lombok 減少樣板程式碼
 
-### 難題 1：跨平台支援
+**前端**
+- Angular 13，搭配 ngx、PrimeNG、RxJS、jQuery
 
-團隊成員使用 macOS 和 Linux，但 CI 跑在 Linux。用 GitHub Actions 的 matrix strategy 測試各個平台，並使用 `dirs` crate 處理路徑差異。
+**部署**
+- Server：GCP Debian 11
+- Web Server：Apache
+- 容器化：Docker Desktop
 
-## 學到了什麼
+## 心得
 
-好的內部工具文件比功能本身更重要。工具完成後，我錄了一段 5 分鐘的介紹影片，比任何文字說明都更有效地讓團隊上手。
+這是第一次使用 Spring WebFlux 的響應式架構，與傳統 MVC 的思維差異很大。最初不習慣非同步的資料流設計，但透過這個專案深入理解了 Reactor 的 Mono / Flux，以及 R2DBC 與傳統 JDBC 的根本差異。團隊成員都比較年輕，大家樂於互相討論、激盪想法，是一段很享受的開發時光。

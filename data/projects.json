@@ -1,60 +1,144 @@
 [
   {
     "id": "proj-work-001",
-    "name": "電商平台前端重構",
-    "tagline": "將舊有 jQuery 程式碼遷移至 React + TypeScript，大幅提升可維護性與效能",
+    "name": "人事管理專案重構",
+    "tagline": "將金融業舊有 JSP + DB2 系統翻新為 Angular + Spring 前後端分離架構",
     "description": "/content/projects/proj-work-001.md",
-    "tech": ["React", "TypeScript", "CSS Modules", "Vite"],
+    "tech": ["Spring", "Angular 10", "MyBatis", "DB2", "JSP"],
     "highlights": [
-      "重構 40+ 個頁面元件，導入 React Server Components 降低 bundle size 35%",
-      "建立設計系統元件庫，統一 UI 規格，減少重複代碼 60%",
-      "制定 TypeScript 最佳實踐文件，涵蓋 20 人開發團隊"
+      "閱讀並理解原有 JSP 系統的業務邏輯，規劃重構策略",
+      "將前後端分離，後端提供 RESTful API，前端改以 Angular 10 實作",
+      "專案成員：PM×1、SA×2、PG×4，擔任 PG 角色"
     ],
     "status": "completed",
-    "links": {
-      "github": "",
-      "demo": ""
-    },
+    "links": { "github": "", "demo": "" },
+    "cover": "",
+    "featured": true,
+    "year": 2021,
+    "type": "work"
+  },
+  {
+    "id": "proj-work-002",
+    "name": "線上語言教學平台",
+    "tagline": "提供課程購買、線上學習與後台管理的完整教育平台",
+    "description": "/content/projects/proj-work-002.md",
+    "tech": ["Spring Boot", "WebFlux", "R2DBC", "Spring Security", "JWT", "Angular 13", "PostgreSQL", "GCP", "Docker"],
+    "highlights": [
+      "負責規劃並實現後台功能：課程上下架、權限控管、留言管理、文章管理",
+      "使用 Spring WebFlux 實作響應式後端，搭配 R2DBC 操作 PostgreSQL",
+      "部署於 GCP Debian 11，使用 Apache Web Server，前後端皆容器化"
+    ],
+    "status": "completed",
+    "links": { "github": "", "demo": "" },
+    "cover": "",
+    "featured": true,
+    "year": 2022,
+    "type": "work"
+  },
+  {
+    "id": "proj-work-003",
+    "name": "園區介紹網頁無障礙改版",
+    "tagline": "維護現有園區網頁並申請政府無障礙網頁認證",
+    "description": "/content/projects/proj-work-003.md",
+    "tech": ["Spring MVC", "Angular 10", "MariaDB", "無障礙網頁"],
+    "highlights": [
+      "依照無障礙網頁規範（WCAG）調整前端元件與頁面結構",
+      "協助完成政府無障礙網頁認證申請流程",
+      "維護並擴充後端 Spring MVC 功能"
+    ],
+    "status": "completed",
+    "links": { "github": "", "demo": "" },
+    "cover": "",
+    "featured": false,
+    "year": 2022,
+    "type": "work"
+  },
+  {
+    "id": "proj-work-004",
+    "name": "不動產管理系統",
+    "tagline": "提供不動產資料管理、查詢與報表的後台系統",
+    "description": "/content/projects/proj-work-004.md",
+    "tech": ["Spring Boot", "Angular", "PostgreSQL"],
+    "highlights": [
+      "負責後端 API 設計與實作，涵蓋物件查詢、新增、修改與刪除",
+      "前後端分離架構，Angular 負責介面，Spring Boot 提供 RESTful API",
+      "與 SA 協作梳理業務流程，設計資料表結構"
+    ],
+    "status": "completed",
+    "links": { "github": "", "demo": "" },
+    "cover": "",
+    "featured": false,
+    "year": 2023,
+    "type": "work"
+  },
+  {
+    "id": "proj-work-005",
+    "name": "服飾網購平台",
+    "tagline": "具備完整會員、商品、訂單流程的電商平台",
+    "description": "/content/projects/proj-work-005.md",
+    "tech": ["Spring Boot", "Spring Security", "JWT", "Angular 13", "PostgreSQL"],
+    "highlights": [
+      "使用 Spring Security + JWT 實作會員認證與角色權限控管",
+      "負責後端商品管理、訂單流程、購物車等核心功能",
+      "Angular 13 前端搭配 PrimeNG 元件庫實作購物介面"
+    ],
+    "status": "completed",
+    "links": { "github": "", "demo": "" },
     "cover": "",
     "featured": true,
     "year": 2023,
     "type": "work"
   },
   {
-    "id": "proj-work-002",
-    "name": "內部 DevOps CLI 工具鏈",
-    "tagline": "用 Rust 取代原有 Bash 腳本，統一管理 CI/CD 流程與環境設定",
-    "description": "/content/projects/proj-work-002.md",
-    "tech": ["Rust", "CLI", "Docker", "GitHub Actions"],
+    "id": "proj-work-006",
+    "name": "銀行資產總覽系統",
+    "tagline": "整合銀行各類資產資料，以高可用分散式架構統一呈現給用戶",
+    "description": "/content/projects/proj-work-006.md",
+    "tech": ["Spring Boot", "Oracle", "Redis Cluster", "Caffeine", "DDD", "Docker"],
     "highlights": [
-      "CI 建構時間減少 25%，腳本執行時間從 8s 降至 < 200ms",
-      "支援多環境設定切換，消除手動 .env 管理的錯誤",
-      "零外部依賴的單一執行檔，部署不需額外安裝 runtime"
+      "採用 DDD 架構設計，拆分業務邊界，提升系統可維護性",
+      "導入 Caffeine + Redis Cluster 雙層快取機制，降低資料庫壓力",
+      "負責壓力測試（JMeter）與黑白箱測試，確保高併發下系統穩定性"
     ],
     "status": "completed",
-    "links": {
-      "github": "",
-      "demo": ""
-    },
+    "links": { "github": "", "demo": "" },
     "cover": "",
     "featured": true,
     "year": 2024,
     "type": "work"
   },
   {
-    "id": "proj-side-001",
-    "name": "Ember CLI",
-    "tagline": "輕量的 Rust CLI 工具，用來管理本地開發環境的環境變數",
-    "description": "/content/projects/proj-001.md",
-    "tech": ["Rust", "CLI", "TOML"],
+    "id": "proj-work-007",
+    "name": "社會政策系統翻新",
+    "tagline": "將政府社會政策舊有 JSP 系統全面翻新，全程導入 AI 協作開發",
+    "description": "/content/projects/proj-work-007.md",
+    "tech": ["Spring Boot", "Angular", "AI協作", "JSP翻新"],
     "highlights": [
-      "使用 Rust 的型別系統確保設定檔的安全解析",
-      "支援多環境切換與 .env 檔案自動載入",
-      "零依賴的執行時期效能，啟動時間 < 5ms"
+      "建立 AI 開發規範文件與 Prompt 策略，標準化團隊 AI 使用流程",
+      "導入 AI 自動 Code Review，加速 PR 審查並提升程式碼品質",
+      "利用 AI 工具進行商業邏輯分析與比對，降低翻新過程中的遺漏風險"
+    ],
+    "status": "in-progress",
+    "links": { "github": "", "demo": "" },
+    "cover": "",
+    "featured": true,
+    "year": 2026,
+    "type": "work"
+  },
+  {
+    "id": "proj-side-001",
+    "name": "ninja-ddd-practice",
+    "tagline": "以忍者為主題的 DDD 練習專案，探索領域驅動設計的落地實踐",
+    "description": "/content/projects/proj-side-001.md",
+    "tech": ["Java", "Spring Boot", "DDD", "Maven"],
+    "highlights": [
+      "實作 DDD 四層架構：Domain、Application、Infrastructure、Interface",
+      "以忍者世界為業務場景，設計 Aggregate、Entity、Value Object",
+      "探索 Repository Pattern 與 Domain Event 的實際應用"
     ],
     "status": "completed",
     "links": {
-      "github": "https://github.com/yourname/ember-cli",
+      "github": "https://github.com/mister33221/ninja-ddd-practice",
       "demo": ""
     },
     "cover": "",
@@ -64,19 +148,40 @@
   },
   {
     "id": "proj-side-002",
-    "name": "Fogboard",
-    "tagline": "極簡主義的個人知識管理工具，以 Markdown 為核心",
-    "description": "/content/projects/proj-002.md",
-    "tech": ["TypeScript", "React", "IndexedDB"],
+    "name": "JMeter 學習實戰專案",
+    "tagline": "系統性學習 JMeter 性能測試、報表產出與分析的實戰練習",
+    "description": "/content/projects/proj-side-002.md",
+    "tech": ["Java", "Spring Boot", "JMeter", "H2"],
     "highlights": [
-      "純前端架構，所有資料儲存於 IndexedDB，無需後端",
-      "雙向連結與反向引用的圖譜視覺化",
-      "支援 Vim keybinding 的 Markdown 編輯器"
+      "建立可重現的壓力測試情境，模擬高併發 API 請求",
+      "產出 JMeter 測試報表並進行瓶頸分析",
+      "結合 Spring Boot 後端服務作為測試目標，貼近實際工作場景"
     ],
-    "status": "in-progress",
+    "status": "completed",
     "links": {
-      "github": "https://github.com/yourname/fogboard",
-      "demo": "https://fogboard.example.com"
+      "github": "https://github.com/mister33221/jmeter-learning-project",
+      "demo": ""
+    },
+    "cover": "",
+    "featured": true,
+    "year": 2025,
+    "type": "side"
+  },
+  {
+    "id": "proj-side-003",
+    "name": "Kafka 錯誤處理實戰",
+    "tagline": "深入研究 Spring Kafka 各種錯誤處理策略的範例專案",
+    "description": "/content/projects/proj-side-003.md",
+    "tech": ["Java", "Spring Boot", "Apache Kafka", "Docker"],
+    "highlights": [
+      "實作 Retry、Dead Letter Topic、Error Handler 等多種 Kafka 錯誤處理機制",
+      "比較不同策略在各種失敗情境下的行為差異",
+      "使用 Docker Compose 建立本地 Kafka 環境，方便快速測試"
+    ],
+    "status": "completed",
+    "links": {
+      "github": "https://github.com/mister33221/spring-kafka-error-handling-example",
+      "demo": ""
     },
     "cover": "",
     "featured": true,

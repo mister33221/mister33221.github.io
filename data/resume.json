@@ -1,52 +1,57 @@
 {
   "basics": {
-    "name": "Your Name",
-    "title": "Software Engineer",
-    "email": "you@example.com",
+    "name": "謝凱威 Kai-Wei Xie",
+    "title": "Java 後端工程師 / 高級程式分析師",
+    "email": "mister33221@gmail.com",
     "location": "Taipei, Taiwan",
-    "summary": "熱愛系統程式設計與前端工程的全端工程師，對效能最佳化與開發者體驗有深度的關注。業餘時間投入 Post-Rock 音樂與戶外攀岩。"
+    "summary": "具備 4 年以上 Java 後端開發經驗，熟悉 Spring Boot 生態系，能獨立規劃與實現後台功能，並支援 Angular 前端開發。曾參與金融、語言教育、電商、不動產、政策系統等多領域專案，近年專注於分散式系統設計與 AI 協作開發流程。喜歡把問題拆開來看，也喜歡邊聽後搖邊解 bug。"
   },
   "experience": [
     {
-      "company": "某某科技有限公司",
-      "role": "Senior Software Engineer",
-      "period": "2022.06 — 至今",
+      "company": "精誠數位科技（前身原碼數位科技）",
+      "role": "高級程式分析師",
+      "period": "2021.07 — 至今",
       "location": "Taipei",
       "points": [
-        "主導前端架構重構，導入 React Server Components，頁面載入時間降低 40%",
-        "建立內部 CLI 工具鏈（Rust），取代原有的 Bash 腳本，減少 CI 建構時間 25%",
-        "負責審閱 PR 並制定 TypeScript 最佳實踐文件，涵蓋 15+ 人開發團隊",
-        "與 PM 協作規劃產品 Roadmap，參與技術選型評估"
+        "主要以 Java Spring Boot 進行後端功能開發，並支援 Angular 前端實作",
+        "參與金融業、電商、不動產、教育平台等多種領域系統開發與維護",
+        "銀行資產總覽系統負責分散式架構設計，導入 Redis Cluster + Caffeine 多層快取，進行壓力測試與黑白箱測試",
+        "社會政策系統翻新專案全程導入 AI 協作開發，建立 AI 開發規範與自動 Code Review 流程"
       ]
     },
     {
-      "company": "新創公司 ABC",
-      "role": "Frontend Engineer",
-      "period": "2020.09 — 2022.05",
-      "location": "Remote",
+      "company": "台湖食品開發股份有限公司",
+      "role": "營運兼業務組長",
+      "period": "2017.09 — 2020.08",
+      "location": "Taipei",
       "points": [
-        "從零建構 SaaS 產品的前端，使用 React + TypeScript + Tailwind CSS",
-        "實作 WebSocket 即時通知系統，支援 5,000+ 並行連線",
-        "優化 Lighthouse 分數從 52 提升至 94（Performance 指標）"
+        "負責台灣與中國區域出口物流安排、匯率關稅資料蒐集",
+        "從事商品國內外銷售、客戶維繫與開發、行銷企畫",
+        "管理 2~3 人小組，協助公司整體營運"
       ]
     }
   ],
   "education": [
     {
-      "school": "國立某某大學",
-      "degree": "資訊工程學系 學士",
-      "period": "2016 — 2020"
+      "school": "國立臺灣海洋大學",
+      "degree": "水產養殖學系 學士",
+      "period": "2011 — 2014"
+    },
+    {
+      "school": "緯育 TibaMe 就業養成班 TEA103",
+      "degree": "Java 全端工程師養成班",
+      "period": "2020.11 — 2021.04"
     }
   ],
   "skills": {
-    "Languages": ["Rust", "TypeScript", "Python", "Go"],
-    "Frontend": ["React", "Next.js", "CSS / CSS Modules", "WebGL"],
-    "Backend": ["Node.js", "Axum", "PostgreSQL", "Redis"],
-    "Tools": ["Git", "Docker", "Kubernetes", "Neovim"]
+    "後端": ["Java", "Spring MVC", "Spring Boot", "Spring Data JPA", "MyBatis", "Maven", "Hibernate"],
+    "前端": ["Angular", "TypeScript", "JavaScript", "HTML", "CSS", "JSP", "jQuery"],
+    "資料庫": ["MySQL", "MariaDB", "PostgreSQL", "DB2", "Redis"],
+    "版本控制": ["Git"]
   },
   "languages": [
     { "language": "中文", "level": "母語" },
-    { "language": "英文", "level": "工作使用（TOEIC 900）" }
+    { "language": "英文", "level": "工作使用（多益 705）" }
   ],
-  "interests": ["Post-Rock", "野營", "電吉他", "底片攝影", "攀岩"]
+  "interests": ["後搖音樂", "登山", "野營", "吉他"]
 }
