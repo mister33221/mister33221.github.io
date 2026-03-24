@@ -20,7 +20,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = getPostBySlug(slug)
   if (!post) return {}
-  return { title: post.title, description: post.summary }
+  const url = `https://mister33221.github.io/blog/${slug}`
+  return {
+    title: post.title,
+    description: post.summary || post.title,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      url,
+      title: post.title,
+      description: post.summary || post.title,
+      publishedTime: post.date,
+      authors: ['謝凱威 Kai'],
+      tags: post.tags,
+    },
+    twitter: {
+      card: 'summary',
+      title: post.title,
+      description: post.summary || post.title,
+    },
+  }
 }
 
 export default async function BlogPostPage({ params }: Props) {
