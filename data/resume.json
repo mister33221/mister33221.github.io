@@ -16,7 +16,11 @@
         "主要以 Java Spring Boot 進行後端功能開發，並支援 Angular 前端實作",
         "參與不動產、電商、銀行資產等多種領域系統開發與維護",
         "銀行資產總覽系統負責分散式架構設計，導入 Redis Cluster + Caffeine 多層快取，進行壓力測試與黑白箱測試",
-        "社會政策系統翻新專案全程導入 AI 協作開發，建立 AI 開發規範與自動 Code Review 流程"
+        "社會政策系統翻新：主導將上百支 JSP + Oracle PL/SQL 舊系統遷移至 Spring Boot 3 / SQL Server，無 SA 文件，全程逆向分析商業邏輯",
+        "建立以 CLAUDE.md 為核心的 AI 開發規範，定義技術限制、檔案結構、輸出格式，確保每次 AI 產出符合統一標準，不因對話重開而失真",
+        "將翻新工作流程拆分為八個可重複呼叫的 skill（/analyze、/design、/code、/validate、/fix、/testprep、/apitest、/apidoc），每步驟有固定輸入、輸出與品質門檻",
+        "/fix 與 /apitest 加入自動循環機制，AI 在修正後自動重新驗證，失敗超過三次才暫停等待人工介入，大幅減少手動切換步驟",
+        "整合 MCP 工具讓 AI 直連 SQL Server 自行查詢測試資料，並引入 OpenAI Codex 進行新舊系統六面向邏輯比對（API 完整性、Request/Response、商業邏輯、流程順序、DB 讀寫），強制附行號佐證才視為有效 Review"
       ]
     },
     {
