@@ -54,7 +54,7 @@ export default function ProjectsClient({ projects, contentsMap }: Props) {
           className={`${styles.tab} ${tab === 'work' ? styles.tabActive : ''}`}
           onClick={() => handleTabChange('work')}
         >
-          工作經歷開發
+          Formal projects
           <span className={styles.tabCount}>{workCount}</span>
         </button>
         <button
