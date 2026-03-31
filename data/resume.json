@@ -15,7 +15,9 @@
       "points": [
         "主要以 Java Spring Boot 進行後端功能開發，並支援 Angular 前端實作",
         "參與不動產、電商、銀行資產等多種領域系統開發與維護",
-        "銀行資產總覽系統負責分散式架構設計，導入 Redis Cluster + Caffeine 多層快取，進行壓力測試與黑白箱測試",
+        "銀行資產總覽系統：設計三層微服務架構（Spring WebFlux 反向代理 + Spring MVC 業務層 + OpenFeign 服務通訊），實作三套 JWT 分層認證（Web-Backend / Query-API / External），透過 JMeter 壓測與八項策略調校將 TPS 從 80 提升至 450（+463%），P95 從 2.1s 降至 450ms",
+        "設計 Caffeine 快取下沉至 Repository 層策略，配合 Redis Cluster 作為資料來源，快取命中率 78%，DB 查詢減少 78%；以 Semaphore + CompletableFuture 三層批次架構重寫 Oracle → Redis 轉檔流程，執行時間從 45 分鐘縮至 8 分鐘",
+        "以 Double-Checked Locking + CAS 非同步預取解決外部 API Token 的 Thundering Herd 問題，後續請求響應時間從 800ms 降至 8ms；HikariCP 多機器連線池計算、G1GC 固定堆大小調校，消除 Full GC 頻繁觸發",
         "社會政策系統翻新：主導將上百支 JSP + Oracle PL/SQL 舊系統遷移至 Spring Boot 3 / SQL Server，無 SA 文件，全程逆向分析商業邏輯",
         "建立以 CLAUDE.md 為核心的 AI 開發規範，定義技術限制、檔案結構、輸出格式，確保每次 AI 產出符合統一標準，不因對話重開而失真",
         "將翻新工作流程拆分為八個可重複呼叫的 skill（/analyze、/design、/code、/validate、/fix、/testprep、/apitest、/apidoc），每步驟有固定輸入、輸出與品質門檻",
@@ -59,10 +61,11 @@
     }
   ],
   "skills": {
-    "後端": ["Java", "Spring MVC", "Spring Boot", "Spring Data JPA", "MyBatis", "Maven", "Hibernate"],
+    "後端": ["Java", "Spring MVC", "Spring Boot", "Spring WebFlux", "Spring Data JPA", "MyBatis", "OpenFeign", "Maven", "Hibernate"],
     "前端": ["Angular", "TypeScript", "JavaScript", "HTML", "CSS", "JSP", "jQuery"],
-    "資料庫": ["MySQL", "MariaDB", "PostgreSQL", "DB2", "Redis"],
-    "版本控制": ["Git"]
+    "資料庫": ["MySQL", "MariaDB", "PostgreSQL", "DB2", "Oracle", "Redis", "Redis Cluster"],
+    "版本控制": ["Git"],
+    "測試與效能": ["JMeter", "JUnit", "WireMock"]
   },
   "languages": [
     { "language": "中文", "level": "母語" },

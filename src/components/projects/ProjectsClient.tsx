@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import type { Project } from '@/lib/projects'
 import styles from './ProjectsClient.module.css'
 
@@ -18,6 +18,16 @@ export default function ProjectsClient({ projects, contentsMap }: Props) {
   const [tab, setTab]           = useState<Tab>('work')
   const [activeTech, setActiveTech] = useState('')
   const [expanded, setExpanded] = useState<string | null>(null)
+  const cardRefs = useRef<Map<string, HTMLDivElement>>(new Map())
+
+  const collapse = (id: string) => {
+    const el = cardRefs.current.get(id)
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 80
+      window.scrollTo({ top, behavior: 'smooth' })
+    }
+    setExpanded(null)
+  }
 
   // Reset tech filter & expanded on tab change
   const handleTabChange = (t: Tab) => {
@@ -93,14 +103,42 @@ export default function ProjectsClient({ projects, contentsMap }: Props) {
           {filtered.map(proj => (
             <div
               key={proj.id}
+              ref={el => { if (el) cardRefs.current.set(proj.id, el) }}
               className={`card ${styles.project} ${expanded === proj.id ? styles.open : ''}`}
             >
               <div
                 className={styles.header}
-                onClick={() => setExpanded(expanded === proj.id ? null : proj.id)}
+                onClick={() => {
+                  if (expanded === proj.id) {
+                    collapse(proj.id)
+                  } else {
+                    setExpanded(proj.id)
+                    setTimeout(() => {
+                      const el = cardRefs.current.get(proj.id)
+                      if (el) {
+                        const top = el.getBoundingClientRect().top + window.scrollY - 80
+                        window.scrollTo({ top, behavior: 'smooth' })
+                      }
+                    }, 0)
+                  }
+                }}
                 role="button"
                 tabIndex={0}
-                onKeyDown={e => e.key === 'Enter' && setExpanded(expanded === proj.id ? null : proj.id)}
+                onKeyDown={e => {
+                  if (e.key !== 'Enter') return
+                  if (expanded === proj.id) {
+                    collapse(proj.id)
+                  } else {
+                    setExpanded(proj.id)
+                    setTimeout(() => {
+                      const el = cardRefs.current.get(proj.id)
+                      if (el) {
+                        const top = el.getBoundingClientRect().top + window.scrollY - 80
+                        window.scrollTo({ top, behavior: 'smooth' })
+                      }
+                    }, 0)
+                  }
+                }}
                 aria-expanded={expanded === proj.id}
               >
                 <div className={styles.left}>
@@ -157,7 +195,7 @@ export default function ProjectsClient({ projects, contentsMap }: Props) {
                   <div className={styles.collapseRow}>
                     <button
                       className={styles.collapseBtn}
-                      onClick={() => setExpanded(null)}
+                      onClick={() => collapse(proj.id)}
                       aria-label="收起"
                     >
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">

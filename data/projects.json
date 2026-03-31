@@ -94,11 +94,11 @@
     "name": "銀行資產總覽系統",
     "tagline": "整合銀行各類資產資料，以高可用分散式架構統一呈現給用戶",
     "description": "/content/projects/proj-work-006.md",
-    "tech": ["Spring Boot", "Oracle", "Redis Cluster", "Caffeine", "DDD", "Docker"],
+    "tech": ["Spring Boot", "Spring WebFlux", "Oracle", "Redis Cluster", "Caffeine", "DDD", "Hexagonal Architecture", "JWT", "HikariCP", "JMeter", "OpenFeign", "Docker"],
     "highlights": [
-      "採用 DDD 架構設計，拆分業務邊界，提升系統可維護性",
-      "導入 Caffeine + Redis Cluster 雙層快取機制，降低資料庫壓力",
-      "負責壓力測試（JMeter）與黑白箱測試，確保高併發下系統穩定性"
+      "設計三層微服務架構（WebFlux 反向代理 + Spring MVC 業務層），TPS 從 80 調校至 450（+463%），P95 從 2.1s 降至 450ms",
+      "實作三套獨立 JWT 分層認證，以 FeignClientInterceptor 自動轉換，搭配 @JwtValidation Annotation 驅動入口分流",
+      "批次轉檔三層架構（Semaphore 流控 + CompletableFuture 並行 + 帳號級錯誤隔離），45 分鐘縮短至 8 分鐘，失敗率從 5% 降至 0.1%"
     ],
     "status": "completed",
     "links": { "github": "", "demo": "" },
