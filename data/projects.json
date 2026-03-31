@@ -112,11 +112,11 @@
     "name": "社會政策系統翻新",
     "tagline": "將政府社會政策舊有 JSP 系統全面翻新，全程導入 AI 協作開發",
     "description": "/content/projects/proj-work-007.md",
-    "tech": ["Spring Boot", "Angular", "AI協作", "JSP翻新"],
+    "tech": ["Spring Boot 3", "SQL Server", "Angular", "Claude Code", "GitHub Copilot", "MCP", "Legacy Migration"],
     "highlights": [
-      "建立 AI 開發規範文件與 Prompt 策略，標準化團隊 AI 使用流程",
-      "導入 AI 自動 Code Review，加速 PR 審查並提升程式碼品質",
-      "利用 AI 工具進行商業邏輯分析與比對，降低翻新過程中的遺漏風險"
+      "建立 CLAUDE.md 為核心的 AI 開發合約，定義技術選用、MCP 工具清單、Prompt 輸出格式與環境限制，確保 AI 行為跨對話一致，不因對話重開而失真",
+      "設計八步翻新工作流（/analyze / /design / /code / /validate / /fix / /testprep / /apitest / /apidoc），/fix 與 /apitest 含自動循環機制，失敗超過三次才暫停人工介入",
+      "整合 MCP 讓 AI 直連 SQL Server 自行查詢測試資料；以 OpenAI Codex 進行六面向邏輯比對（API 完整性、商業邏輯、DB 讀寫等），強制附行號佐證才視為有效 Review"
     ],
     "status": "in-progress",
     "links": { "github": "", "demo": "" },

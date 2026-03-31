@@ -15,7 +15,6 @@ type Profile = {
   skills: Record<string, string[]>
   interests: string[]
   links: Record<string, string>
-  resume_pdf?: string
 }
 
 function getProfile(): Profile {
@@ -77,11 +76,9 @@ export default function ProfilePage() {
             )}
           </div>
 
-          {profile.resume_pdf && (
-            <a href={profile.resume_pdf} download className="btn btn-outline" style={{ marginTop: '1rem', width: '100%', justifyContent: 'center' }}>
-              下載履歷 PDF
-            </a>
-          )}
+          <a href="/resume" className="btn btn-outline" style={{ marginTop: '1rem', width: '100%', justifyContent: 'center' }}>
+            查看履歷 / 匯出 PDF
+          </a>
         </aside>
 
         {/* Main */}

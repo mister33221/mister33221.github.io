@@ -4,7 +4,7 @@
     "title": "Java 後端工程師 / 高級程式分析師",
     "email": "mister33221@gmail.com",
     "location": "Taipei, Taiwan",
-    "summary": "具備 4 年以上 Java 後端開發經驗，熟悉 Spring Boot 生態系，能獨立規劃與實現後台功能，並支援 Angular 前端開發。曾參與金融、語言教育、電商、不動產、政策系統等多領域專案，近年專注於分散式系統設計與 AI 協作開發流程。喜歡把問題拆開來看，也喜歡邊聽後搖邊解 bug。"
+    "summary": "近 5 年 Java 後端與分散式系統開發經驗，主要以 Spring Boot 生態系為核心。曾將高併發系統 TPS 從 80 提升至 450（+463%）、批次流程執行時間從 45 分鐘縮至 8 分鐘；近年將 AI 工具系統性導入開發流程，建立可重複執行的 AI 協作工作流，完整主導無文件 JSP 遺留系統翻新。喜歡把問題拆開來看，也喜歡邊聽後搖邊解 bug。"
   },
   "experience": [
     {
@@ -13,16 +13,13 @@
       "period": "2022.07 — 至今",
       "location": "Taipei",
       "points": [
-        "主要以 Java Spring Boot 進行後端功能開發，並支援 Angular 前端實作",
-        "參與不動產、電商、銀行資產等多種領域系統開發與維護",
-        "銀行資產總覽系統：設計三層微服務架構（Spring WebFlux 反向代理 + Spring MVC 業務層 + OpenFeign 服務通訊），實作三套 JWT 分層認證（Web-Backend / Query-API / External），透過 JMeter 壓測與八項策略調校將 TPS 從 80 提升至 450（+463%），P95 從 2.1s 降至 450ms",
-        "設計 Caffeine 快取下沉至 Repository 層策略，配合 Redis Cluster 作為資料來源，快取命中率 78%，DB 查詢減少 78%；以 Semaphore + CompletableFuture 三層批次架構重寫 Oracle → Redis 轉檔流程，執行時間從 45 分鐘縮至 8 分鐘",
-        "以 Double-Checked Locking + CAS 非同步預取解決外部 API Token 的 Thundering Herd 問題，後續請求響應時間從 800ms 降至 8ms；HikariCP 多機器連線池計算、G1GC 固定堆大小調校，消除 Full GC 頻繁觸發",
-        "社會政策系統翻新：主導將上百支 JSP + Oracle PL/SQL 舊系統遷移至 Spring Boot 3 / SQL Server，無 SA 文件，全程逆向分析商業邏輯",
-        "建立以 CLAUDE.md 為核心的 AI 開發規範，定義技術限制、檔案結構、輸出格式，確保每次 AI 產出符合統一標準，不因對話重開而失真",
-        "將翻新工作流程拆分為八個可重複呼叫的 skill（/analyze、/design、/code、/validate、/fix、/testprep、/apitest、/apidoc），每步驟有固定輸入、輸出與品質門檻",
-        "/fix 與 /apitest 加入自動循環機制，AI 在修正後自動重新驗證，失敗超過三次才暫停等待人工介入，大幅減少手動切換步驟",
-        "整合 MCP 工具讓 AI 直連 SQL Server 自行查詢測試資料，並引入 OpenAI Codex 進行新舊系統六面向邏輯比對（API 完整性、Request/Response、商業邏輯、流程順序、DB 讀寫），強制附行號佐證才視為有效 Review"
+        "橫跨金融、電商、不動產、政策系統等多領域，主要以 Java Spring Boot 進行後端開發，並參與 Angular 前端實作",
+        "銀行資產總覽系統｜架構與效能：設計三層微服務架構（Spring WebFlux 反向代理 + Spring MVC 業務層 + OpenFeign 服務通訊），實作三套 JWT 分層認證（Web-Backend / Query-API / External）；JMeter 八項調校策略將 TPS 從 80 提升至 450（+463%），P95 從 2.1s 降至 450ms，錯誤率從 3% 降至 0.05%",
+        "銀行資產總覽系統｜快取與批次：Caffeine 快取下沉至 Repository 層 + Redis Cluster，快取命中率 78%、DB 查詢減少 78%；Semaphore + CompletableFuture 三層批次架構將 Oracle → Redis 轉檔從 45 分鐘縮至 8 分鐘，失敗率 5% → 0.1%",
+        "銀行資產總覽系統｜防雪崩：Double-Checked Locking + CAS 非同步預取解決外部 API Token Thundering Herd，後續響應從 800ms 降至 8ms；HikariCP 多機連線池精算 + G1GC 固定堆調校，消除 Full GC 頻繁觸發",
+        "社會政策系統翻新｜主導將上百支無文件 JSP + Oracle PL/SQL 舊系統逆向分析，遷移至 Spring Boot 3 / SQL Server；建立 CLAUDE.md 為核心的 AI 開發規範，定義技術選用、MCP 工具清單、Prompt 輸出格式與環境限制，確保 AI 行為跨對話一致",
+        "社會政策系統翻新｜設計八步翻新工作流（/analyze → /design → /code → /validate → /fix → /testprep → /apitest → /apidoc），每步驟有固定輸入輸出與品質門檻；/fix 與 /apitest 加入自動循環，失敗超過三次才暫停人工介入",
+        "社會政策系統翻新｜整合 MCP 讓 AI 直連 SQL Server 自行查詢測試資料；引入 OpenAI Codex 進行六面向邏輯比對（API 完整性、Request/Response、商業邏輯、流程順序、DB 讀寫），強制附行號佐證才視為有效 Review"
       ]
     },
     {
@@ -61,11 +58,12 @@
     }
   ],
   "skills": {
-    "後端": ["Java", "Spring MVC", "Spring Boot", "Spring WebFlux", "Spring Data JPA", "MyBatis", "OpenFeign", "Maven", "Hibernate"],
+    "後端": ["Java", "Spring MVC", "Spring Boot", "Spring WebFlux", "Spring Data JPA", "MyBatis", "OpenFeign", "Apache Kafka", "Maven", "Hibernate"],
     "前端": ["Angular", "TypeScript", "JavaScript", "HTML", "CSS", "JSP", "jQuery"],
-    "資料庫": ["MySQL", "MariaDB", "PostgreSQL", "DB2", "Oracle", "Redis", "Redis Cluster"],
+    "資料庫": ["MySQL", "MariaDB", "PostgreSQL", "SQL Server", "DB2", "Oracle", "Redis", "Redis Cluster"],
     "版本控制": ["Git"],
-    "測試與效能": ["JMeter", "JUnit", "WireMock"]
+    "測試與效能": ["JMeter", "JUnit", "WireMock"],
+    "AI 工具": ["Claude Code", "GitHub Copilot", "MCP"]
   },
   "languages": [
     { "language": "中文", "level": "母語" },
