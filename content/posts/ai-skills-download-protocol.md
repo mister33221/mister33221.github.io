@@ -2,7 +2,7 @@
 title: "[AI]技能下載協定（Skills Protocol）"
 date: "2026-03-24"
 category: "Tool"
-tags: ["Git"]
+tags: ["Ai"]
 summary: "以下將會以 Antigravity 為例，介紹 Skills 的概念與實踐。"
 published: true
 ---

@@ -3,7 +3,7 @@ title: "使用 AI 翻新 JSP to Spring boot 記錄"
 date: "2026-03-29"
 category: "Architecture"
 tags: ["AI", "Claude Code", "MCP", "Spring Boot", "Legacy Migration", "LLM工作流"]
-summary: "記錄一個無 SA 文件、上百支 JSP 夾雜 Oracle PL/SQL 的舊系統，如何透過 CLAUDE.md、Skill、MCP、自動循環等機制，建立一套可信任的 AI 協作翻新流程。"
+summary: "記錄一個無 SA 文件、上百支 JSP 夾雜 Oracle PL/SQL 的舊系統，如何透過 CLAUDE.md、Skill、Command、MCP、自動循環等機制，建立一套可信任的 AI 協作翻新流程。"
 published: true
 ---
 
@@ -57,18 +57,18 @@ published: true
 
 ---
 
-## Skill：把重複工作打包成可呼叫的指令
+## Skill：把技能、先備知識、做法寫成文件
 
 有了 CLAUDE.md 之後，基本行為穩定了，但又浮現另一個問題：工作流程有很多「固定步驟」，每次都要打一大段 prompt，一不小心漏說什麼，AI 就可能跳過某個環節。
 
-解法是建立 **Skill**——把每個固定步驟包成可重複呼叫的技能包。
+解法是定義 **Skill**——把每個固定步驟需要的技能、知識、做法都寫成結構化文件。
 
 ### 九步工作流
 
 ```
 1. 分析舊系統 JSP 與 Java 程式碼
 2. 分析舊系統 SQL 與 Oracle DB Function（商業邏輯的核心藏在這裡）
-3. 根據分析產出規格書
+3. 根據分析產出規格書(到可以讓 AI agent 實作的詳細程度)
 4. 驗證規格書與舊系統邏輯一致
 5. 依規格書開發 Spring Boot 程式碼
 6. 比較新舊系統商業邏輯
@@ -77,22 +77,28 @@ published: true
 9. 產出前端可用的 API 文件
 ```
 
-每一步對應一份 `SKILL.md`，明確定義這步要做什麼、怎麼做、產出什麼格式。
+每一步對應一份 `SKILL.md`，明確定義這步要做什麼、怎麼做、產出什麼格式、需要的先備知識。
 
-### 指令化之後的呼叫方式
+---
+
+## Command：用指令簡化 Skill 的呼叫
+
+定義好 skill 之後，下一步是建立 **Command**——用 `/` 開頭的指令來簡化對這些 skill 的呼叫，省掉每次都要詳細説明做法的麻煩。
+
+### 指令對應 Skill
 
 ```
-/analyze MOD-001     ← 分析舊系統 JSP，產出規格書
-/design  MOD-001     ← 根據規格書設計 Spring Boot 架構文件
-/code    MOD-001     ← 依設計文件產出 Java 程式碼
-/validate MOD-001    ← 驗證邏輯正確性 + 新舊行為比對
-/fix     MOD-001     ← 修正差異（自動循環驗證直到通過）
-/testprep MOD-001    ← 確認測試資料存在 DB
-/apitest  MOD-001    ← 執行 API 測試（自動找錯修正直到全過）
-/apidoc   MOD-001    ← 產出前端可用的 API 測試文件
+/analyze MOD-001     ← 呼叫 analyze skill，分析舊系統 JSP，產出規格書
+/design  MOD-001     ← 呼叫 design skill，根據規格書設計架構文件
+/code    MOD-001     ← 呼叫 code skill，依設計文件產出 Java 程式碼
+/validate MOD-001    ← 呼叫 validate skill，驗證邏輯正確性 + 新舊行為比對
+/fix     MOD-001     ← 呼叫 fix skill，修正差異（自動循環驗證直到通過）
+/testprep MOD-001    ← 呼叫 testprep skill，確認測試資料存在 DB
+/apitest  MOD-001    ← 呼叫 apitest skill，執行 API 測試（自動找錯修正直到全過）
+/apidoc   MOD-001    ← 呼叫 apidoc skill，產出前端可用的 API 測試文件
 ```
 
-我只要說功能代號，不用解釋這步要做什麼，AI 就知道去讀哪份 SKILL.md。
+我只要說功能代號，不用解釋這步要做什麼，AI 就知道去讀哪份對應的 `SKILL.md` 並執行。
 
 ---
 
@@ -106,14 +112,14 @@ published: true
 
 ### /fix 的循環邏輯
 
-`/fix` 背後串了兩個 skill：
+`/fix` 指令背後定義的 fix skill 串了兩個子技能：
 
-1. **`fix-plan-writer`**：讀 validate 輸出，逐條查新舊程式碼取得行號佐證，產出「修改計劃書」——先寫清楚「改什麼、為什麼、改前改後長怎樣」，不直接動手
-2. **`plan-executor`**：照計劃書逐條執行，改完回報
+1. **`fix-plan-writer` skill**：讀 validate 輸出，逐條查新舊程式碼取得行號佐證，產出「修改計劃書」——先寫清楚「改什麼、為什麼、改前改後長怎樣」，不直接動手
+2. **`plan-executor` skill**：照計劃書逐條執行，改完回報
 
 改完後不停在這裡——**自動觸發 `/validate` 重跑**。如果還有差異，再循環：fix-plan-writer → plan-executor → validate，直到通過為止。
 
-關鍵設計：`fix-plan-writer` 被強制要求**先查證才能提出修改**，每條差異必須附上舊新系統的檔案路徑與行號，確認差異真的存在才寫進計劃書。這樣不會改到沒問題的地方。
+關鍵設計：`fix-plan-writer` skill 被強制要求**先查證才能提出修改**，每條差異必須附上舊新系統的檔案路徑與行號，確認差異真的存在才寫進計劃書。這樣不會改到沒問題的地方。
 
 ### /apitest 的循環邏輯
 
@@ -154,7 +160,7 @@ JWT 過期    → 重新產生 token → 重測
 
 後來改用 **OpenAI Codex** 來做 review，一致性明顯提升。雖然每次要等 15–20 分鐘，但結果可信。
 
-同樣建了一個 Codex MCP，結合對應 skill，需要新舊比對時就呼叫這個組合。
+同樣建了一個 Codex MCP，結合對應的 review skill，需要新舊比對時就呼叫這個組合。
 
 但我還是非常困惑是什麼原因導致這麼大的差異——是模型本身的理解能力？還是 prompt 的表達方式？還是對話歷史的影響？
 
@@ -195,16 +201,18 @@ JWT 過期    → 重新產生 token → 重測
 
 ## Hook：讓 AI 自己跑完整個流程
 
-到這個階段，review-fix 循環還是需要我手動切換 skill。每次看到 AI 說「review 完了，有 X 個差異」，我說「好，幫我 fix」，fix 完再說「再 review 一次」……
+(這裡先說一下，這個 hook 不是指 claude 中的 hook，那是用來強制執行流程或指令的機制。這裡的 hook 是指在每個 skill 定義裡加入「完成條件」和「下一步觸發規則」，讓流程能夠自動推進。)
+
+到這個階段，review-fix 循環還是需要我手動切換 command。每次看到 AI 說「review 完了，有 X 個差異」，我說「好，幫我 fix」，fix 完再說「再 review 一次」……
 
 這明明可以讓他自己跑，為什麼需要我在旁邊當傳話筒？
 
-**Hook** 的做法：在每個 skill 結尾定義「完成條件」和「下一步觸發規則」：
-- review 通過 → 自動進入下一個 skill
-- review 有差異 → 自動觸發 fix，再觸發 re-review，循環直到通過
+**Hook** 的做法：在每個 skill 定義裡加入「完成條件」和「下一步觸發規則」：
+- review skill 通過 → 自動觸發下一個 command
+- review skill 有差異 → 自動觸發 `/fix` command，再觸發 re-review，循環直到通過
 - 全部通過 → 自動推進測試
 
-另外加了 `/dev {代號}` 入口，讓 AI 自己偵測這個功能目前做到哪裡，告訴我「現在應該做什麼」。我不用記進度，也不用搞清楚現在要呼叫哪個 skill。
+另外加了 `/dev {代號}` 入口，讓 AI 自己偵測這個功能目前做到哪裡，告訴我「現在應該做什麼」。我不用記進度，也不用搞清楚現在要呼叫哪個 command。
 
 ### 現在的流程
 
@@ -241,9 +249,10 @@ AI 自動：
 幾個關鍵心得：
 
 1. **CLAUDE.md 是基礎**，沒有它，每次 AI 都在亂發揮
-2. **Skill 讓流程可重複**，固定輸入輸出才能讓下一步穩定讀取
-3. **強制佐證是 review 品質的關鍵**，「應該一致」不算 review
-4. **MCP 增強協作能力**，讓 AI 真的能自己完成工作
-5. **循環機制把人從傳話筒解放出來**，但要設好退出條件，避免無限自旋
+2. **Skill 讓流程可重複**，把技能和先備知識文件化才能確保一致性
+3. **Command 簡化呼叫**，用指令代替長串 prompt 才能讓 AI 穩定執行
+4. **強制佐證是 review 品質的關鍵**，「應該一致」不算 review
+5. **MCP 增強協作能力**，讓 AI 真的能自己完成工作
+6. **循環機制把人從傳話筒解放出來**，但要設好退出條件，避免無限自旋
 
 這個方向是對的——不是讓 AI 快一點，而是讓 AI 的產出可信、可重複、可驗證。

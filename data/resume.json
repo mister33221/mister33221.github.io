@@ -13,11 +13,11 @@
       "period": "2022.07 — 至今",
       "location": "Taipei",
       "points": [
-        "橫跨金融、電商、不動產、政策系統等多領域，主要以 Java Spring Boot 進行後端開發，並參與 Angular 前端實作",
-        "銀行資產總覽系統｜架構與效能：設計三層微服務架構（Spring WebFlux 反向代理 + Spring MVC 業務層 + OpenFeign 服務通訊），實作三套 JWT 分層認證（Web-Backend / Query-API / External）；JMeter 八項調校策略將 TPS 從 80 提升至 450（+463%），P95 從 2.1s 降至 450ms，錯誤率從 3% 降至 0.05%",
+        "橫跨金融、電商、政策系統等多領域，主要以 Java Spring Boot 進行後端開發，並參與 Angular 前端實作",
+        "銀行資產總覽系統｜架構與效能：設計三層微服務架構（Spring WebFlux 反向代理 + Spring MVC 業務層 + OpenFeign 服務通訊），實作三套 JWT 分層認證（Web-Backend / Query-API / External）；JMeter 調校策略將 TPS 從 80 提升至 450（+463%），P95 從 2.1s 降至 450ms，錯誤率從 3% 降至 0.05%",
         "銀行資產總覽系統｜快取與批次：Caffeine 快取下沉至 Repository 層 + Redis Cluster，快取命中率 78%、DB 查詢減少 78%；Semaphore + CompletableFuture 三層批次架構將 Oracle → Redis 轉檔從 45 分鐘縮至 8 分鐘，失敗率 5% → 0.1%",
         "銀行資產總覽系統｜防雪崩：Double-Checked Locking + CAS 非同步預取解決外部 API Token Thundering Herd，後續響應從 800ms 降至 8ms；HikariCP 多機連線池精算 + G1GC 固定堆調校，消除 Full GC 頻繁觸發",
-        "社會政策系統翻新｜主導將上百支無文件 JSP + Oracle PL/SQL 舊系統逆向分析，遷移至 Spring Boot 3 / SQL Server；建立 CLAUDE.md 為核心的 AI 開發規範，定義技術選用、MCP 工具清單、Prompt 輸出格式與環境限制，確保 AI 行為跨對話一致",
+        "社會政策系統翻新｜將上百支無文件 JSP + Oracle PL/SQL 舊系統逆向分析，遷移至 Spring Boot 3 / SQL Server；建立 CLAUDE.md 為核心的 AI 開發規範，定義技術選用、MCP 工具清單、Prompt 輸出格式與環境限制，確保 AI 行為跨對話一致。並推廣給團隊中的成員，提升開發效率與一致性，降低溝通成本。",
         "社會政策系統翻新｜設計八步翻新工作流（/analyze → /design → /code → /validate → /fix → /testprep → /apitest → /apidoc），每步驟有固定輸入輸出與品質門檻；/fix 與 /apitest 加入自動循環，失敗超過三次才暫停人工介入",
         "社會政策系統翻新｜整合 MCP 讓 AI 直連 SQL Server 自行查詢測試資料；引入 OpenAI Codex 進行六面向邏輯比對（API 完整性、Request/Response、商業邏輯、流程順序、DB 讀寫），強制附行號佐證才視為有效 Review"
       ]
@@ -63,7 +63,7 @@
     "資料庫": ["MySQL", "MariaDB", "PostgreSQL", "SQL Server", "DB2", "Oracle", "Redis", "Redis Cluster"],
     "版本控制": ["Git"],
     "測試與效能": ["JMeter", "JUnit", "WireMock"],
-    "AI 工具": ["Claude Code", "GitHub Copilot", "MCP"]
+    "AI 工具": ["Claude Code", "GitHub Copilot", "Codex", "Antigravity"]
   },
   "languages": [
     { "language": "中文", "level": "母語" },
