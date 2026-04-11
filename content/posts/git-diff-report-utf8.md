@@ -1,6 +1,6 @@
 ---
 title: "產出兩個 Git 分支間的程式碼差異報告（含繁體中文 UTF-8 處理）"
-date: "2026-03-24"
+date: "2025-03-21"
 category: "Backend"
 tags: ["Spring Boot", "Logback"]
 summary: "這篇文章會教你如何使用 diff2html 工具，產生兩個 Git 分支之間的程式碼差異"

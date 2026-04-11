@@ -1,6 +1,6 @@
 ---
 title: "領域驅動設計(Domain-Driven Design DDD)學習"
-date: "2026-03-24"
+date: "2025-07-10"
 category: "Java"
 tags: ["Java"]
 summary: "DDD 是一種基於領域知識來解決複雜業務問題的軟體開發方法論。"

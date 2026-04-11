@@ -1,6 +1,6 @@
 ---
 title: "UUID, GUID, ULID 是甚麼?"
-date: "2026-03-24"
+date: "2024-12-27"
 category: "Backend"
 tags: ["Java", "Spring Boot"]
 summary: "UUID 是一個 128 位元的唯一識別碼，用來唯一標識某一個物件或實體。它由國"

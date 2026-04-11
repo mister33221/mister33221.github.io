@@ -1,6 +1,6 @@
 ---
 title: "甚麼是JVM?"
-date: "2026-03-24"
+date: "2023-05-01"
 category: "Java"
 tags: ["Java"]
 summary: "- Java Virtual Machine"

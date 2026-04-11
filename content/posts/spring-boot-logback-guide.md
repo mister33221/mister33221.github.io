@@ -1,6 +1,6 @@
 ---
 title: "Spring Boot Logback 常用功能與設定"
-date: "2026-03-24"
+date: "2025-03-18"
 category: "Java"
 tags: ["Java", "Concurrency"]
 summary: "- `TRACE`：最詳細的日誌，幾乎所有調試訊息都會顯示。"

@@ -1,6 +1,6 @@
 ---
 title: "Git Tag 使用指南"
-date: "2026-03-24"
+date: "2025-03-08"
 category: "Tool"
 tags: ["Git"]
 summary: "Git Tag 用於標記特定的 commit，常用於版本發布與里程碑標記。"

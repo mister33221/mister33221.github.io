@@ -1,6 +1,6 @@
 ---
 title: "[Clean Code]涵式"
-date: "2026-03-24"
+date: "2023-05-10"
 category: "Backend"
 tags: ["Clean Code", "Design Pattern"]
 summary: "* 關於涵式的首要準則就是簡短"

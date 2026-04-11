@@ -1,6 +1,6 @@
 ---
 title: "Flyway × Spring Boot：整合與使用指南（含版本管理觀念與實務流程）"
-date: "2026-03-24"
+date: "2025-03-18"
 category: "Backend"
 tags: ["Spring Boot", "Logback"]
 summary: "Flyway 是一套 **資料庫版本控管（Schema Migration）** 工具。"

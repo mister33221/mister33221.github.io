@@ -1,6 +1,6 @@
 ---
 title: "JSON Web Key (JWK) 深度解析與分散式架構應用"
-date: "2026-03-24"
+date: "2024-07-20"
 category: "Backend"
 tags: ["Spring Boot", "Security", "JWT"]
 summary: "**文件目的：** 詳細解釋 JSON Web Key (JWK) 的定義、用途、工作流程，並分析其"

@@ -1,6 +1,6 @@
 ---
 title: "用 Tone.js 把 Java 程式碼轉成 Lofi 音樂"
-date: "2026-03-24"
+date: "2025-12-25"
 category: "Tool"
 tags: ["JavaScript", "Tone.js", "Vibe Coding"]
 summary: "可以自己把程式碼貼上去來產生，純前端，所以不用怕有什麼資安的問題"

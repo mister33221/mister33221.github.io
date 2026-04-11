@@ -1,6 +1,6 @@
 ---
 title: "用 Java 學資料結構：堆疊 Stack"
-date: "2026-03-24"
+date: "2023-05-01"
 category: "Tool"
 tags: ["Git"]
 summary: "堆疊(Stack)是一種基本的資料結構，遵循著一個簡單的原則：**後進先出**（La"

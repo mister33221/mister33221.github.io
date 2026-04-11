@@ -1,6 +1,6 @@
 ---
 title: "C4 模型：軟體架構視覺化方法"
-date: "2026-03-24"
+date: "2024-05-29"
 category: "Backend"
 tags: ["Architecture", "C4 Model", "Design"]
 summary: "C4模型是一種用於視覺化和描述軟件架構的方法，它提供了一套標準化的語�"

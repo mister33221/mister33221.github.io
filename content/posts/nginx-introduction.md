@@ -1,6 +1,6 @@
 ---
 title: "[Nginx] 基礎介紹"
-date: "2026-03-24"
+date: "2024-06-06"
 category: "Backend"
 tags: ["Spring Boot", "Logback"]
 summary: "<!-- TOC -->"

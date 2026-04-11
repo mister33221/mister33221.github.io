@@ -1,6 +1,6 @@
 ---
 title: "What is kubernetes dashboard?"
-date: "2026-03-24"
+date: "2022-09-30"
 category: "Tool"
 tags: ["Git"]
 summary: "Kubernetes Dashboard is a general purpose, web-based UI for Kubernetes clusters. It allows users to"

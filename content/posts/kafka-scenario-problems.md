@@ -1,6 +1,6 @@
 ---
 title: "kafka 情境問題"
-date: "2026-03-24"
+date: "2023-02-28"
 category: "Tool"
 tags: ["Git"]
 summary: "稍微修整一下問題為同一個consumer group中的兩個consumer，分別在不同的主機或"

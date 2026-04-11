@@ -1,6 +1,6 @@
 ---
 title: "Github action practice ( Angular, Spring Boot, Containerication, gmail notify)"
-date: "2026-03-24"
+date: "2024-08-19"
 category: "Backend"
 tags: ["Spring Boot", "Logback"]
 summary: "Coming soon"

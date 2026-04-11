@@ -1,6 +1,6 @@
 ---
 title: "[Java] 列舉 Enum"
-date: "2026-03-24"
+date: "2024-06-15"
 category: "Tool"
 tags: ["Git"]
 summary: "- [Enum 的定義](#Enum-的定義)"

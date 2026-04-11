@@ -1,6 +1,6 @@
 ---
 title: "[練習範例]Spring boot line bot practice"
-date: "2026-03-24"
+date: "2022-07-31"
 category: "Backend"
 tags: ["Spring Boot", "Line Bot"]
 summary: "* 使用ngrok建立一個臨時的https網址(接收Line Bot傳送過來訊息的網頁須走https�"

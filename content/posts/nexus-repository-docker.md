@@ -1,6 +1,6 @@
 ---
 title: "Learning Nexus Repository (docker)"
-date: "2026-03-24"
+date: "2024-08-18"
 category: "Backend"
 tags: ["Spring Boot", "Logback"]
 summary: "- Sonatype nexus repository is a kind of repository manager. Includes support for Maven, NuGet, PyPI"

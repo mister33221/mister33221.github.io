@@ -1,6 +1,6 @@
 ---
 title: "cypress 前端測試 with angular 簡單介紹及教學"
-date: "2026-03-24"
+date: "2023-04-30"
 category: "Backend"
 tags: ["Spring Boot", "Logback"]
 summary: "Cypress是一個開源的端對端測試框架，它可以幫助開發人員在網頁應用程序上"

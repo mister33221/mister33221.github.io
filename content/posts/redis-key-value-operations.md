@@ -1,6 +1,6 @@
 ---
 title: "Set a key-value pair"
-date: "2026-03-24"
+date: "2022-07-31"
 category: "Java"
 tags: ["Java", "Concurrency"]
 summary: "- Redis is an open source (BSD licensed), in-memory(內存) data structure store, used as a database"

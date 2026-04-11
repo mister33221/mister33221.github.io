@@ -1,6 +1,6 @@
 ---
 title: "[Java] 基本型別包裹類別"
-date: "2026-03-24"
+date: "2024-05-29"
 category: "Java"
 tags: ["Java"]
 summary: "- [類別與實例](#%E9%A1%9E%E5%88%A5%E8%88%87%E5%AF%A6%E4%BE%8B)"

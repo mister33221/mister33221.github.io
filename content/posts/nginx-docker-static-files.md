@@ -1,6 +1,6 @@
 ---
 title: "[Nginx] 使用docker, nginx讀取靜態檔案"
-date: "2026-03-24"
+date: "2025-01-21"
 category: "DevOps"
 tags: ["DevOps", "Docker"]
 summary: "- docker"

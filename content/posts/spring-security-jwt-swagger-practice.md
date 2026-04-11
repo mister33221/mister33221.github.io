@@ -1,6 +1,6 @@
 ---
 title: "[練習範例]spring security & JWT & Swagger"
-date: "2026-03-24"
+date: "2022-07-31"
 category: "Backend"
 tags: ["Spring Boot", "Logback"]
 summary: "* HttpSecurity http :"

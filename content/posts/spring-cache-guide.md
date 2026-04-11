@@ -1,6 +1,6 @@
 ---
 title: "Spring Cache 學習指南"
-date: "2026-03-24"
+date: "2025-01-09"
 category: "Java"
 tags: ["Java", "Concurrency"]
 summary: "- 快取的定義和重要性"

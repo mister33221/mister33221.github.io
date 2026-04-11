@@ -1,6 +1,6 @@
 ---
 title: "用Java學資料結構-佇列Queue"
-date: "2026-03-24"
+date: "2023-05-01"
 category: "Java"
 tags: ["Java", "Concurrency"]
 summary: "- Queue 是一種線性的資料結構"

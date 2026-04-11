@@ -1,6 +1,6 @@
 ---
 title: "Skeleton of Spring Boot + Redis OM + Redis Stack"
-date: "2026-03-24"
+date: "2024-06-20"
 category: "Backend"
 tags: ["Spring Boot", "Logback"]
 summary: "The most important thing in the begining is [Redis OM](https://redis.io/docs/connect/clients/om-clie"

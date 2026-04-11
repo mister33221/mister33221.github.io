@@ -1,6 +1,6 @@
 ---
 title: "Nginx HTTPS 設定"
-date: "2026-03-24"
+date: "2025-01-21"
 category: "DevOps"
 tags: ["DevOps", "Docker"]
 summary: "以下是教學範例，說明如何配置 Nginx 支援 HTTPS 並進行反向代理。"

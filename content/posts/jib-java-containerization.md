@@ -1,6 +1,6 @@
 ---
 title: "JIB"
-date: "2026-03-24"
+date: "2024-06-09"
 category: "Backend"
 tags: ["Spring Boot", "Logback"]
 summary: "- [Make your hands dirty](#make-your-hands-dirty)"

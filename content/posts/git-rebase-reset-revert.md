@@ -1,6 +1,6 @@
 ---
 title: "Git `rebase`、`reset`、`revert` 差異"
-date: "2026-03-24"
+date: "2025-03-16"
 category: "Backend"
 tags: ["Spring Boot", "Logback"]
 summary: "| 指令 | 作用 | 影響範圍 | 是否改變歷史 | 是否刪除 commit | 適用場景 |"

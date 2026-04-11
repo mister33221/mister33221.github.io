@@ -1,6 +1,6 @@
 ---
 title: "物件導向設計(Java)"
-date: "2026-03-24"
+date: "2024-06-11"
 category: "Java"
 tags: ["Java"]
 summary: "- [甚麼是物件導向設計](#甚麼是物件導向設計)"

@@ -1,6 +1,6 @@
 ---
 title: "Redis with Lua script (Spring boot)"
-date: "2026-03-24"
+date: "2024-06-20"
 category: "Tool"
 tags: ["Git"]
 summary: "- After Redis 2.6, Redis has provided a new feature that let us use Lua script to do some operations"

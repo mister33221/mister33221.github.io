@@ -1,6 +1,6 @@
 ---
 title: "Spring Boot Jackson 常用功能與使用方法"
-date: "2026-03-24"
+date: "2025-03-17"
 category: "Java"
 tags: ["Java"]
 summary: "在 Spring Boot 中，**Jackson** 是最常用的 JSON 解析與序列化/反序列化工具，Sprin"

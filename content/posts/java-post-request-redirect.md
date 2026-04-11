@@ -1,6 +1,6 @@
 ---
 title: "[Java] 如果前端是送來 Post Request，要怎麼在 Java 端 Redirect ?"
-date: "2026-03-24"
+date: "2022-07-31"
 category: "Java"
 tags: ["Java"]
 summary: "是這樣的，前端送來一個 Get Request，我們的 Spring boot 專案在 Controller 處理完"

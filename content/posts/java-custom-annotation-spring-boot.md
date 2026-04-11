@@ -1,6 +1,6 @@
 ---
 title: "[Java]Customize Annotation In Spring Boot"
-date: "2026-03-24"
+date: "2024-07-20"
 category: "Tool"
 tags: ["Git"]
 summary: "平常很常使用 Spring boot 提供給我們的 Annotation，實在是有夠方便。"

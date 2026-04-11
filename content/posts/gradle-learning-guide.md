@@ -1,6 +1,6 @@
 ---
 title: "為自己學Gradle (還可以許願開發上遇到甚麼相關問題)"
-date: "2026-03-24"
+date: "2023-05-01"
 category: "Backend"
 tags: ["Spring Boot", "Logback"]
 summary: "Gradle是一款開源的自動化建構、測試和部署軟體專案的建構工具。它基於 Gro"
